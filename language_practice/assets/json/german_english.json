@@ -1,0 +1,141 @@
+[
+  {
+    "word": "sein",
+    "english": [
+      "to be"
+    ],
+    "quiz_errors": 0,
+    "plural": "",
+    "gender": "",
+    "type": [
+      "verb"
+    ],
+    "verb_conjugation_class": "",
+    "verb_functional_type": "",
+    "tenses": [
+      {
+        "tense": "Präsens",
+        "1st_person_singular": "bin",
+        "2nd_person_singular": "bist",
+        "3rd_person_singular": "ist",
+        "1st_person_plural": "sind",
+        "2nd_person_plural": "seid",
+        "3rd_person_plural": "sind"
+      },
+      {
+        "tense": "Präteritum",
+        "1st_person_singular": "war",
+        "2nd_person_singular": "warst",
+        "3rd_person_singular": "war",
+        "1st_person_plural": "waren",
+        "2nd_person_plural": "wart",
+        "3rd_person_plural": "waren"
+      },
+      {
+        "tense": "Perfekt",
+        "helper_verb": "sein",
+        "past_participle": "gewesen"
+      }
+    ]
+  },
+  {
+    "word": "gut",
+    "quiz_errors": 0,
+    "english": [
+      "good",
+      "well",
+      "nice"
+    ],
+    "type": [
+      "adjective",
+      "adverb"
+    ],
+    "rules": [{"type": "adjective", "rule": "It takes endings (declined) when preceding a noun (e.g., ein guter Mann)"
+      },
+
+      {"type": "adjective", "rule": "Can be used predicatively without endings after sein (e.g., Das Essen ist gut)"
+      },
+      {"type": "\"adverb\"", "rule": "It describes how an action is performed and does not change (e.g., Ich spreche Deutsch gut—I speak German well)."
+      }
+    ]
+  },
+  {
+    "word": "langweilig",
+    "quiz_errors": 0,
+    "english": ["boring"],
+    "plural": "",
+    "gender": "",
+    "type": [
+      "adjective"
+    ],
+    "tenses": []
+  },
+  {
+    "word": "Möbel",
+    "plural": "Möbel",
+    "english": [
+      "furniture"
+    ],
+    "type": [
+      "noun"
+    ]
+  },
+  {
+    "word": "Möbelstück",
+    "quiz_errors": 0,
+    "gender": "neuter",
+    "english": [
+      "the piece of furniture"
+    ],
+    "type": [
+      "noun"
+    ],
+    "plural": "Möbelstücke"
+  },
+  {
+    "word": "fahren",
+    "quiz_errors": 0,
+    "english":[ "to drive","to go"],
+    "plural": "",
+    "gender": "",
+    "type": [
+      "verb"
+    ],
+    "tenses": [
+      {
+        "tense": "Präsens",
+        "1st_person_singular": "fahre",
+        "2nd_person_singular": "fährst",
+        "3rd_person_singular": "fährt",
+        "1st_person_plural": "fahren",
+        "2nd_person_plural": "fahrt",
+        "3rd_person_plural": "fahren"
+      },
+      {
+        "tense": "Präteritum",
+        "1st_person_singular": "fuhr",
+        "2nd_person_singular": "fuhrst",
+        "3rd_person_singular": "fuhr",
+        "1st_person_plural": "fuhren",
+        "2nd_person_plural": "fuhrt",
+        "3rd_person_plural": "fuhren"
+      },
+      {
+        "tense": "Perfekt",
+        "helper_verb": "sein",
+        "past_participle": "gefahren"
+      }
+    ]
+  },
+  {
+    "word": "Zimmer",
+    "quiz_errors": 0,
+    "english": ["room"],
+    "plural": "Zimmer",
+    "gender": "neuter",
+    "type": [
+      "noun"
+    ],
+    "tenses": []
+  }
+]
