@@ -9,6 +9,7 @@ import '../language_widgets/english_translation_section.dart'
 import '../language_widgets/plural_widget.dart';
 import '../language_widgets/type_chip.dart';
 import '../language_widgets/verb_tenses_widget.dart';
+import '../language_widgets/word_rules.dart';
 import '../language_widgets/word_section.dart' show WordSection;
 import '../language_widgets/wordtype_selection_dialog.dart';
 import '../main.dart' show getIt;
@@ -134,6 +135,7 @@ class _InputWordScreenState extends State<InputWordScreen>
                 if (word.type != null && word.type!.indexOf("verb") >= 0)
                   _getWordTensesSection(),
                 const SizedBox(height: 8),
+                _getRulesWidget(),
                 const SizedBox(height: 100), // Extra space for FAB
               ],
             ),
@@ -293,31 +295,41 @@ class _InputWordScreenState extends State<InputWordScreen>
     );
   }
 
-  Future<void> _displayWordTypes(BuildContext context, List<String> types) async {
-    final results = await _displayWordTypeDialog(
+  Future<List<String>> _displayWordTypeDialog(
+    BuildContext context,
+    List<String> currentTypes,
+  ) async {
+    final List<String>? results = await showWordTypeSelector(
       context,
-      types,
+      currentTypes, // Removed the trailing semicolon error
     );
+    if (results == null) {
+      return currentTypes;
+    } else {
+      return results;
+    }
+  }
+
+  Future<void> _displayWordTypes(
+    BuildContext context,
+    List<String> types,
+  ) async {
+    final results = await _displayWordTypeDialog(context, types);
     if (mounted) {
       setState(() {
         word.type = results; // Update data
       });
     }
   }
-}
 
-
-Future<List<String>> _displayWordTypeDialog(
-  BuildContext context,
-  List<String> currentTypes,
-) async {
-  final List<String>? results = await showWordTypeSelector(
-    context,
-    currentTypes, // Removed the trailing semicolon error
-  );
-  if (results == null) {
-    return currentTypes;
-  } else {
-    return results;
+  Widget _getRulesWidget() {
+    return WordRulesSection(
+      rules: word.rules ?? [],
+      onRulesChanged: (newList) {
+        setState(() {
+          word.rules = newList;
+        });
+      },
+    );
   }
 }
