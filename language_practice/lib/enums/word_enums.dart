@@ -12,7 +12,8 @@ enum WordType {
   article;
 
   /// Returns a formatted version for the UI (e.g., "Preposition")
-  String get displayName => name[0].toUpperCase() + name.substring(1);
+ // String get displayName => name[0].toUpperCase() + name.substring(1);
+  String get displayName => name;
 
   /// Helper to safely parse a string into the Enum
   static WordType? fromString(String value) {

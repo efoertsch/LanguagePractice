@@ -68,10 +68,16 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
         // }),
         if (currentTense.tense != null &&
             currentTense.tense == VerbTense.present_perfect.germanTense)
-          ..._getPresentPerfectFields(currentTense),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Column(children: _getPresentPerfectFields(currentTense)),
+          ),
         if (currentTense.tense != null &&
             currentTense.tense != VerbTense.present_perfect.germanTense)
-          ..._getFullVerbConjugationFields(currentTense),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Column(children: _getFullVerbConjugationFields(currentTense)),
+          ),
       ],
     );
   }
@@ -94,7 +100,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
           ),
           const SizedBox(width: 12),
           SizedBox(
-            width:250,
+            width: 250,
             child: TextFormField(
               initialValue: value,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
@@ -132,6 +138,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
   List<Widget> _getFullVerbConjugationFields(Tense currentTense) {
     return [
       Row(
+        mainAxisSize:  MainAxisSize.min ,
         children: [
           Flexible(
             child: _buildTenseInput(
@@ -158,6 +165,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
       ),
 
       Row(
+        mainAxisSize:  MainAxisSize.min ,
         children: [
           Flexible(
             child: _buildTenseInput(
@@ -183,6 +191,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
         ],
       ),
       Row(
+        mainAxisSize:  MainAxisSize.min ,
         children: [
           Flexible(
             child: _buildTenseInput(
