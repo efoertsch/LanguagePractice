@@ -32,8 +32,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
       children: [
         const Text(
           "Tenses",
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
 
@@ -72,35 +71,43 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
           ..._getPresentPerfectFields(currentTense),
         if (currentTense.tense != null &&
             currentTense.tense != VerbTense.present_perfect.germanTense)
-        ..._getFullVerbConjugationFields(currentTense)
-
+          ..._getFullVerbConjugationFields(currentTense),
       ],
     );
   }
 
-  Widget _buildTenseInput(String label, String value, Function(String) onChanged) {
+  Widget _buildTenseInput(
+    String label,
+    String value,
+    Function(String) onChanged,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         children: [
           SizedBox(
-            width: 50, // Matches your existing horizontal label pattern
+            width: 60, // Matches your existing horizontal label pattern
             child: Text(
               label,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
           ),
           const SizedBox(width: 12),
-          Expanded(
+          SizedBox(
+            width:250,
             child: TextFormField(
               initialValue: value,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-              key: Key("${_activeTenseIndex}_$label"), // Forces rebuild when switching tenses
+              key: Key("${_activeTenseIndex}_$label"),
+              // Forces rebuild when switching tenses
               onChanged: onChanged,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 isDense: true,
-                contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 8,
+                ),
               ),
             ),
           ),
@@ -111,68 +118,92 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
 
   List<Widget> _getPresentPerfectFields(Tense currentTense) {
     return [
-    _buildTenseInput("Helper Verb", currentTense.helperVerb ?? "", (val) {
-      currentTense.helperVerb = val;
-      widget.onTenseChanged(_activeTenseIndex, currentTense);
-    }),
-    _buildTenseInput("Past Part.", currentTense.pastParticiple ?? "", (val) {
-    currentTense.pastParticiple = val;
-    widget.onTenseChanged(_activeTenseIndex, currentTense);
-    })];
+      _buildTenseInput("Helper Verb", currentTense.helperVerb ?? "", (val) {
+        currentTense.helperVerb = val;
+        widget.onTenseChanged(_activeTenseIndex, currentTense);
+      }),
+      _buildTenseInput("Past Part.", currentTense.pastParticiple ?? "", (val) {
+        currentTense.pastParticiple = val;
+        widget.onTenseChanged(_activeTenseIndex, currentTense);
+      }),
+    ];
   }
 
   List<Widget> _getFullVerbConjugationFields(Tense currentTense) {
     return [
-
       Row(
         children: [
-          Expanded(
-            child: _buildTenseInput(Constants.deNominativePronouns[0], currentTense.s1stPersonSingular ?? "", (val) {
-              currentTense.s1stPersonSingular = val;
-              widget.onTenseChanged(_activeTenseIndex, currentTense);
-            }),
+          Flexible(
+            child: _buildTenseInput(
+              Constants.deNominativePronouns[0],
+              currentTense.s1stPersonSingular ?? "",
+              (val) {
+                currentTense.s1stPersonSingular = val;
+                widget.onTenseChanged(_activeTenseIndex, currentTense);
+              },
+            ),
           ),
           SizedBox(width: 10),
-          Expanded(
-            child: _buildTenseInput(Constants.deNominativePronouns[3], currentTense.s1stPersonPlural ?? "", (val) {
-              currentTense.s1stPersonPlural = val;
-              widget.onTenseChanged(_activeTenseIndex, currentTense);
-            }),
+          Flexible(
+            child: _buildTenseInput(
+              Constants.deNominativePronouns[3],
+              currentTense.s1stPersonPlural ?? "",
+              (val) {
+                currentTense.s1stPersonPlural = val;
+                widget.onTenseChanged(_activeTenseIndex, currentTense);
+              },
+            ),
           ),
         ],
       ),
 
       Row(
         children: [
-          Expanded(
-            child: _buildTenseInput(Constants.deNominativePronouns[1], currentTense.s2ndPersonSingular ?? "", (val) {
-              currentTense.s2ndPersonSingular = val;
-              widget.onTenseChanged(_activeTenseIndex, currentTense);
-            }),
+          Flexible(
+            child: _buildTenseInput(
+              Constants.deNominativePronouns[1],
+              currentTense.s2ndPersonSingular ?? "",
+              (val) {
+                currentTense.s2ndPersonSingular = val;
+                widget.onTenseChanged(_activeTenseIndex, currentTense);
+              },
+            ),
           ),
           SizedBox(width: 10),
-          Expanded(
-            child: _buildTenseInput(Constants.deNominativePronouns[4], currentTense.s2ndPersonPlural ?? "", (val) {
-              currentTense.s2ndPersonPlural = val;
-              widget.onTenseChanged(_activeTenseIndex, currentTense);
-            }),
+          Flexible(
+            child: _buildTenseInput(
+              Constants.deNominativePronouns[4],
+              currentTense.s2ndPersonPlural ?? "",
+              (val) {
+                currentTense.s2ndPersonPlural = val;
+                widget.onTenseChanged(_activeTenseIndex, currentTense);
+              },
+            ),
           ),
         ],
       ),
       Row(
         children: [
-          Expanded(
-            child: _buildTenseInput(Constants.deNominativePronouns[2], currentTense.s3rdPersonSingular ?? "", (val) {
-              currentTense.s3rdPersonSingular = val;
-              widget.onTenseChanged(_activeTenseIndex, currentTense);
-            }),
+          Flexible(
+            child: _buildTenseInput(
+              Constants.deNominativePronouns[2],
+              currentTense.s3rdPersonSingular ?? "",
+              (val) {
+                currentTense.s3rdPersonSingular = val;
+                widget.onTenseChanged(_activeTenseIndex, currentTense);
+              },
+            ),
           ),
           SizedBox(width: 10),
-          Expanded(
-            child: _buildTenseInput(Constants.deNominativePronouns[5], currentTense.s3rdPersonPlural ?? "", (val) {
-              currentTense.s3rdPersonPlural = val;
-              widget.onTenseChanged(_activeTenseIndex, currentTense);
-            }),
+          Flexible(
+            child: _buildTenseInput(
+              Constants.deNominativePronouns[5],
+              currentTense.s3rdPersonPlural ?? "",
+              (val) {
+                currentTense.s3rdPersonPlural = val;
+                widget.onTenseChanged(_activeTenseIndex, currentTense);
+              },
+            ),
           ),
         ],
       ),
