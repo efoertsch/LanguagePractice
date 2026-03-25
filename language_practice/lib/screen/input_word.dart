@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:language_practice/app/dialog_widgets.dart';
 import 'package:language_practice/language_classes/word.dart';
+import 'package:language_practice/language_widgets/word_type_mixin.dart';
 import 'package:language_practice/repository/language_repository.dart';
 
 import '../enums/word_enums.dart' show GermanGender;
 import '../language_widgets/english_translation_section.dart'
     show EnglishTranslationSection;
 import '../language_widgets/plural_widget.dart';
-import '../language_widgets/type_chip.dart';
 import '../language_widgets/verb_tenses_widget.dart';
 import '../language_widgets/word_rules.dart';
 import '../language_widgets/word_section.dart' show WordSection;
-import '../language_widgets/wordtype_selection_dialog.dart';
 import '../main.dart' show getIt;
 
 class InputWordScreen extends StatefulWidget {
@@ -24,7 +23,7 @@ class InputWordScreen extends StatefulWidget {
 }
 
 class _InputWordScreenState extends State<InputWordScreen>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, WordTypeMixin {
   Word word = Word();
   bool _isLoading = true;
 
@@ -131,7 +130,7 @@ class _InputWordScreenState extends State<InputWordScreen>
                 const SizedBox(height: 8),
                 if (word.type != null && word.type!.indexOf("noun") >= 0)
                   ..._getPluralWidget(word),
-                if (word.type != null) _buildTypeChips(context, word.type!),
+                if (word.type != null) buildTypeChips(context, word.type!, true,onTypesChanged),
                 if (word.type != null && word.type!.indexOf("verb") >= 0)
                   _getWordTensesSection(),
                 const SizedBox(height: 8),
@@ -144,6 +143,16 @@ class _InputWordScreenState extends State<InputWordScreen>
       ),
     );
   }
+
+  void onTypesChanged(List<String> types) {
+    if (mounted) {
+      setState(() {
+        word.type = types;
+      });
+    };
+  }
+
+
 
   Future<void> _getWord(String stringWord) async {
     final LanguageRepository languageRepository = getIt<LanguageRepository>();
@@ -177,12 +186,13 @@ class _InputWordScreenState extends State<InputWordScreen>
                 context,
                 "Gender Missing",
                 "Please add the noun gender to the word. The gender for a noun must be one of the following: "
-                    "${GermanGender.values.map((gender) => gender.name).join(', ')}",
+                    "${GermanGender.values.map((gender) => gender.name).join(
+                    ', ')}",
               );
             } else {
               if (parts[0].length == 3 &&
                   GermanGender.values.any(
-                    (gender) => gender.name == parts[0],
+                        (gender) => gender.name == parts[0],
                   )) {
                 word.gender = parts[0];
                 word.word = parts[1];
@@ -191,7 +201,8 @@ class _InputWordScreenState extends State<InputWordScreen>
                   context,
                   "Gender Error",
                   " The gender for a noun must be one of the following: "
-                      "${GermanGender.values.map((gender) => gender.name).join(', ')}",
+                      "${GermanGender.values.map((gender) => gender.name).join(
+                      ', ')}",
                 );
               }
             }
@@ -250,77 +261,6 @@ class _InputWordScreenState extends State<InputWordScreen>
     return widgets;
   }
 
-  Widget _buildTypeChips(BuildContext context, List<String> types) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-          child: Text(
-            'Type',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-          ),
-          padding: EdgeInsets.only(right: 8),
-        ),
-        const SizedBox(height: 10),
-        Flexible(
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: types
-                .map(
-                  (t) => TypeChip(
-                    label: t,
-                    onPressed: () async {
-                      await _displayWordTypes(context, types);
-                    },
-                  ),
-                )
-                .toList(),
-          ),
-        ),
-        IconButton(
-          onPressed: () async {
-            await _displayWordTypes(context, types);
-          },
-          icon: const Icon(Icons.add),
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0), // Customize roundness
-            ),
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Future<List<String>> _displayWordTypeDialog(
-    BuildContext context,
-    List<String> currentTypes,
-  ) async {
-    final List<String>? results = await showWordTypeSelector(
-      context,
-      currentTypes, // Removed the trailing semicolon error
-    );
-    if (results == null) {
-      return currentTypes;
-    } else {
-      return results;
-    }
-  }
-
-  Future<void> _displayWordTypes(
-    BuildContext context,
-    List<String> types,
-  ) async {
-    final results = await _displayWordTypeDialog(context, types);
-    if (mounted) {
-      setState(() {
-        word.type = results; // Update data
-      });
-    }
-  }
 
   Widget _getRulesWidget() {
     return WordRulesSection(
