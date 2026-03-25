@@ -1,4 +1,7 @@
+import 'package:mongo_dart/mongo_dart.dart';
+
 class Word {
+  ObjectId? _id;
   String? _word;
   List<String>? _english;
   int? _quizErrors;
@@ -12,6 +15,7 @@ class Word {
   List<Rules>? _rules;
 
   Word({
+    ObjectId? id,
     String? word,
     List<String>? english,
     int? quizErrors,
@@ -23,6 +27,9 @@ class Word {
     List<Tense>? tenses,
     List<Rules>? rules,
   }) {
+    if (id != null){
+      this._id = id;
+    }
     if (word != null) {
       this._word = word;
     }
@@ -56,6 +63,10 @@ class Word {
       this._rules = rules;
     }
   }
+
+  ObjectId? get id => _id;
+
+  set id(ObjectId? id) => _id = id;
 
   String? get word => _word;
 
@@ -98,6 +109,7 @@ class Word {
   set rules(List<Rules>? rules) => _rules = rules;
 
   Word.fromJson(Map<String, dynamic> json) {
+    _id = json[_id];
     _word = json['word'];
     _english = <String>[];
      json['english'].forEach((v){_english!.add(v);});
@@ -128,6 +140,7 @@ class Word {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this._id;
     data['word'] = this._word;
     data['english'] = this._english;
     data['quizErrors'] = this._quizErrors;

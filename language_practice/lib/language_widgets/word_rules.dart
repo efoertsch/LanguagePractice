@@ -17,7 +17,7 @@ class WordRulesSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "GRAMMAR RULES",
+          "Rules",
           style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),
         ),
         const SizedBox(height: 8),
