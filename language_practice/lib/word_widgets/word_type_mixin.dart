@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:language_practice/language_widgets/wordtype_selection_dialog.dart';
+import '../word_widgets/wordtype_selection_dialog.dart';
 
 mixin WordTypeMixin  {
-  Widget buildTypeChips(BuildContext context, List<String> types, bool multipleSelectionAllowed,Function onTypesChanged) {
+  Widget buildTypeChips(BuildContext context, List<String>? types, bool multipleSelectionAllowed,Function onTypesChanged) {
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
+          padding: EdgeInsets.only(right: 8),
           child: Text(
             'Type',
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           ),
-          padding: EdgeInsets.only(right: 8),
         ),
         const SizedBox(height: 10),
         Flexible(
           child: Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: types
+            children: (types ?? <String>[])
                 .map(
                   (t) =>
                   TypeChip(
@@ -32,7 +32,7 @@ mixin WordTypeMixin  {
                 .toList(),
           ),
         ),
-        if (multipleSelectionAllowed ||( !multipleSelectionAllowed && types.isEmpty  )) IconButton(
+        if (multipleSelectionAllowed ||( !multipleSelectionAllowed && (types ?? <String>[]).isEmpty  )) IconButton(
           onPressed: () async {
             await displayWordTypes(
               context,
@@ -58,20 +58,20 @@ mixin WordTypeMixin  {
   }
 
   Future<void> displayWordTypes(BuildContext context,
-      List<String> types,   bool multipleSelectionAllowed ,Function onTypesChanged,) async {
+      List<String>? types,   bool multipleSelectionAllowed ,Function onTypesChanged,) async {
     final results = await displayWordTypeDialog(context, types, multipleSelectionAllowed);
     onTypesChanged(results);
   }
 
 
   Future<List<String>> displayWordTypeDialog(BuildContext context,
-      List<String> currentTypes,bool multipleSelectionAllowed) async {
+      List<String>? currentTypes,bool multipleSelectionAllowed) async {
     final List<String>? results = await showWordTypeSelector(
       context,
       currentTypes,multipleSelectionAllowed
     );
     if (results == null) {
-      return currentTypes;
+      return currentTypes ?? [];
     } else {
       return results;
     }

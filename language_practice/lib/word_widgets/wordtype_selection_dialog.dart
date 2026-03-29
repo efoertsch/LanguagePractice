@@ -4,11 +4,11 @@ import '../enums/word_enums.dart';
 
 Future<List<String>?> showWordTypeSelector(
     BuildContext context,
-    List<String> initialSelection,
+    List<String>? initialSelection,
     bool multipleSelectionAllowed,
     ) async {
   // Create a local copy of the selection to modify within the dialog
-  List<String> selectedTypes = List.from(initialSelection);
+  List<String> selectedTypes = List.from(initialSelection ?? <String>[]);
   bool selectionmade = selectedTypes.isNotEmpty;
 
   return showDialog<List<String>>(

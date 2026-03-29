@@ -109,7 +109,7 @@ class Word {
   set rules(List<Rules>? rules) => _rules = rules;
 
   Word.fromJson(Map<String, dynamic> json) {
-    _id = json[_id];
+    _id = json['_id'];
     _word = json['word'];
     _english = <String>[];
      json['english'].forEach((v){_english!.add(v);});

@@ -48,7 +48,7 @@ class _DropdownSelectionFieldState extends State<DropdownSelectionField> {
           // The Dropdown
           Expanded(
             child: DropdownButtonFormField<String>(
-              value: _currentValue,
+              initialValue: _currentValue,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 isDense: true,

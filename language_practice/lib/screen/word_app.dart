@@ -1,10 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:language_practice/test_data/sample_word.dart';
-import 'package:language_practice/language_classes/word.dart';
-
-import '../main.dart';
-import '../repository/language_repository.dart' show LanguageRepository;
-import 'display_word.dart';
 import 'input_word.dart';
 
 
@@ -16,19 +10,23 @@ class WordApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Word Detail',
+
       debugShowCheckedModeBanner: false,
-       theme: ThemeData(
-      //   colorScheme: ColorScheme.fromSeed(
-      //     seedColor: const Color(0xFF1A1A2E),
-      //     brightness: Brightness.dark,
-      //   ),
-         // Set global scaffold background to white
-         scaffoldBackgroundColor: Colors.white,
-         // Optional: Ensure other theme elements are light if needed
-         brightness: Brightness.light,
-        useMaterial3: true,
-        fontFamily: 'Georgia',
+      theme: ThemeData(
+        useMaterial3: false,
       ),
+      //  theme: ThemeData(
+      // //   colorScheme: ColorScheme.fromSeed(
+      // //     seedColor: const Color(0xFF1A1A2E),
+      // //     brightness: Brightness.dark,
+      // //   ),
+      //    // Set global scaffold background to white
+      //    scaffoldBackgroundColor: Colors.white,
+      //    // Optional: Ensure other theme elements are light if needed
+      //    brightness: Brightness.light,
+      //   useMaterial3: true,
+      //   fontFamily: 'Georgia',
+      // ),
       home: //DisplayWordScreen(word: sampleWord),
        InputWordScreen(stringWord: "fahren"),
 

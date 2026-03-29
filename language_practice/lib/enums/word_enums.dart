@@ -1,5 +1,7 @@
 
 
+import 'package:collection/collection.dart';
+
 enum WordType {
   noun,
   verb,
@@ -61,7 +63,6 @@ enum VerbFunctionalType {
 }
 
 enum VerbTense {
-  undefined('undefined'),
   present('Präsens'),
   present_perfect('Perfekt'),
   simple_past('Präteritum');
@@ -73,17 +74,16 @@ enum VerbTense {
   String get displayName => name[0].toUpperCase() + name.substring(1);
 
   // Converts a German string (e.g., "Präsens") back to the Enum
-  static VerbTense fromGermanTense(String value) {
-    return VerbTense.values.firstWhere(
+  static VerbTense? fromGermanTense(String value) {
+    return VerbTense.values.firstWhereOrNull(
           (type) => type.germanTense.toLowerCase() == value.toLowerCase().trim(),
-      orElse: () => VerbTense.undefined,
     );
   }
   /// Helper to safely parse a string into the Enum
-  static VerbTense fromString(String value) {
+  static VerbTense? fromString(String value) {
     return VerbTense.values.firstWhere(
           (type) => type.name == value.toLowerCase().trim(),
-      orElse: () => VerbTense.undefined, // Default fallback
+
     );
   }
 }

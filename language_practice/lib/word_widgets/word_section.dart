@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:language_practice/language_classes/word.dart';
-import 'package:language_practice/language_widgets/row_with_label_and_child.dart'
+import '../utility_widgets/row_with_label_and_child.dart'
     show RowWithLabelAndChildMixin;
 
 class WordSection extends StatefulWidget {

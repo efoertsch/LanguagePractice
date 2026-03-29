@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:language_practice/language_widgets/row_with_label_and_child.dart' show RowWithLabelAndChildMixin;
+import 'package:language_practice/utility_widgets/row_with_label_and_child.dart' show RowWithLabelAndChildMixin;
 import '../language_classes/word.dart' show Word;
 
-class EnglishTranslationSection extends StatefulWidget {
+class TranslatedLanguageWidget extends StatefulWidget {
   final Word word;
   final Function(List<String>) onEnglishChanged;
 
-  const EnglishTranslationSection({
+  const TranslatedLanguageWidget({
     super.key,
     required this.word,
     required this.onEnglishChanged,
   });
 
   @override
-  State<EnglishTranslationSection> createState() =>
-      _EnglishTranslationSectionState();
+  State<TranslatedLanguageWidget> createState() =>
+      _TranslatedLanguageWidgetState();
 }
 
-class _EnglishTranslationSectionState extends State<EnglishTranslationSection> with RowWithLabelAndChildMixin {
+class _TranslatedLanguageWidgetState extends State<TranslatedLanguageWidget> with RowWithLabelAndChildMixin {
   late TextEditingController _englishController;
 
   @override

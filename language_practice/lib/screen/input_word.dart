@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:language_practice/app/dialog_widgets.dart';
 import 'package:language_practice/language_classes/word.dart';
-import 'package:language_practice/language_widgets/word_type_mixin.dart';
 import 'package:language_practice/repository/language_repository.dart';
 
 import '../enums/word_enums.dart' show GermanGender;
-import '../language_widgets/english_translation_section.dart'
-    show EnglishTranslationSection;
-import '../language_widgets/plural_widget.dart';
-import '../language_widgets/verb_tenses_widget.dart';
-import '../language_widgets/word_rules.dart';
-import '../language_widgets/word_section.dart' show WordSection;
 import '../main.dart' show getIt;
+import '../word_widgets/language_translation_widget.dart';
+import '../word_widgets/plural_widget.dart';
+import '../word_widgets/verb_tenses_widget.dart';
+import '../word_widgets/word_rules.dart';
+import '../word_widgets/word_section.dart' show WordSection;
+import '../word_widgets/word_type_mixin.dart';
 
 class InputWordScreen extends StatefulWidget {
   final String stringWord;
@@ -37,8 +36,6 @@ class _InputWordScreenState extends State<InputWordScreen>
     // Initialize controllers with existing data
     _initControllers();
   }
-
-  // Inside _WordDetailScreenState
 
   void _initControllers() async {
     _controllers['word'] = TextEditingController(text: word.word);
@@ -125,12 +122,14 @@ class _InputWordScreenState extends State<InputWordScreen>
               children: [
                 const SizedBox(height: 8),
                 _getWordWidget(word),
+               // if (word.type != null)
+                  buildTypeChips(context, word.type, true,onTypesChanged),
                 const SizedBox(height: 8),
-                _getEnglishTranslationWidget(),
+                _getTranslatedLanguageWidget(),
                 const SizedBox(height: 8),
                 if (word.type != null && word.type!.indexOf("noun") >= 0)
                   ..._getPluralWidget(word),
-                if (word.type != null) buildTypeChips(context, word.type!, true,onTypesChanged),
+
                 if (word.type != null && word.type!.indexOf("verb") >= 0)
                   _getWordTensesSection(),
                 const SizedBox(height: 8),
@@ -213,8 +212,8 @@ class _InputWordScreenState extends State<InputWordScreen>
     );
   }
 
-  Widget _getEnglishTranslationWidget() {
-    return EnglishTranslationSection(
+  Widget _getTranslatedLanguageWidget() {
+    return TranslatedLanguageWidget(
       word: word,
       onEnglishChanged: (newList) {
         setState(() {
