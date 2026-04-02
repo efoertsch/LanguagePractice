@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'input_word.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:language_practice/screen/type_word_widget.dart';
+import '../repository/language_repository.dart';
+import '../word_bloc/word_cubit.dart';
 
 // ─── App Entry ───────────────────────────────────────────────────────────────
 class WordApp extends StatelessWidget {
   const WordApp({super.key});
 
+
   @override
   Widget build(BuildContext context) {
+    final GetIt getIt = GetIt.instance;
     return MaterialApp(
       title: 'Word Detail',
 
@@ -15,22 +20,11 @@ class WordApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: false,
       ),
-      //  theme: ThemeData(
-      // //   colorScheme: ColorScheme.fromSeed(
-      // //     seedColor: const Color(0xFF1A1A2E),
-      // //     brightness: Brightness.dark,
-      // //   ),
-      //    // Set global scaffold background to white
-      //    scaffoldBackgroundColor: Colors.white,
-      //    // Optional: Ensure other theme elements are light if needed
-      //    brightness: Brightness.light,
-      //   useMaterial3: true,
-      //   fontFamily: 'Georgia',
-      // ),
-      home: //DisplayWordScreen(word: sampleWord),
-       InputWordScreen(stringWord: "fahren"),
+      home: BlocProvider(
+        create: (_) => WordCubit(repository: getIt<LanguageRepository>()),
+        child: TypeWordWidget(),
 
-    );
+      ));
   }
 
 

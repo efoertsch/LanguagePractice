@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart' show RowWithLabelAndChildMixin;
-import '../language_classes/word.dart' show Word;
 
 class TranslatedLanguageWidget extends StatefulWidget {
-  final Word word;
-  final Function(List<String>) onEnglishChanged;
+  final List<String> translatedLanguage;
+  final Function(List<String>) onTranslatedLanguageChanged;
 
   const TranslatedLanguageWidget({
     super.key,
-    required this.word,
-    required this.onEnglishChanged,
+    required this.translatedLanguage,
+    required this.onTranslatedLanguageChanged,
   });
 
   @override
@@ -23,9 +22,8 @@ class _TranslatedLanguageWidgetState extends State<TranslatedLanguageWidget> wit
   @override
   void initState() {
     super.initState();
-
     // Convert the List<String> to a comma-separated string for the input field
-    String englishText = widget.word.english?.join(', ') ?? '';
+    String englishText = widget.translatedLanguage.join(', ') ;
     _englishController = TextEditingController(text: englishText);
   }
 
@@ -42,7 +40,7 @@ class _TranslatedLanguageWidgetState extends State<TranslatedLanguageWidget> wit
         .map((s) => s.trim())
         .where((s) => s.isNotEmpty)
         .toList();
-    widget.onEnglishChanged(newList);
+    widget.onTranslatedLanguageChanged(newList);
   }
 
   @override

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class PluralWidget extends StatefulWidget {
   final String pluralNoun;
   final Function(String) onPluralChanged;
+  final Function() onFocusLost;
 
   const PluralWidget({
     super.key,
     required this.pluralNoun,
     required this.onPluralChanged,
+    required this.onFocusLost,
   });
 
   @override
@@ -16,16 +18,25 @@ class PluralWidget extends StatefulWidget {
 
 class _PluralWidgetState extends State<PluralWidget> {
   late TextEditingController _pluralController;
+  late FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
     _pluralController = TextEditingController(text: widget.pluralNoun);
+    _focusNode = FocusNode();
+    _focusNode.addListener(() {
+      if (!_focusNode.hasFocus) {
+        // Logic for when focus is LOST
+        widget.onFocusLost();
+      }
+    });
   }
 
   @override
   void dispose() {
     _pluralController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -50,7 +61,10 @@ class _PluralWidgetState extends State<PluralWidget> {
                 hintText: 'Enter plural form',
                 border: OutlineInputBorder(),
                 isDense: true,
-                contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 12,
+                ),
               ),
             ),
           ),

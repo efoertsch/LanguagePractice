@@ -1,6 +1,6 @@
 import 'package:mongo_dart/mongo_dart.dart';
 
-class Word {
+class WordInfo {
   ObjectId? _id;
   String? _word;
   List<String>? _english;
@@ -14,7 +14,7 @@ class Word {
   List<Tense>? _tenses;
   List<Rules>? _rules;
 
-  Word({
+  WordInfo({
     ObjectId? id,
     String? word,
     List<String>? english,
@@ -108,7 +108,7 @@ class Word {
 
   set rules(List<Rules>? rules) => _rules = rules;
 
-  Word.fromJson(Map<String, dynamic> json) {
+  WordInfo.fromJson(Map<String, dynamic> json) {
     _id = json['_id'];
     _word = json['word'];
     _english = <String>[];

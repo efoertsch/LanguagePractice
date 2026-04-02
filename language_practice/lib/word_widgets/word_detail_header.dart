@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../language_classes/word.dart';
+import '../language_classes/word_info.dart';
 import '../word_widgets/word_type_mixin.dart';
 
 /// A Stateless widget that combines word display with the type selection logic.
 class WordDetailHeader extends StatelessWidget with WordTypeMixin {
-  final Word word;
+  final WordInfo word;
   final bool multipleSelectionAllowed;
   final Function(List<String>) onTypesChanged;
   final Function(String) onWordChanged;

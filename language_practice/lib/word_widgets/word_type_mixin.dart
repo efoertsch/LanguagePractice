@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../enums/word_enums.dart';
 import '../word_widgets/wordtype_selection_dialog.dart';
 
 mixin WordTypeMixin  {

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:language_practice/test_data/sample_word.dart';
-import 'package:language_practice/language_classes/word.dart';
+import 'package:language_practice/language_classes/word_info.dart';
 
 
 // ─── Main Screen ─────────────────────────────────────────────────────────────
 
 class DisplayWordScreen extends StatefulWidget {
-  final Word word;
+  final WordInfo word;
   const DisplayWordScreen({super.key, required this.word});
 
   @override
@@ -67,7 +66,7 @@ class _DisplayWordScreenState extends State<DisplayWordScreen> with TickerProvid
     );
   }
 
-  Widget _buildAppBar(Word w) {
+  Widget _buildAppBar(WordInfo w) {
     return SliverAppBar(
       expandedHeight: 180,
       pinned: true,
@@ -210,7 +209,7 @@ class _DisplayWordScreenState extends State<DisplayWordScreen> with TickerProvid
     );
   }
 
-  Widget _buildMetaRow(Word w) {
+  Widget _buildMetaRow(WordInfo w) {
     return Row(
       children: [
         if (w.plural != null)

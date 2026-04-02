@@ -94,7 +94,7 @@ enum GermanGender {
   das;
 
   /// Returns a formatted version for the UI (e.g., "Preposition")
-  String get displayName => name[0].toUpperCase() + name.substring(1);
+  String get displayName => name;
 
   GermanGender? stringToGermanGender(String gender){
     try {

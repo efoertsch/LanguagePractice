@@ -1,8 +1,8 @@
-import 'package:language_practice/enums/word_enums.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 import '../app/constants.dart' show Constants;
-import '../language_classes/word.dart';
+import '../enums/word_enums.dart' show GermanGender;
+import '../language_classes/word_info.dart';
 
 class LanguageRepository {
   static late final String collectionName = Constants.wordCollection;
@@ -38,22 +38,26 @@ class LanguageRepository {
     return phraseCollection!;
   }
 
-  Future<Word> getWord(String word) async {
+  Future<WordInfo> getWord(String word) async {
     Map<String, dynamic>? jsonMap  = await wordCollection!.findOne(where.eq('word', word));
     if (jsonMap == null) {
-      return Word(word:"", type:[ WordType.noun.displayName]);
+      return WordInfo(word:word);
     }
-    return Word.fromJson(jsonMap);
+    return WordInfo.fromJson(jsonMap);
   }
 
-  Future<void> replaceWord(Word word) async {
+  Future<void> replaceWord(WordInfo word) async {
      Map<String, dynamic> jsonMap =  word.toJson();
      await wordCollection!.replaceOne(where.eq('word', word.word), jsonMap);
   }
 
 
-  Future<void> addWord(Word word) async {
+  Future<void> saveWord(WordInfo word) async {
     Map<String, dynamic> jsonMap =  word.toJson();
     await wordCollection?.insertOne(jsonMap);
+  }
+
+  List<String> getGenders(){
+    return GermanGender.values.map((gender) => gender.displayName).toList();
   }
 }

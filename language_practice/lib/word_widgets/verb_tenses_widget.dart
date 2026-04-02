@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:language_practice/language_classes/word.dart';
+import 'package:language_practice/language_classes/word_info.dart';
 
 import '../app/constants.dart' show Constants;
 import '../enums/word_enums.dart' show VerbTense;
