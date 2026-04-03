@@ -27,23 +27,4 @@ void main() async {
     debugPrint('Failed to connect to MongoDB: $e');
   }
 
-  /// The route configuration.
-  // final GoRouter _router = GoRouter(
-  //   routes: <RouteBase>[
-  //     GoRoute(
-  //       path: '/',
-  //       builder: (BuildContext context, GoRouterState state) {
-  //         return const WordDetailHeader(word: word, onTypesChanged: onTypesChanged, onWordChanged: onWordChanged);
-  //       },
-  //       routes: <RouteBase>[
-  //         GoRoute(
-  //           path: 'details',
-  //           builder: (BuildContext context, GoRouterState state) {
-  //             return const WordApp();
-  //           },
-  //         ),
-  //       ],
-  //     ),
-  //   ],
-  // );
 }

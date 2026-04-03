@@ -55,6 +55,8 @@ class _WordSectionState extends State<WordSection>
     return buildHorizontalRow(
       label: "Word",
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+          textBaseline: TextBaseline.alphabetic,
         children: [
           if (widget.genders != null) ...[
             Expanded(
@@ -68,7 +70,7 @@ class _WordSectionState extends State<WordSection>
             const SizedBox(width: 10),
           ],
           Expanded(
-            flex: 3,
+            flex: 9,
             child: TextField(
               focusNode: _wordFocusNode,
               controller: _wordController,

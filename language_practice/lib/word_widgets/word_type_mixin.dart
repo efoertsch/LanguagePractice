@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import '../enums/word_enums.dart';
 import '../word_widgets/wordtype_selection_dialog.dart';
 
-mixin WordTypeMixin  {
-  Widget buildTypeChips(BuildContext context, List<String>? types, bool multipleSelectionAllowed,Function onTypesChanged) {
-
+mixin WordTypeMixin {
+  Widget buildTypeChips(
+    BuildContext context,
+    List<String>? types,
+    bool multipleSelectionAllowed,
+    Function onTypesChanged,
+  ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -22,54 +25,71 @@ mixin WordTypeMixin  {
             runSpacing: 8,
             children: (types ?? <String>[])
                 .map(
-                  (t) =>
-                  TypeChip(
+                  (t) => TypeChip(
                     label: t,
                     onPressed: () async {
-                      await displayWordTypes(context, types, multipleSelectionAllowed,onTypesChanged);
+                      await displayWordTypes(
+                        context,
+                        types,
+                        multipleSelectionAllowed,
+                        onTypesChanged,
+                      );
                     },
                   ),
-            )
+                )
                 .toList(),
           ),
         ),
-        if (multipleSelectionAllowed ||( !multipleSelectionAllowed && (types ?? <String>[]).isEmpty  )) IconButton(
-          onPressed: () async {
-            await displayWordTypes(
-              context,
-              types,
-              multipleSelectionAllowed,
-              onTypesChanged,
-            );
-          },
-          icon: const Icon(Icons.add),
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0), // Customize roundness
+        if (multipleSelectionAllowed ||
+            (!multipleSelectionAllowed && (types ?? <String>[]).isEmpty))
+          IconButton(
+            onPressed: () async {
+              await displayWordTypes(
+                context,
+                types,
+                multipleSelectionAllowed,
+                onTypesChanged,
+              );
+            },
+            icon: const Icon(Icons.add),
+            splashRadius: 15,
+            style: ElevatedButton.styleFrom(
+              // shape: RoundedRectangleBorder(
+              //   borderRadius: BorderRadius.circular(0), // Customize roundness
+              // ),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              disabledBackgroundColor: Colors.grey.shade200,
+              disabledForegroundColor: Colors.grey,
             ),
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-            disabledBackgroundColor: Colors.grey.shade200,
-            disabledForegroundColor: Colors.grey,
-
           ),
-        ),
       ],
     );
   }
 
-  Future<void> displayWordTypes(BuildContext context,
-      List<String>? types,   bool multipleSelectionAllowed ,Function onTypesChanged,) async {
-    final results = await displayWordTypeDialog(context, types, multipleSelectionAllowed);
+  Future<void> displayWordTypes(
+    BuildContext context,
+    List<String>? types,
+    bool multipleSelectionAllowed,
+    Function onTypesChanged,
+  ) async {
+    final results = await displayWordTypeDialog(
+      context,
+      types,
+      multipleSelectionAllowed,
+    );
     onTypesChanged(results);
   }
 
-
-  Future<List<String>> displayWordTypeDialog(BuildContext context,
-      List<String>? currentTypes,bool multipleSelectionAllowed) async {
+  Future<List<String>> displayWordTypeDialog(
+    BuildContext context,
+    List<String>? currentTypes,
+    bool multipleSelectionAllowed,
+  ) async {
     final List<String>? results = await showWordTypeSelector(
       context,
-      currentTypes,multipleSelectionAllowed
+      currentTypes,
+      multipleSelectionAllowed,
     );
     if (results == null) {
       return currentTypes ?? [];
@@ -77,7 +97,6 @@ mixin WordTypeMixin  {
       return results;
     }
   }
-
 }
 
 class TypeChip extends StatelessWidget {

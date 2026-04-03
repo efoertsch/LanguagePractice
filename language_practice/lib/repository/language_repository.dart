@@ -38,10 +38,10 @@ class LanguageRepository {
     return phraseCollection!;
   }
 
-  Future<WordInfo> getWord(String word) async {
+  Future<WordInfo?> getWord(String word) async {
     Map<String, dynamic>? jsonMap  = await wordCollection!.findOne(where.eq('word', word));
     if (jsonMap == null) {
-      return WordInfo(word:word);
+      return null;
     }
     return WordInfo.fromJson(jsonMap);
   }
@@ -52,9 +52,10 @@ class LanguageRepository {
   }
 
 
-  Future<void> saveWord(WordInfo word) async {
+  Future<WriteResult> saveWord(WordInfo word) async {
     Map<String, dynamic> jsonMap =  word.toJson();
-    await wordCollection?.insertOne(jsonMap);
+    WriteResult writeResult = await wordCollection!.insertOne(jsonMap);
+   return writeResult;
   }
 
   List<String> getGenders(){

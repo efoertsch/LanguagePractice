@@ -5,6 +5,8 @@ mixin RowWithLabelAndChildMixin {
   Widget buildHorizontalRow({required String label, required Widget child}) {
     return Flexible(
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
         children: [
           Text(
             label,

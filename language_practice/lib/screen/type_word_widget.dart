@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:language_practice/enums/word_enums.dart' show WordType;
 import 'package:language_practice/screen/wordInfo_widget.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
+import 'package:language_practice/word_widgets/word_type_mixin.dart';
 
 import '../app/dialog_widgets.dart' show CommonWidgets;
+import '../enums/word_enums.dart' show WordType, GermanGender;
 import '../word_bloc/word_cubit.dart';
 import '../word_bloc/word_state.dart';
 
@@ -16,14 +19,17 @@ class TypeWordWidget extends StatefulWidget {
 
 class _TypeWordWidgetState extends State<TypeWordWidget>
     with RowWithLabelAndChildMixin {
-  String spelledWord = "";
-
   late TextEditingController _wordController;
+  String _spelledWord = "";
+  List<String> _genders = [];
+  String? _wordType;
+  String? _gender;
 
   @override
   void initState() {
     super.initState();
-    _wordController = TextEditingController(text: spelledWord);
+    _wordController = TextEditingController(text: _spelledWord);
+    _genders = context.read<WordCubit>().getGenders();
   }
 
   @override
@@ -46,13 +52,9 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
           buildHorizontalRow(
             label: "Word:",
             child: TextField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter a word',
-              ),
+              decoration: const InputDecoration(hintText: 'Enter a word'),
               controller: _wordController,
-              onChanged: _handleWordChange,
-              onSubmitted: _checkWord,
+              onSubmitted: _handleWordChange,
             ),
           ),
           _processWordListener(),
@@ -64,22 +66,35 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
   void _handleWordChange(String value) {
     final parts = value.split(' ');
     if (parts.length == 1) {
-      spelledWord = parts[0];
+      _spelledWord = value;
+      _wordType = null;
+      _gender = null;
     } else {
-      if (parts[0].length == 2) {
-        spelledWord = parts[1];
-      } else {
-        CommonWidgets.showErrorDialog(
-          context,
-          "Entry Error",
-          " ust type in the word without any gender or multiple spaces.",
-        );
+      if (parts.length == 2) {
+        if (_genders.contains(parts[0].toLowerCase())) {
+          _wordType = "noun";
+          _gender = parts[0].toLowerCase();
+          _spelledWord = parts[1];
+        } else {
+          _wordType = null;
+          _gender = null;
+          CommonWidgets.showInfoDialog(
+            context: context,
+            title: 'Word Entry',
+            msg:
+                "Multiple words entered but no gender determined. The word will be used as is",
+            button1Text: 'OK',
+            button1Function: (() => _spelledWord = value),
+          );
+        }
       }
     }
-  }
 
-  void _checkWord(String value) {
-    context.read<WordCubit>().getWord(spelledWord);
+    context.read<WordCubit>().getWord(
+      spelledWord: _spelledWord,
+      gender: _gender,
+      type: _wordType,
+    );
   }
 
   Widget _processWordListener() {
@@ -91,6 +106,10 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
               builder: (context) => WordInfoWidget(wordInfo: state.word),
             ),
           );
+          _wordController.text = "";
+          _gender = null;
+          _wordType = null;
+
         }
       },
       child: SizedBox.shrink(),

@@ -4,10 +4,11 @@ import 'package:get_it/get_it.dart';
 import 'package:language_practice/app/dialog_widgets.dart';
 import 'package:language_practice/language_classes/word_info.dart';
 
-import '../enums/word_enums.dart' show GermanGender, WordType;
+import '../enums/word_enums.dart' show WordType;
 import '../word_bloc/word_cubit.dart';
-import '../word_widgets/language_translation_widget.dart';
+import '../word_bloc/word_state.dart';
 import '../word_widgets/plural_widget.dart';
+import '../word_widgets/translated_word_widget.dart';
 import '../word_widgets/verb_tenses_widget.dart';
 import '../word_widgets/word_rules.dart';
 import '../word_widgets/word_section.dart' show WordSection;
@@ -99,12 +100,12 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.wordInfo.word ?? "Not defined"),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue,
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          context.read<WordCubit>().saveWord(widget.wordInfo);
+          widget.getIt<WordCubit>().saveWord(widget.wordInfo);
         },
         label: const Text("Save Changes"),
         icon: const Icon(Icons.save),
@@ -119,6 +120,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
               children: [
                 const SizedBox(height: 8),
                 _getWordWidget(widget.wordInfo),
+                const SizedBox(height: 8),
                 buildTypeChips(
                   context,
                   widget.wordInfo.type,
@@ -137,6 +139,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
                 const SizedBox(height: 8),
                 _getRulesWidget(),
                 const SizedBox(height: 100),
+                _cubitStateListener(),
               ],
             ),
           ),
@@ -212,7 +215,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
   }
 
   Widget _getTranslatedLanguageWidget() {
-    return TranslatedLanguageWidget(
+    return TranslatedWordWidget(
       translatedLanguage: widget.wordInfo.english ?? <String>[],
       onTranslatedLanguageChanged: (newList) {
         setState(() {
@@ -243,9 +246,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
       PluralWidget(
         pluralNoun: word.plural ?? "",
         onPluralChanged: (newValue) {
-          setState(() {
             word.plural = newValue;
-          });
         },
         onFocusLost: () {
           if (word.plural == null || word.plural!.isEmpty) {
@@ -274,5 +275,26 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
 
   void _getGenders() {
     _genders = widget.getIt<WordCubit>().getGenders();
+  }
+
+  Widget _cubitStateListener() {
+    return BlocListener<WordCubit, WordState>(
+      bloc: widget.getIt<WordCubit>(),
+      listener: (context, state) {
+        if (state is WordSavedState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.green,
+              content: Text(" ${widget.wordInfo.word} saved."),
+            ),
+          );
+          Navigator.of(context).pop();
+        }
+        if (state is ErrorWordState) {
+         CommonWidgets.showErrorDialog(context, "Save Error", state.message);
+        }
+      },
+      child: SizedBox.shrink(),
+    );
   }
 }

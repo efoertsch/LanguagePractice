@@ -72,10 +72,10 @@ class _GenderSelectorState extends State<GenderSelector> {
       focusNode: _genderFocusNode,
       readOnly: true, // Prevent keyboard from showing up
       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-      decoration: const InputDecoration(
-        isDense: true,
-        contentPadding: EdgeInsets.symmetric(vertical: 8),
-      ),
+      // decoration: const InputDecoration(
+      //   isDense: true,
+      //   contentPadding: EdgeInsets.symmetric(vertical: 8),
+      // ),
     );
   }
 

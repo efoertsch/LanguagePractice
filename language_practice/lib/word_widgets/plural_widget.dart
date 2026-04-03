@@ -58,7 +58,7 @@ class _PluralWidgetState extends State<PluralWidget> {
               controller: _pluralController,
               onChanged: widget.onPluralChanged,
               decoration: const InputDecoration(
-                hintText: 'Enter plural form',
+                hintText: 'Enter plural form. Gender not needed',
                 border: OutlineInputBorder(),
                 isDense: true,
                 contentPadding: EdgeInsets.symmetric(
