@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:language_practice/enums/word_enums.dart' show WordType;
+import 'package:get_it/get_it.dart';
 import 'package:language_practice/screen/wordInfo_widget.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
-import 'package:language_practice/word_widgets/word_type_mixin.dart';
 
 import '../app/dialog_widgets.dart' show CommonWidgets;
-import '../enums/word_enums.dart' show WordType, GermanGender;
 import '../word_bloc/word_cubit.dart';
 import '../word_bloc/word_state.dart';
 
@@ -19,6 +17,7 @@ class TypeWordWidget extends StatefulWidget {
 
 class _TypeWordWidgetState extends State<TypeWordWidget>
     with RowWithLabelAndChildMixin {
+  final GetIt getIt = GetIt.instance;
   late TextEditingController _wordController;
   String _spelledWord = "";
   List<String> _genders = [];
@@ -82,7 +81,7 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
             context: context,
             title: 'Word Entry',
             msg:
-                "Multiple words entered but no gender determined. The word will be used as is",
+            "Multiple words entered but no gender determined. The word will be used as is",
             button1Text: 'OK',
             button1Function: (() => _spelledWord = value),
           );
@@ -100,18 +99,30 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
   Widget _processWordListener() {
     return BlocListener<WordCubit, WordState>(
       listener: (context, state) {
-        if (state is LoadedWordState) {
+        if (state is LoadedWordInfoState) {
           Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (context) => WordInfoWidget(wordInfo: state.word),
-            ),
+              MaterialPageRoute(
+                builder: (routeContext) =>
+                    BlocProvider.value(
+                      value: BlocProvider.of<WordCubit>(context),
+                      child: WordInfoWidget(wordInfo: state.word),
+                    ),
+              ));
+              _wordController.text = "";
+              _gender = null;
+              _wordType = null;
+          }
+        if (state is ErrorWordState) {
+          CommonWidgets.showInfoDialog(
+            context: context,
+            title: 'Oops',
+            msg:
+            "An error occurred: ${state.message}",
+            button1Text: 'OK',
+            button1Function: (() => Navigator.pop(context)),
           );
-          _wordController.text = "";
-          _gender = null;
-          _wordType = null;
-
         }
-      },
+          },
       child: SizedBox.shrink(),
     );
   }

@@ -103,48 +103,92 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
         backgroundColor: Colors.blue,
         centerTitle: true,
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          widget.getIt<WordCubit>().saveWord(widget.wordInfo);
+      floatingActionButton: _getFloatingActionButtonRow(context),
+      body: BlocListener<WordCubit, WordState>(
+        listener: (context, state) {
+          if (state is WordSavedState || state is WordDeletedState) {
+            String message = state is WordSavedState ? "Saved" : "Deleted";
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: state is WordSavedState
+                    ? Colors.green
+                    : Colors.redAccent,
+                content: Text("${widget.wordInfo.word} $message."),
+              ),
+            );
+            Navigator.of(context).pop(); // return to prior screen
+          }
+          if (state is ErrorWordState) {
+            CommonWidgets.showErrorDialog(context, "Error", state.message);
+          }
         },
-        label: const Text("Save Changes"),
-        icon: const Icon(Icons.save),
-      ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                _getWordWidget(widget.wordInfo),
-                const SizedBox(height: 8),
-                buildTypeChips(
-                  context,
-                  widget.wordInfo.type,
-                  true,
-                  onTypesChanged,
-                ),
-                const SizedBox(height: 8),
-                _getTranslatedLanguageWidget(),
-                const SizedBox(height: 8),
-                if (widget.wordInfo.type != null &&
-                    widget.wordInfo.type!.contains("noun"))
-                  ..._getPluralWidget(widget.wordInfo),
-                if (widget.wordInfo.type != null &&
-                    widget.wordInfo.type!.contains("verb"))
-                  _getWordTensesSection(),
-                const SizedBox(height: 8),
-                _getRulesWidget(),
-                const SizedBox(height: 100),
-                _cubitStateListener(),
-              ],
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 8),
+                  _getWordWidget(widget.wordInfo),
+                  const SizedBox(height: 8),
+                  buildTypeChips(
+                    context,
+                    widget.wordInfo.type,
+                    true,
+                    onTypesChanged,
+                  ),
+                  const SizedBox(height: 8),
+                  _getTranslatedLanguageWidget(),
+                  const SizedBox(height: 8),
+                  if (widget.wordInfo.type != null &&
+                      widget.wordInfo.type!.contains("noun"))
+                    ..._getPluralWidget(widget.wordInfo),
+                  if (widget.wordInfo.type != null &&
+                      widget.wordInfo.type!.contains("verb"))
+                    _getWordTensesSection(),
+                  const SizedBox(height: 8),
+                  _getRulesWidget(),
+                  const SizedBox(height: 100),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+    );
+  }
+
+  Row _getFloatingActionButtonRow(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        // DELETE BUTTON
+        FloatingActionButton.extended(
+          heroTag: "delete_btn",
+          // Unique tag to avoid transition errors
+          onPressed: () => _confirmDeleteWord(context),
+          label: Text(widget.wordInfo.previouslyEntered ? "Delete" : "Cancel"),
+          icon: const Icon(Icons.delete_forever),
+          backgroundColor: Colors.redAccent,
+        ),
+        const SizedBox(height: 12),
+        // SAVE BUTTON (Existing)
+        FloatingActionButton.extended(
+          heroTag: "save_btn",
+          onPressed: () async {
+            if (widget.wordInfo.previouslyEntered) {
+              await context.read<WordCubit>().updateWord(widget.wordInfo);
+            } else {
+              await context.read<WordCubit>().saveWord(widget.wordInfo);
+            }
+          },
+          label: Text(widget.wordInfo.previouslyEntered ? "Update" : "Save"),
+          icon: const Icon(Icons.save),
+        ),
+      ],
     );
   }
 
@@ -159,11 +203,13 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               backgroundColor: Colors.green,
-              content: Text("Default gender of ${widget.wordInfo.gender} assigned. Change as needed"),
+              content: Text(
+                "Default gender of ${widget.wordInfo.gender} assigned. Change as needed",
+              ),
             ),
           );
-        }
-        else if (types.isNotEmpty && !types.contains(WordType.noun.displayName)){
+        } else if (types.isNotEmpty &&
+            !types.contains(WordType.noun.displayName)) {
           widget.wordInfo.gender = null;
         }
       });
@@ -198,12 +244,8 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
           );
         }
       },
-      selectedGender: (isNoun
-          ? (wordInfo?.gender ?? _genders.first )
-          : null),
-      genders: (isNoun
-          ? _genders.map((gender) => gender).toList()
-          : null),
+      selectedGender: (isNoun ? (wordInfo?.gender ?? _genders.first) : null),
+      genders: (isNoun ? _genders.map((gender) => gender).toList() : null),
       onGenderChanged: (isNoun
           ? (newValue) {
               setState(() {
@@ -246,7 +288,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
       PluralWidget(
         pluralNoun: word.plural ?? "",
         onPluralChanged: (newValue) {
-            word.plural = newValue;
+          word.plural = newValue;
         },
         onFocusLost: () {
           if (word.plural == null || word.plural!.isEmpty) {
@@ -277,24 +319,41 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
     _genders = widget.getIt<WordCubit>().getGenders();
   }
 
-  Widget _cubitStateListener() {
-    return BlocListener<WordCubit, WordState>(
-      bloc: widget.getIt<WordCubit>(),
-      listener: (context, state) {
-        if (state is WordSavedState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: Colors.green,
-              content: Text(" ${widget.wordInfo.word} saved."),
+  void _confirmDeleteWord(BuildContext context) {
+    final cubit = context.read<WordCubit>();
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(
+          widget.wordInfo.previouslyEntered ? "Delete Word?" : "Cancel",
+        ),
+        content: Text(
+          "Are you sure you want to ${widget.wordInfo.previouslyEntered ? ("delete '${widget.wordInfo.word}' permanently?") : "not add the word?"}",
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text("Cancel"),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(dialogContext);
+              if (widget.wordInfo.previouslyEntered) {
+                cubit.deleteWord(widget.wordInfo);
+              } else {
+                // If it's a new word we're canceling, just pop the screen
+                Navigator.pop(context);
+              }
+            },
+            child: Text(
+              widget.wordInfo.previouslyEntered ? "Delete" : "Don't Save",
+              style: TextStyle(color: Colors.red),
             ),
-          );
-          Navigator.of(context).pop();
-        }
-        if (state is ErrorWordState) {
-         CommonWidgets.showErrorDialog(context, "Save Error", state.message);
-        }
-      },
-      child: SizedBox.shrink(),
+          ),
+        ],
+      ),
     );
   }
+
 }

@@ -5,7 +5,7 @@ import '../enums/word_enums.dart' show GermanGender;
 import '../language_classes/word_info.dart';
 
 class LanguageRepository {
-  static late final String collectionName = Constants.wordCollection;
+  static final String collectionName = Constants.wordCollection;
   late final Db mongoDb;
   static late final LanguageRepository languageRepository;
 
@@ -46,9 +46,10 @@ class LanguageRepository {
     return WordInfo.fromJson(jsonMap);
   }
 
-  Future<void> replaceWord(WordInfo word) async {
+  Future<WriteResult> updateWord(WordInfo word) async {
      Map<String, dynamic> jsonMap =  word.toJson();
-     await wordCollection!.replaceOne(where.eq('word', word.word), jsonMap);
+     WriteResult writeResult = await wordCollection!.replaceOne(where.eq('word', word.word), jsonMap);
+     return writeResult;
   }
 
 
@@ -61,4 +62,10 @@ class LanguageRepository {
   List<String> getGenders(){
     return GermanGender.values.map((gender) => gender.displayName).toList();
   }
+
+  Future<WriteResult> deleteWord(WordInfo word) async {
+    WriteResult writeResult = await wordCollection!.deleteOne(where.eq('word', word.word));
+    return writeResult;
+  }
+
 }

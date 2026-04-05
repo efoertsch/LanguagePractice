@@ -13,6 +13,7 @@ class WordInfo {
   String? _verbFunctionalType;
   List<Tense>? _tenses;
   List<Rules>? _rules;
+  bool _previouslyEntered = false; // temp field
 
   WordInfo({
     ObjectId? id,
@@ -108,11 +109,20 @@ class WordInfo {
 
   set rules(List<Rules>? rules) => _rules = rules;
 
+  bool get previouslyEntered => _previouslyEntered;
+
+  set previouslyEntered(bool value) => _previouslyEntered = value;
+
+
   WordInfo.fromJson(Map<String, dynamic> json) {
     _id = json['_id'];
     _word = json['word'];
     _english = <String>[];
-     json['english'].forEach((v){_english!.add(v);});
+    if (json['english'] != null) {
+      json['english'].forEach((v) {
+        _english!.add(v);
+      });
+    }
     _quizErrors=json['quiz_errors'];
     _plural = json['plural'];
     _gender = json['gender'];
