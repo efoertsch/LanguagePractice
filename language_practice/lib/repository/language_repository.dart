@@ -1,13 +1,16 @@
 import 'package:mongo_dart/mongo_dart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app/constants.dart' show Constants;
 import '../enums/word_enums.dart' show GermanGender;
 import '../language_classes/word_info.dart';
+import '../translation_service/translation_service.dart';
 
 class LanguageRepository {
   static final String collectionName = Constants.wordCollection;
   late final Db mongoDb;
   static late final LanguageRepository languageRepository;
+  static late final SharedPreferences sharedPreferences;
 
   DbCollection? wordCollection;
   DbCollection? phraseCollection;
@@ -21,6 +24,7 @@ class LanguageRepository {
     languageRepository.mongoDb = mongoDb;
     await languageRepository._getWordCollection();
     await languageRepository._getPhraseCollection();
+    sharedPreferences = await SharedPreferences.getInstance();
     return languageRepository;
   }
 
@@ -39,7 +43,9 @@ class LanguageRepository {
   }
 
   Future<WordInfo?> getWord(String word) async {
-    Map<String, dynamic>? jsonMap  = await wordCollection!.findOne(where.eq('word', word));
+    Map<String, dynamic>? jsonMap = await wordCollection!.findOne(
+      where.eq('word', word),
+    );
     if (jsonMap == null) {
       return null;
     }
@@ -47,25 +53,65 @@ class LanguageRepository {
   }
 
   Future<WriteResult> updateWord(WordInfo word) async {
-     Map<String, dynamic> jsonMap =  word.toJson();
-     WriteResult writeResult = await wordCollection!.replaceOne(where.eq('word', word.word), jsonMap);
-     return writeResult;
+    Map<String, dynamic> jsonMap = word.toJson();
+    WriteResult writeResult = await wordCollection!.replaceOne(
+      where.eq('word', word.word),
+      jsonMap,
+    );
+    return writeResult;
   }
-
 
   Future<WriteResult> saveWord(WordInfo word) async {
-    Map<String, dynamic> jsonMap =  word.toJson();
+    Map<String, dynamic> jsonMap = word.toJson();
     WriteResult writeResult = await wordCollection!.insertOne(jsonMap);
-   return writeResult;
+    return writeResult;
   }
 
-  List<String> getGenders(){
+  List<String> getGenders() {
     return GermanGender.values.map((gender) => gender.displayName).toList();
   }
 
   Future<WriteResult> deleteWord(WordInfo word) async {
-    WriteResult writeResult = await wordCollection!.deleteOne(where.eq('word', word.word));
+    WriteResult writeResult = await wordCollection!.deleteOne(
+      where.eq('word', word.word),
+    );
     return writeResult;
+  }
+
+  Future<String> getEnglishTranslation(String word) async {
+    try {
+      final translation = await TranslationService.translateText(
+        text: word,
+        targetLanguage: 'en', // Or your app's target language
+        sourceLanguage: 'de',
+      );
+      // return the translation
+      return translation;
+    } catch (e) {
+      // 1. Log the error locally if needed
+      print("Repository Error: $e");
+      // 2. Rethrow so the Cubit can catch it and emit the ErrorState
+      //throw Exception("Translation failed: $e");
+      return "";
+    }
+  }
+
+  Future<String> getGermanTranslation(String word) async {
+    try {
+      final translation = await TranslationService.translateText(
+        text: word,
+        targetLanguage: 'de', // Or your app's target language
+        sourceLanguage: 'en',
+      );
+      // return the translation
+      return translation;
+    } catch (e) {
+      // 1. Log the error locally if needed
+      print("Repository Error: $e");
+      // 2. Rethrow so the Cubit can catch it and emit the ErrorState
+     // throw Exception("Translation failed: $e");
+      return "";
+    }
   }
 
 }
