@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../word_widgets/wordtype_selection_dialog.dart';
 
 mixin WordTypeMixin {
-  Widget buildTypeChips(
-    BuildContext context,
+  Widget buildTypeChips({
+    required BuildContext context,
     List<String>? types,
-    bool multipleSelectionAllowed,
-    Function onTypesChanged,
-  ) {
+    bool multipleSelectionAllowed = false,
+    Function? onTypesChanged = null,
+  }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -28,12 +28,14 @@ mixin WordTypeMixin {
                   (t) => TypeChip(
                     label: t,
                     onPressed: () async {
-                      await displayWordTypes(
-                        context,
-                        types,
-                        multipleSelectionAllowed,
-                        onTypesChanged,
-                      );
+                      if (onTypesChanged != null) {
+                        await displayWordTypes(
+                          context,
+                          types,
+                          multipleSelectionAllowed,
+                          onTypesChanged,
+                        );
+                      }
                     },
                   ),
                 )
@@ -48,7 +50,7 @@ mixin WordTypeMixin {
                 context,
                 types,
                 multipleSelectionAllowed,
-                onTypesChanged,
+                onTypesChanged!,
               );
             },
             icon: const Icon(Icons.add),

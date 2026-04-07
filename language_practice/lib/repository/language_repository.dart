@@ -114,4 +114,15 @@ class LanguageRepository {
     }
   }
 
+  Future<List<WordInfo>> getListOfWordsFromType(String type) async {
+    // 1. Query the collection.
+    // In mongo_dart, if 'type' is a list in the DB, where.eq will find items containing the value.
+    final List<Map<String, dynamic>> jsonList = await wordCollection!
+        .find(where.eq('type', type))
+        .toList();
+
+    // 2. Map the list of JSON maps to a list of WordInfo objects
+    return jsonList.map((json) => WordInfo.fromJson(json)).toList();
+  }
+
 }

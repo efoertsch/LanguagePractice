@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:language_practice/screen/wordInfo_widget.dart';
+import 'package:language_practice/screen/word_quiz_screen.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
 
 import '../app/dialog_widgets.dart' show CommonWidgets;
@@ -38,6 +39,7 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
         title: Text("Language Practice"),
         backgroundColor: Colors.blue,
         centerTitle: true,
+        actions: [_getMenu(context)],
       ),
       body: _createWordEntry(),
     );
@@ -124,6 +126,51 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
         }
           },
       child: SizedBox.shrink(),
+    );
+  }
+
+  Widget _getMenu(BuildContext context) {
+    return PopupMenuButton<String>(
+      icon: const Icon(Icons.menu),
+      onSelected: (value) {
+        // Pass the value (either 'german' or 'english') to the navigation method
+        _navigateToQuiz(context, value);
+      },
+      itemBuilder: (BuildContext context) => [
+        const PopupMenuItem<String>(
+          value: 'german',
+          child: Row(
+            children: [
+              Icon(Icons.quiz, color: Colors.black54),
+              SizedBox(width: 8),
+              Text("Quiz German"),
+            ],
+          ),
+        ),
+        const PopupMenuItem<String>(
+          value: 'english',
+          child: Row(
+            children: [
+              Icon(Icons.translate, color: Colors.black54),
+              SizedBox(width: 8),
+              Text("Quiz English"),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _navigateToQuiz(BuildContext context, String languageMode) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (routeContext) => BlocProvider.value(
+          value: BlocProvider.of<WordCubit>(context),
+          child: WordQuiz(
+            quizLanguage: languageMode, // Passing 'german' or 'english'
+          ),
+        ),
+      ),
     );
   }
 }
