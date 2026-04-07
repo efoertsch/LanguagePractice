@@ -6,12 +6,12 @@ import '../enums/word_enums.dart' show VerbTense;
 
 class WordTensesWidget extends StatefulWidget {
   final List<Tense> tenses;
-  final Function(int, Tense) onTenseChanged;
+  final Function(int, Tense)? onTenseChanged; // Made optional (?)
 
   const WordTensesWidget({
     super.key,
     required this.tenses,
-    required this.onTenseChanged,
+    this.onTenseChanged, // Removed required
   });
 
   @override
@@ -61,16 +61,16 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
                       },
 
                       // DELETE LOGIC
-                      onDeleted: () {
+                      onDeleted: widget.onTenseChanged != null ? () {
                         _confirmDeleteTense(idx);
-                      },
+                      } : null,
                       deleteIcon: const Icon(Icons.delete, size: 18),
                       deleteIconColor: Colors.red.shade300,
                     ),
                 );
               }).toList(),
               // ADD BUTTON
-              if (_getAvailableTenses().isNotEmpty)
+              if (_getAvailableTenses().isNotEmpty && widget.onTenseChanged != null)
               IconButton(
                 onPressed:  _showAddTenseDialog ,
                 tooltip: "Add Tense",
@@ -143,7 +143,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
                     _activeTenseIndex = widget.tenses.length - 1;
                   });
 
-                  widget.onTenseChanged(_activeTenseIndex, newTense);
+                  widget.onTenseChanged?.call(_activeTenseIndex, newTense);
                   Navigator.pop(context);
                 },
               );
@@ -177,7 +177,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
               // Notify parent of the change (passing null or updated list depending on your architecture)
               // Since we modified the list in place, we just trigger a save-ready event
               if (widget.tenses.isNotEmpty) {
-                widget.onTenseChanged(_activeTenseIndex, widget.tenses[_activeTenseIndex]);
+                widget.onTenseChanged?.call(_activeTenseIndex, widget.tenses[_activeTenseIndex]);
               }
               Navigator.pop(context);
             },
@@ -197,17 +197,20 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
 
   }
 
+  // Updated helper to handle read-only mode
   Widget _buildTenseInput(
-    String label,
-    String value,
-    Function(String) onChanged,
-  ) {
+      String label,
+      String value,
+      Function(String) onChanged,
+      ) {
+    final bool isReadOnly = widget.onTenseChanged == null;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         children: [
           SizedBox(
-            width: 60, // Matches your existing horizontal label pattern
+            width: 60,
             child: Text(
               label,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
@@ -216,11 +219,18 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
           const SizedBox(width: 12),
           SizedBox(
             width: 250,
-            child: TextFormField(
+            child: isReadOnly
+                ? Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+              child: Text(
+                value.isEmpty ? "-" : value,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              ),
+            )
+                : TextFormField(
               initialValue: value,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
               key: Key("${_activeTenseIndex}_$label"),
-              // Forces rebuild when switching tenses
               onChanged: onChanged,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -241,92 +251,79 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
     return [
       _buildTenseInput("Helper Verb", currentTense.helperVerb ?? "", (val) {
         currentTense.helperVerb = val;
-        widget.onTenseChanged(_activeTenseIndex, currentTense);
+        widget.onTenseChanged?.call(_activeTenseIndex, currentTense); // Use ?.call
       }),
       _buildTenseInput("Past Part.", currentTense.pastParticiple ?? "", (val) {
         currentTense.pastParticiple = val;
-        widget.onTenseChanged(_activeTenseIndex, currentTense);
+        widget.onTenseChanged?.call(_activeTenseIndex, currentTense); // Use ?.call
       }),
     ];
   }
 
   List<Widget> _getFullVerbConjugationFields(Tense currentTense) {
+    // Helper to dry up the repeated calls
+    void update(VoidCallback action) {
+      action();
+      widget.onTenseChanged?.call(_activeTenseIndex, currentTense);
+    }
+
     return [
       Row(
-        mainAxisSize:  MainAxisSize.min ,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
             child: _buildTenseInput(
               Constants.deNominativePronouns[0],
               currentTense.s1stPersonSingular ?? "",
-              (val) {
-                currentTense.s1stPersonSingular = val;
-                widget.onTenseChanged(_activeTenseIndex, currentTense);
-              },
+                  (val) => update(() => currentTense.s1stPersonSingular = val),
             ),
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Flexible(
             child: _buildTenseInput(
               Constants.deNominativePronouns[3],
               currentTense.s1stPersonPlural ?? "",
-              (val) {
-                currentTense.s1stPersonPlural = val;
-                widget.onTenseChanged(_activeTenseIndex, currentTense);
-              },
+                  (val) => update(() => currentTense.s1stPersonPlural = val),
             ),
           ),
         ],
       ),
-
       Row(
-        mainAxisSize:  MainAxisSize.min ,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
             child: _buildTenseInput(
               Constants.deNominativePronouns[1],
               currentTense.s2ndPersonSingular ?? "",
-              (val) {
-                currentTense.s2ndPersonSingular = val;
-                widget.onTenseChanged(_activeTenseIndex, currentTense);
-              },
+                  (val) => update(() => currentTense.s2ndPersonSingular = val),
             ),
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Flexible(
             child: _buildTenseInput(
               Constants.deNominativePronouns[4],
               currentTense.s2ndPersonPlural ?? "",
-              (val) {
-                currentTense.s2ndPersonPlural = val;
-                widget.onTenseChanged(_activeTenseIndex, currentTense);
-              },
+                  (val) => update(() => currentTense.s2ndPersonPlural = val),
             ),
           ),
         ],
       ),
       Row(
-        mainAxisSize:  MainAxisSize.min ,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
             child: _buildTenseInput(
               Constants.deNominativePronouns[2],
               currentTense.s3rdPersonSingular ?? "",
-              (val) {
-                currentTense.s3rdPersonSingular = val;
-                widget.onTenseChanged(_activeTenseIndex, currentTense);
-              },
+                  (val) => update(() => currentTense.s3rdPersonSingular = val),
             ),
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Flexible(
             child: _buildTenseInput(
               Constants.deNominativePronouns[5],
               currentTense.s3rdPersonPlural ?? "",
-              (val) {
-                currentTense.s3rdPersonPlural = val;
-                widget.onTenseChanged(_activeTenseIndex, currentTense);
-              },
+                  (val) => update(() => currentTense.s3rdPersonPlural = val),
             ),
           ),
         ],

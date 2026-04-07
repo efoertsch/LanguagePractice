@@ -5,16 +5,19 @@ import '../word_widgets/wordtype_selection_dialog.dart';
 
 class WordRulesSection extends StatelessWidget with WordTypeMixin {
   final List<Rules> rules;
-  final Function(List<Rules>) onRulesChanged;
+  final Function(List<Rules>)? onRulesChanged;
 
   const WordRulesSection({
     super.key,
     required this.rules,
-    required this.onRulesChanged,
+    this.onRulesChanged, // 2. Removed 'required'
   });
 
   @override
   Widget build(BuildContext context) {
+    // 3. Helper to determine if we are in read-only mode
+    final bool isReadOnly = onRulesChanged == null;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -36,43 +39,57 @@ class WordRulesSection extends StatelessWidget with WordTypeMixin {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      // Rule Type (e.g., "Dative", "Sentence structure")
+                      // Rule Type
                       Expanded(
                         flex: 2,
-                        child: buildTypeChips(context,  [ruleItem.type! ], false, (
-                          List<String> selectedTypes,
-                        ) {
-                          // Since ruleItem.type is a String but buildTypeChips returns a List,
-                          // we take the first selected item.
-                          ruleItem.type = selectedTypes.isNotEmpty
-                              ? selectedTypes.first
-                              : "";
-                          onRulesChanged(rules);
-                        }),
-                      ),
-                      const SizedBox(width: 8),
-                      // Delete button
-                      IconButton(
-                        icon: const Icon(
-                          Icons.delete_outline,
-                          color: Colors.redAccent,
+                        child: buildTypeChips(
+                          context: context,
+                          types: [ruleItem.type!],
+                          multipleSelectionAllowed: false,
+                          onTypesChanged: isReadOnly
+                              ? (list) {} // Disable interaction in read-only
+                              : (List<String> selectedTypes) {
+                            ruleItem.type = selectedTypes.isNotEmpty
+                                ? selectedTypes.first
+                                : "";
+                            onRulesChanged!(rules);
+                          },
                         ),
-                        onPressed: () {
-                          List<Rules> newList = List.from(rules);
-                          newList.removeAt(index);
-                          onRulesChanged(newList);
-                        },
                       ),
+                      // 4. Conditionally hide delete button
+                      if (!isReadOnly) ...[
+                        const SizedBox(width: 8),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.delete_outline,
+                            color: Colors.redAccent,
+                          ),
+                          onPressed: () {
+                            List<Rules> newList = List.from(rules);
+                            newList.removeAt(index);
+                            onRulesChanged!(newList);
+                          },
+                        ),
+                      ],
                     ],
                   ),
                   const SizedBox(height: 8),
-                  // The Rule Content
-                  TextFormField(
+                  // 5. Toggle between TextFormField and Text
+                  isReadOnly
+                      ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                    child: Text(
+                      ruleItem.rule ?? "",
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  )
+                      : TextFormField(
                     initialValue: ruleItem.rule,
-                    maxLines: null, // Allows multiline rules
+                    maxLines: null,
                     decoration: const InputDecoration(
                       labelText: "Rule Description",
                       isDense: true,
@@ -80,7 +97,7 @@ class WordRulesSection extends StatelessWidget with WordTypeMixin {
                     ),
                     onChanged: (val) {
                       ruleItem.rule = val;
-                      onRulesChanged(rules);
+                      onRulesChanged!(rules);
                     },
                   ),
                 ],
@@ -89,20 +106,22 @@ class WordRulesSection extends StatelessWidget with WordTypeMixin {
           );
         }).toList(),
 
-        // Add Rule Button
-        TextButton.icon(
-          onPressed: ()async  {
-            final List<String>? results = await showWordTypeSelector(
+        // 6. Conditionally hide Add Rule Button
+        if (!isReadOnly)
+          TextButton.icon(
+            onPressed: () async {
+              final List<String>? results = await showWordTypeSelector(
                 context,
-                [],false
-            );
-            if (results != null) {
-              onRulesChanged([...rules, Rules(type: results[0], rule: "")]);
-            }
-          },
-          icon: const Icon(Icons.add),
-          label: const Text("Add New Rule"),
-        ),
+                [],
+                false,
+              );
+              if (results != null && results.isNotEmpty) {
+                onRulesChanged!([...rules, Rules(type: results[0], rule: "")]);
+              }
+            },
+            icon: const Icon(Icons.add),
+            label: const Text("Add New Rule"),
+          ),
       ],
     );
   }

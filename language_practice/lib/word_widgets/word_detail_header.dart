@@ -43,10 +43,10 @@ class WordDetailHeader extends StatelessWidget with WordTypeMixin {
         // 2. The Word Type Chips Section
         // This calls the method from WordTypeMixin
         buildTypeChips(
-          context,
-          word.type ?? [],
-          multipleSelectionAllowed,
-              (List<String> newTypes) {
+          context: context,
+          types: word.type ?? [],
+          multipleSelectionAllowed: multipleSelectionAllowed,
+            onTypesChanged:   (List<String> newTypes) {
             onTypesChanged(newTypes);
           },
         ),

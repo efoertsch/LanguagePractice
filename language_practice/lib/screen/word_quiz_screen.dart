@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:language_practice/word_widgets/verb_tenses_widget.dart';
 import 'package:provider/provider.dart'; // Assuming you use provider/bloc
+import '../app/dialog_widgets.dart';
 import '../language_classes/word_info.dart';
 import '../word_bloc/word_cubit.dart';
+import '../word_bloc/word_state.dart';
+import '../word_widgets/word_rules.dart';
 import '../word_widgets/word_type_mixin.dart';
 
 class WordQuiz extends StatefulWidget {
@@ -44,17 +49,12 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            _getWordListListener(),
+            if (_wordList.isEmpty) _getQuizPrompt(),
             // Row containing the Type Chips and the Start Button
             Row(
               children: [
-                Expanded(
-                  child: buildTypeChips(
-                    context: context,
-                    types: _selectedTypes,
-                    multipleSelectionAllowed: true,
-                    onTypesChanged: _handleTypesChanged,
-                  ),
-                ),
+                _getBuildTypeChips(context),
                 const SizedBox(width: 12),
                 ElevatedButton.icon(
                   onPressed: _selectedTypes.isNotEmpty ? _startQuiz : null,
@@ -67,10 +67,42 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-
             // Row containing the word display and translation
-            Row(
+            if (_wordList.isNotEmpty)  _getWordDisplay(),
+              const Spacer(), // This pushes the following widget to the bottom
+            if (_wordList.isNotEmpty) _getBottomButtons(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Expanded _getBuildTypeChips(BuildContext context) {
+    return Expanded(
+                child: buildTypeChips(
+                  context: context,
+                  types: _selectedTypes,
+                  multipleSelectionAllowed: true,
+                  onTypesChanged: _handleTypesChanged,
+                ),
+              );
+  }
+
+ Widget _getQuizPrompt() {
+    return
+        Text(
+            "Select types and press Start",
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+
+
+  }
+ Widget _getWordDisplay() {
+    return SingleChildScrollView(
+      child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
@@ -99,20 +131,6 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
                 _getQuizWordRow(),
               ],
             ),
-            const SizedBox(height: 16),
-
-            ElevatedButton.icon(
-              onPressed: _wordList.isEmpty
-                  ? null
-                  : () {
-                      // Logic for next word or checking answer
-                    },
-              icon: const Icon(Icons.check),
-              label: const Text("Next Word"),
-            ),
-          ],
-        ),
-      ),
     );
   }
 
@@ -171,15 +189,15 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
 
               if ( wordInfo.type != null &&
                    wordInfo.type!.contains("verb"))
-                _getWordTensesSection(),
+                _getWordTensesSection(wordInfo.tenses ??[]),
               const SizedBox(height: 8),
-              _getRulesWidget(),
+              _getRulesWidget(wordInfo.rules ??[]),
               const SizedBox(height: 100),
             ],
           ),
         ),
       ],
-    )
+    );
   }
 
     Widget _getPluralWidget(String? plural) {
@@ -200,5 +218,89 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
         ),
       );
     }
+
+  _getWordTensesSection(List<Tense> tenses) {
+    return WordTensesWidget(tenses: tenses);
   }
+
+  _getRulesWidget(List<Rules> rules) {
+    return WordRulesSection(rules: rules);
+  }
+
+  Widget _getWordListListener() {
+    return BlocListener<WordCubit, WordState>(
+      listener: (context, state) {
+        if (state is ListOfWordsState ) {
+          setState(() {
+            _wordList = state.listOfWords;
+            _currentIndex = 0;
+          });
+        }
+        if (state is ErrorWordState) {
+          CommonWidgets.showInfoDialog(
+            context: context,
+            title: 'Oops',
+            msg:
+            "An error occurred: ${state.message}",
+            button1Text: 'OK',
+            button1Function: (() => Navigator.pop(context)),
+          );
+        }
+      },
+      child: SizedBox.shrink(),
+    );
+  }
+
+  Widget _getBottomButtons() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          // NO BUTTON (Incorrect/Don't Know)
+          ElevatedButton.icon(
+            onPressed: () => _handleAnswer(false),
+            icon: const Icon(Icons.close),
+            label: const Text("No"),
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(120, 45),
+              backgroundColor: Colors.red.shade100,
+              foregroundColor: Colors.red.shade900,
+            ),
+          ),
+          // YES BUTTON (Correct/Know)
+          ElevatedButton.icon(
+            onPressed: () => _handleAnswer(true),
+            icon: const Icon(Icons.check),
+            label: const Text("Yes"),
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(120, 45),
+              backgroundColor: Colors.green.shade100,
+              foregroundColor: Colors.green.shade900,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _handleAnswer(bool isCorrect) {
+    setState(() {
+      if (_currentIndex < _wordList.length - 1) {
+        _currentIndex++;
+      } else {
+        // Handle end of quiz
+        _wordList = [];
+        _currentIndex = 0;
+        CommonWidgets.showInfoDialog(
+          context: context,
+          title: "Quiz Finished",
+          msg: "You have completed all selected words!",
+          button1Text: "OK",
+          button1Function: () => Navigator.pop(context),
+        );
+      }
+    });
+  }
+
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:language_practice/screen/wordInfo_widget.dart';
+import 'package:language_practice/screen/word_info_widget.dart';
 import 'package:language_practice/screen/word_quiz_screen.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
 
