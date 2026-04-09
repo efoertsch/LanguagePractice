@@ -11,7 +11,7 @@ class WordTensesWidget extends StatefulWidget {
   const WordTensesWidget({
     super.key,
     required this.tenses,
-    this.onTenseChanged, // Removed required
+    this.onTenseChanged,
   });
 
   @override
@@ -25,7 +25,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
   Widget build(BuildContext context) {
     if (widget.tenses.isEmpty) return const SizedBox.shrink();
 
-    final currentTense = widget.tenses[_activeTenseIndex];
+    Tense currentTense = widget.tenses[_activeTenseIndex];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +36,6 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
         ),
         const SizedBox(height: 8),
 
-        // Tense Selector (Tabs)
         // Tense Selector (Tabs)
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -92,7 +91,13 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
         ),
 
         const SizedBox(height: 16),
-
+// English Translation for the selected Tense
+        _buildTenseInput(
+          "English",
+          currentTense.english ?? "",
+            ((val) => currentTense.english = val),
+        ),
+        const SizedBox(height: 16),
         // Horizontal Input Fields for the Selected Tense
         if (currentTense.tense != null &&
             currentTense.tense == VerbTense.present_perfect.germanTense)

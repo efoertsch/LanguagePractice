@@ -59,6 +59,9 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
         _controllers['tense_${t}_name'] = TextEditingController(
           text: tense.tense,
         );
+        _controllers['english_${t}'] = TextEditingController(
+          text: tense.english,
+        );
         _controllers['tense_${t}_s1'] = TextEditingController(
           text: tense.s1stPersonSingular,
         );

@@ -22,6 +22,7 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
   List<String> _selectedTypes = [];
   List<WordInfo> _wordList = [];
   int _currentIndex = 0;
+  bool _showDetails = false;
 
   @override
   void initState() {
@@ -35,9 +36,9 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
   }
 
   Future<void> _startQuiz() async {
-    if (_selectedTypes.isNotEmpty){
-     context.read<WordCubit>().getListOfWordsFromType(_selectedTypes);
-     }
+    if (_selectedTypes.isNotEmpty) {
+      context.read<WordCubit>().getListOfWordsFromType(_selectedTypes);
+    }
   }
 
   @override
@@ -47,92 +48,117 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
+          children: [ // Removed mainAxisSize: min to allow Spacer to work
             _getWordListListener(),
+
+            // Grouping Prompt and Chips close together
             if (_wordList.isEmpty) _getQuizPrompt(),
-            // Row containing the Type Chips and the Start Button
             Row(
               children: [
                 _getBuildTypeChips(context),
                 const SizedBox(width: 12),
-                ElevatedButton.icon(
-                  onPressed: _selectedTypes.isNotEmpty ? _startQuiz : null,
-                  icon: const Icon(Icons.play_arrow),
-                  label: const Text("Start"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade100,
-                    foregroundColor: Colors.green.shade900,
-                  ),
-                ),
+                _getStartButton(),
               ],
             ),
-            // Row containing the word display and translation
-            if (_wordList.isNotEmpty)  _getWordDisplay(),
-              const Spacer(), // This pushes the following widget to the bottom
-            if (_wordList.isNotEmpty) _getBottomButtons(),
+            const SizedBox(height: 16),
+            if (_wordList.isNotEmpty) ...[
+              _getWordDisplay(),
+              const SizedBox(height: 10),
+              // If Check is pressed, show the details scroll area
+              if (_showDetails)
+                Expanded(
+                  child: _displayWord(_wordList[_currentIndex]),
+                )
+              else
+                const Spacer(),
+              // Pushes buttons to bottom when details are hidden
+              _getBottomButtons(),
+            ],
           ],
         ),
       ),
     );
   }
 
-  Expanded _getBuildTypeChips(BuildContext context) {
-    return Expanded(
-                child: buildTypeChips(
-                  context: context,
-                  types: _selectedTypes,
-                  multipleSelectionAllowed: true,
-                  onTypesChanged: _handleTypesChanged,
-                ),
-              );
-  }
-
- Widget _getQuizPrompt() {
-    return
-        Text(
-            "Select types and press Start",
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          );
-
-
-  }
- Widget _getWordDisplay() {
-    return SingleChildScrollView(
-      child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade300),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      _wordList.isNotEmpty
-                          ? (widget.quizLanguage == 'german'
-                                ? _wordList[_currentIndex].word ??
-                                      "" // Show German
-                                : _wordList[_currentIndex].english?.join(", " ) ??
-                                      "") // Show English
-                          : "Select types and press Start",
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                _getQuizWordRow(),
-              ],
-            ),
+  ElevatedButton _getStartButton() {
+    return ElevatedButton.icon(
+      onPressed: _selectedTypes.isNotEmpty ? _startQuiz : null,
+      icon: const Icon(Icons.play_arrow),
+      label: const Text("Start"),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.green.shade100,
+        foregroundColor: Colors.green.shade900,
+      ),
     );
   }
+
+  Expanded _getBuildTypeChips(BuildContext context) {
+    return Expanded(
+      child: buildTypeChips(
+        context: context,
+        types: _selectedTypes,
+        multipleSelectionAllowed: true,
+        onTypesChanged: _handleTypesChanged,
+      ),
+    );
+  }
+
+  Widget _getQuizPrompt() {
+    return
+      Text(
+        "Select types and press Start",
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+  }
+
+  Widget _getWordDisplay() {
+    return SingleChildScrollView(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                _wordList.isNotEmpty
+                    ? _getQuizWord(wordInfo: _wordList[_currentIndex],
+                    quizLanguage: widget.quizLanguage) // Show English
+                    : "Select types and press Start",
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          // CHECK BUTTON
+          OutlinedButton.icon(
+            onPressed: () => setState(() => _showDetails = !_showDetails),
+            icon: Icon(_showDetails ? Icons.visibility_off : Icons.visibility),
+            label: Text(_showDetails ? "Hide Details" : "Check"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _getQuizWord(
+      {required WordInfo wordInfo, required String quizLanguage}) {
+    return (quizLanguage == 'german' ? _getGermanWord(wordInfo)
+        : wordInfo.english?.join(", ") ??
+        "");
+  }
+
+  String _getAnswerWord(
+      {required WordInfo wordInfo, required String quizLanguage}) {
+    return (quizLanguage == 'german' ? (wordInfo.english?.join(", ") ??
+        "") : _getGermanWord(wordInfo));
+        }
+
 
   Expanded _getQuizWordRow() {
     // Determine what to show as the "Answer" based on the quiz mode
@@ -165,7 +191,7 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
     );
   }
 
-  Widget _displayWord(WordInfo wordInfo){
+  Widget _displayWord(WordInfo wordInfo) {
     return ListView(
       children: [
         Padding(
@@ -174,24 +200,34 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+             Row(
+               children: [
+                 Text("Answer :",
+                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                 SizedBox(width: 8,),
+                 Text( _getAnswerWord(wordInfo: _wordList[_currentIndex],
+                      quizLanguage: widget.quizLanguage ),
+                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                 ),
+               ],
+             ),
               const SizedBox(height: 8),
               buildTypeChips(
-                context: context,
-                types: wordInfo.type
+                  context: context,
+                  types: wordInfo.type
               ),
-
               const SizedBox(height: 8),
               if ( wordInfo.type != null &&
-                   wordInfo.type!.contains("noun"))
+                  wordInfo.type!.contains("noun"))
               // Update this section in your _displayWord method:
                 if (wordInfo.type != null && wordInfo.type!.contains("noun"))
                   _getPluralWidget(wordInfo.plural),
 
               if ( wordInfo.type != null &&
-                   wordInfo.type!.contains("verb"))
-                _getWordTensesSection(wordInfo.tenses ??[]),
+                  wordInfo.type!.contains("verb"))
+                _getWordTensesSection(wordInfo.tenses ?? []),
               const SizedBox(height: 8),
-              _getRulesWidget(wordInfo.rules ??[]),
+              _getRulesWidget(wordInfo.rules ?? []),
               const SizedBox(height: 100),
             ],
           ),
@@ -200,24 +236,24 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
     );
   }
 
-    Widget _getPluralWidget(String? plural) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Text(
-              "Plural: ",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            Text(
-              plural ?? "N/A",
-              style: const TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
-      );
-    }
+  Widget _getPluralWidget(String? plural) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const Text(
+            "Plural: ",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          Text(
+            plural ?? "N/A",
+            style: const TextStyle(fontSize: 16),
+          ),
+        ],
+      ),
+    );
+  }
 
   _getWordTensesSection(List<Tense> tenses) {
     return WordTensesWidget(tenses: tenses);
@@ -230,7 +266,7 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
   Widget _getWordListListener() {
     return BlocListener<WordCubit, WordState>(
       listener: (context, state) {
-        if (state is ListOfWordsState ) {
+        if (state is ListOfWordsState) {
           setState(() {
             _wordList = state.listOfWords;
             _currentIndex = 0;
@@ -286,6 +322,7 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
 
   void _handleAnswer(bool isCorrect) {
     setState(() {
+      _showDetails = false;
       if (_currentIndex < _wordList.length - 1) {
         _currentIndex++;
       } else {
@@ -302,5 +339,15 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
       }
     });
   }
+
+  String _getGermanWord(WordInfo wordInfo) {
+    if (wordInfo.type != null && wordInfo.type!.contains("noun")) {
+      if (wordInfo.gender != null) {
+        return "${wordInfo.gender} ${wordInfo.word}";
+      }
+    }
+    return wordInfo.word ?? "";
+  }
+
 
 }

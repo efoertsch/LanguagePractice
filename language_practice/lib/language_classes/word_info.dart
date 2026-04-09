@@ -29,39 +29,39 @@ class WordInfo {
     List<Rules>? rules,
   }) {
     if (id != null){
-      this._id = id;
+      _id = id;
     }
     if (word != null) {
-      this._word = word;
+      _word = word;
     }
     if (english != null) {
-      this._english = english;
+      _english = english;
     }
     if (quizErrors != null) {
-      this._quizErrors = quizErrors;
+      _quizErrors = quizErrors;
     } else {
-      this._quizErrors = 0;
+      _quizErrors = 0;
     }
     if (plural != null) {
-      this._plural = plural;
+      _plural = plural;
     }
     if (gender != null) {
-      this._gender = gender;
+      _gender = gender;
     }
     if (type != null) {
-      this._type = type;
+      _type = type;
     }
     if (verbConjugationClass != null) {
-      this._verbConjugationClass = verbConjugationClass;
+      _verbConjugationClass = verbConjugationClass;
     }
     if (verbFunctionalType != null) {
-      this._verbFunctionalType = verbFunctionalType;
+      _verbFunctionalType = verbFunctionalType;
     }
     if (tenses != null) {
-      this._tenses = tenses;
+      _tenses = tenses;
     }
     if (rules != null) {
-      this._rules = rules;
+      _rules = rules;
     }
   }
 
@@ -143,27 +143,27 @@ class WordInfo {
     if (json['rules'] != null) {
       _rules = <Rules>[];
       json['rules'].forEach((v) {
-        _rules!.add(new Rules.fromJson(v));
+        _rules!.add(Rules.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this._id;
-    data['word'] = this._word;
-    data['english'] = this._english;
-    data['quizErrors'] = this._quizErrors;
-    data['plural'] = this._plural;
-    data['gender'] = this._gender;
-    data['type'] = this._type;
-    data['verb_conjugation_class'] = this._verbConjugationClass;
-    data['verb_functional_type'] = this._verbFunctionalType;
-    if (this._tenses != null) {
-      data['tenses'] = this._tenses!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['_id'] = _id;
+    data['word'] = _word;
+    data['english'] = _english;
+    data['quizErrors'] = _quizErrors;
+    data['plural'] = _plural;
+    data['gender'] = _gender;
+    data['type'] = _type;
+    data['verb_conjugation_class'] = _verbConjugationClass;
+    data['verb_functional_type'] = _verbFunctionalType;
+    if (_tenses != null) {
+      data['tenses'] = _tenses!.map((v) => v.toJson()).toList();
     }
-    if (this._rules != null) {
-      data['rules'] = this._rules!.map((v) => v.toJson()).toList();
+    if (_rules != null) {
+      data['rules'] = _rules!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -171,6 +171,7 @@ class WordInfo {
 
 class Tense {
   String? _tense;
+  String? _english;
   String? _s1stPersonSingular;
   String? _s2ndPersonSingular;
   String? _s3rdPersonSingular;
@@ -182,6 +183,7 @@ class Tense {
 
   Tense({
     String? tense,
+    String? english,
     String? s1stPersonSingular,
     String? s2ndPersonSingular,
     String? s3rdPersonSingular,
@@ -192,37 +194,45 @@ class Tense {
     String? pastParticiple,
   }) {
     if (tense != null) {
-      this._tense = tense;
+      _tense = tense;
+    }
+    if (english != null) {
+      _english = english;
     }
     if (s1stPersonSingular != null) {
-      this._s1stPersonSingular = s1stPersonSingular;
+      _s1stPersonSingular = s1stPersonSingular;
     }
     if (s2ndPersonSingular != null) {
-      this._s2ndPersonSingular = s2ndPersonSingular;
+      _s2ndPersonSingular = s2ndPersonSingular;
     }
     if (s3rdPersonSingular != null) {
-      this._s3rdPersonSingular = s3rdPersonSingular;
+      _s3rdPersonSingular = s3rdPersonSingular;
     }
     if (s1stPersonPlural != null) {
-      this._s1stPersonPlural = s1stPersonPlural;
+      _s1stPersonPlural = s1stPersonPlural;
     }
     if (s2ndPersonPlural != null) {
-      this._s2ndPersonPlural = s2ndPersonPlural;
+      _s2ndPersonPlural = s2ndPersonPlural;
     }
     if (s3rdPersonPlural != null) {
-      this._s3rdPersonPlural = s3rdPersonPlural;
+      _s3rdPersonPlural = s3rdPersonPlural;
     }
     if (helperVerb != null) {
-      this._helperVerb = helperVerb;
+      _helperVerb = helperVerb;
     }
     if (pastParticiple != null) {
-      this._pastParticiple = pastParticiple;
+      _pastParticiple = pastParticiple;
     }
   }
 
   String? get tense => _tense;
 
   set tense(String? tense) => _tense = tense;
+
+  String? get english => _english;
+
+  set english(String? english) => _english = english;
+
 
   String? get s1stPersonSingular => _s1stPersonSingular;
 
@@ -265,6 +275,7 @@ class Tense {
 
   Tense.fromJson(Map<String, dynamic> json) {
     _tense = json['tense'];
+    _english = json['english'];
     _s1stPersonSingular = json['1st_person_singular'];
     _s2ndPersonSingular = json['2nd_person_singular'];
     _s3rdPersonSingular = json['3rd_person_singular'];
@@ -277,15 +288,16 @@ class Tense {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['tense'] = this._tense;
-    data['1st_person_singular'] = this._s1stPersonSingular;
-    data['2nd_person_singular'] = this._s2ndPersonSingular;
-    data['3rd_person_singular'] = this._s3rdPersonSingular;
-    data['1st_person_plural'] = this._s1stPersonPlural;
-    data['2nd_person_plural'] = this._s2ndPersonPlural;
-    data['3rd_person_plural'] = this._s3rdPersonPlural;
-    data['helper_verb'] = this._helperVerb;
-    data['past_participle'] = this._pastParticiple;
+    data['tense'] = _tense;
+    data['english'] = _english;
+    data['1st_person_singular'] = _s1stPersonSingular;
+    data['2nd_person_singular'] = _s2ndPersonSingular;
+    data['3rd_person_singular'] = _s3rdPersonSingular;
+    data['1st_person_plural'] = _s1stPersonPlural;
+    data['2nd_person_plural'] = _s2ndPersonPlural;
+    data['3rd_person_plural'] = _s3rdPersonPlural;
+    data['helper_verb'] = _helperVerb;
+    data['past_participle'] = _pastParticiple;
     return data;
   }
 }
@@ -296,10 +308,10 @@ class Rules {
 
   Rules({String? type, String? rule}) {
     if (type != null) {
-      this._type = type;
+      _type = type;
     }
     if (rule != null) {
-      this._rule = rule;
+      _rule = rule;
     }
   }
 
@@ -318,8 +330,8 @@ class Rules {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this._type;
-    data['rule'] = this._rule;
+    data['type'] = _type;
+    data['rule'] = _rule;
     return data;
   }
 }
