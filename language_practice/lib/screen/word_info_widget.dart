@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:language_practice/app/dialog_widgets.dart';
+import 'package:language_practice/enums/word_enums.dart' show WordType;
 import 'package:language_practice/language_classes/word_info.dart';
 
-import '../enums/word_enums.dart' show WordType;
+import '../enums/word_enums.dart' show WordType, VerbTense;
 import '../word_bloc/word_cubit.dart';
 import '../word_bloc/word_state.dart';
 import '../word_widgets/plural_widget.dart';
@@ -150,7 +151,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
                     ..._getPluralWidget(widget.wordInfo),
                   if (widget.wordInfo.type != null &&
                       widget.wordInfo.type!.contains("verb"))
-                    _getWordTensesSection(),
+                    _getWordTensesSection(widget.wordInfo),
                   const SizedBox(height: 8),
                   _getRulesWidget(),
                   const SizedBox(height: 100),
@@ -270,18 +271,24 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
     );
   }
 
-  Widget _getWordTensesSection() {
-    if (widget.wordInfo.tenses != null) {
+  Widget _getWordTensesSection(WordInfo wordInfo) {
+     if ( wordInfo.tenses == null ||  wordInfo.tenses!.isEmpty){
+        wordInfo.tenses=[_createPresentTense( wordInfo.english?.join(", ") ?? "")];
+     }
       return WordTensesWidget(
-        tenses: widget.wordInfo.tenses ?? <Tense>[],
+        tenses: wordInfo.tenses ?? <Tense>[],
         onTenseChanged: (index, updatedTense) {
           setState(() {
-            widget.wordInfo.tenses![index] = updatedTense;
+             wordInfo.tenses![index] = updatedTense;
           });
         },
       );
-    }
-    return SizedBox.shrink();
+  }
+
+  Tense _createPresentTense(String english) {
+    return (Tense(tense: VerbTense.present.germanTense,
+      english: english
+     ));
   }
 
   List<Widget> _getPluralWidget(WordInfo word) {

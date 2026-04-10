@@ -231,7 +231,7 @@ class Tense {
 
   String? get english => _english;
 
-  set english(String? english) => _english = english;
+  set english(String? ullenglish) => _english = english;
 
 
   String? get s1stPersonSingular => _s1stPersonSingular;
