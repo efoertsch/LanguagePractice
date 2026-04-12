@@ -4,8 +4,10 @@ import 'package:get_it/get_it.dart';
 import 'package:language_practice/screen/word_info_widget.dart';
 import 'package:language_practice/screen/word_quiz_screen.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
+import 'package:language_practice/word_widgets/word_type_mixin.dart';
 
 import '../app/dialog_widgets.dart' show CommonWidgets;
+import '../enums/word_enums.dart';
 import '../word_bloc/word_cubit.dart';
 import '../word_bloc/word_state.dart';
 
@@ -17,13 +19,14 @@ class TypeWordWidget extends StatefulWidget {
 }
 
 class _TypeWordWidgetState extends State<TypeWordWidget>
-    with RowWithLabelAndChildMixin {
+    with RowWithLabelAndChildMixin, WordTypeMixin {
   final GetIt getIt = GetIt.instance;
   late TextEditingController _wordController;
   String _spelledWord = "";
   List<String> _genders = [];
   String? _wordType;
   String? _gender;
+  String? _defaultWordType;
 
   @override
   void initState() {
@@ -68,7 +71,7 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
     final parts = value.split(' ');
     if (parts.length == 1) {
       _spelledWord = value;
-      _wordType = null;
+      _wordType = _defaultWordType;
       _gender = null;
     } else {
       if (parts.length == 2) {
@@ -83,7 +86,7 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
             context: context,
             title: 'Word Entry',
             msg:
-            "Multiple words entered but no gender determined. The word will be used as is",
+                "Multiple words entered but no gender determined. The word will be used as is",
             button1Text: 'OK',
             button1Function: (() => _spelledWord = value),
           );
@@ -103,28 +106,27 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
       listener: (context, state) {
         if (state is LoadedWordInfoState) {
           Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (routeContext) =>
-                    BlocProvider.value(
-                      value: BlocProvider.of<WordCubit>(context),
-                      child: WordInfoWidget(wordInfo: state.word),
-                    ),
-              ));
-              _wordController.text = "";
-              _gender = null;
-              _wordType = null;
-          }
+            MaterialPageRoute(
+              builder: (routeContext) => BlocProvider.value(
+                value: BlocProvider.of<WordCubit>(context),
+                child: WordInfoWidget(wordInfo: state.word),
+              ),
+            ),
+          );
+          _wordController.text = "";
+          _gender = null;
+          _wordType = null;
+        }
         if (state is ErrorWordState) {
           CommonWidgets.showInfoDialog(
             context: context,
             title: 'Oops',
-            msg:
-            "An error occurred: ${state.message}",
+            msg: "An error occurred: ${state.message}",
             button1Text: 'OK',
             button1Function: (() => Navigator.pop(context)),
           );
         }
-          },
+      },
       child: SizedBox.shrink(),
     );
   }
@@ -133,9 +135,10 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
     return PopupMenuButton<String>(
       icon: const Icon(Icons.menu),
       onSelected: (value) {
+        if (value != "set_word_type"){
         // Pass the value (either 'german' or 'english') to the navigation method
         _navigateToQuiz(context, value);
-      },
+      }},
       itemBuilder: (BuildContext context) => [
         const PopupMenuItem<String>(
           value: 'german',
@@ -157,7 +160,23 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
             ],
           ),
         ),
+        PopupMenuItem<String>(
+          value: 'set_word_type',
+          child: Text('Set default Word Type'),
+          onTap: _getWordTypesDisplay,
+        ),
       ],
+    );
+  }
+
+  Future<void> _getWordTypesDisplay() {
+    return displayWordTypes(
+      context,
+      [_defaultWordType ?? "adjective"] ,
+      false,
+      (List<String> newTypes) {
+        _defaultWordType = newTypes[0] ?? " adjective";
+      },
     );
   }
 
