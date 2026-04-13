@@ -181,6 +181,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
         const SizedBox(height: 12),
         // SAVE BUTTON (Existing)
         FloatingActionButton.extended(
+          autofocus: true,
           heroTag: "save_btn",
           onPressed: () async {
             if (widget.wordInfo.previouslyEntered) {
@@ -232,14 +233,14 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
         });
       },
       onWordFocusLost: () {
-        if (widget.wordInfo.gender == null) {
+        if (wordInfo!.type!.contains("noun") && widget.wordInfo.gender == null) {
           CommonWidgets.showErrorDialog(
             context,
             "Gender Missing",
             "Please add the noun gender to the word. The gender for a noun must be one of the following: "
                 "${_genders.map((gender) => gender).join(', ')}",
           );
-        } else if (!_genders.contains(wordInfo!.gender)) {
+        } else if (!_genders.contains(wordInfo.gender)) {
           CommonWidgets.showErrorDialog(
             context,
             "Gender Error",

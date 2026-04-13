@@ -95,7 +95,11 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
         _buildTenseInput(
           "English",
           currentTense.english ?? "",
-            ((val) => currentTense.english = val),
+            ((val) {
+              currentTense.english = val;
+              widget.onTenseChanged?.call(_activeTenseIndex, currentTense);
+            }
+            ),
         ),
         const SizedBox(height: 16),
         // Horizontal Input Fields for the Selected Tense

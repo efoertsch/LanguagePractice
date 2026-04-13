@@ -7,7 +7,6 @@ import 'package:language_practice/utility_widgets/row_with_label_and_child.dart'
 import 'package:language_practice/word_widgets/word_type_mixin.dart';
 
 import '../app/dialog_widgets.dart' show CommonWidgets;
-import '../enums/word_enums.dart';
 import '../word_bloc/word_cubit.dart';
 import '../word_bloc/word_state.dart';
 
@@ -27,6 +26,7 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
   String? _wordType;
   String? _gender;
   String? _defaultWordType;
+  final FocusNode _wordInputFieldFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -56,6 +56,8 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
           buildHorizontalRow(
             label: "Word:",
             child: TextField(
+              focusNode: _wordInputFieldFocusNode,
+              autofocus: true,
               decoration: const InputDecoration(hintText: 'Enter a word'),
               controller: _wordController,
               onSubmitted: _handleWordChange,
@@ -116,6 +118,7 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
           _wordController.text = "";
           _gender = null;
           _wordType = null;
+          _wordInputFieldFocusNode.requestFocus();
         }
         if (state is ErrorWordState) {
           CommonWidgets.showInfoDialog(
@@ -134,50 +137,47 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
   Widget _getMenu(BuildContext context) {
     return PopupMenuButton<String>(
       icon: const Icon(Icons.menu),
+      // onCanceled: () {
+      //   print("Menu canceled");},
       onSelected: (value) {
-        if (value != "set_word_type"){
-        // Pass the value (either 'german' or 'english') to the navigation method
-        _navigateToQuiz(context, value);
-      }},
+        if (value == "set_word_type") {
+          _getWordTypesDisplay();
+        }
+        else { // Pass the value (either 'german' or 'english') to the navigation method
+          _navigateToQuiz(context, value);  }
+      },
       itemBuilder: (BuildContext context) => [
+        const PopupMenuItem<String>(
+            value: 'english',
+           child: Row(
+             children: [
+               Icon(Icons.translate, color: Colors.black54),
+               SizedBox(width: 8),
+               Text("Quiz English to German"),
+             ],
+          ),
+        ),
         const PopupMenuItem<String>(
           value: 'german',
           child: Row(
             children: [
               Icon(Icons.quiz, color: Colors.black54),
               SizedBox(width: 8),
-              Text("Quiz German"),
-            ],
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'english',
-          child: Row(
-            children: [
-              Icon(Icons.translate, color: Colors.black54),
-              SizedBox(width: 8),
-              Text("Quiz English"),
+              Text("Quiz German to English"),
             ],
           ),
         ),
         PopupMenuItem<String>(
           value: 'set_word_type',
-          child: Text('Set default Word Type'),
-          onTap: _getWordTypesDisplay,
+          child: Text('Set default WordType'),
         ),
       ],
     );
   }
 
   Future<void> _getWordTypesDisplay() {
-    return displayWordTypes(
-      context,
-      [_defaultWordType ?? "adjective"] ,
-      false,
-      (List<String> newTypes) {
-        _defaultWordType = newTypes[0] ?? " adjective";
-      },
-    );
+    return displayWordTypes(context, [_defaultWordType ?? "adjective"], false,
+            (List<String> newTypes,) {_defaultWordType = newTypes[0];});
   }
 
   void _navigateToQuiz(BuildContext context, String languageMode) {
@@ -191,5 +191,6 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
         ),
       ),
     );
+    _wordInputFieldFocusNode.requestFocus();
   }
 }
