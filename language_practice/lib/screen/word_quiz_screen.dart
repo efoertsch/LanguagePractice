@@ -260,7 +260,7 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
   }
 
   _getRulesWidget(List<Rules> rules) {
-    return WordRulesSection(rules: rules);
+    return WordRulesSection(rules: rules, defaultWordType: "");
   }
 
   Widget _getWordListListener() {

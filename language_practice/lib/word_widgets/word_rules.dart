@@ -6,11 +6,14 @@ import '../word_widgets/wordtype_selection_dialog.dart';
 class WordRulesSection extends StatelessWidget with WordTypeMixin {
   final List<Rules> rules;
   final Function(List<Rules>)? onRulesChanged;
+  final String defaultWordType;
 
   const WordRulesSection({
     super.key,
     required this.rules,
-    this.onRulesChanged, // 2. Removed 'required'
+    required this.defaultWordType,
+    this.onRulesChanged,
+
   });
 
   @override
@@ -110,13 +113,19 @@ class WordRulesSection extends StatelessWidget with WordTypeMixin {
         if (!isReadOnly)
           TextButton.icon(
             onPressed: () async {
-              final List<String>? results = await showWordTypeSelector(
-                context,
-                [],
-                false,
-              );
-              if (results != null && results.isNotEmpty) {
-                onRulesChanged!([...rules, Rules(type: results[0], rule: "")]);
+              List<String>? results;
+              if (defaultWordType.isEmpty) {
+                results = await showWordTypeSelector(
+                  context,
+                  [],
+                  false,
+                );
+                if (results != null && results.isNotEmpty) {
+                  onRulesChanged!(
+                      [...rules, Rules(type: results[0], rule: "")]);
+                }
+              } else{
+                onRulesChanged!([...rules, Rules(type: defaultWordType, rule: "")]);
               }
             },
             icon: const Icon(Icons.add),

@@ -3,6 +3,7 @@
 import 'package:collection/collection.dart';
 
 enum WordType {
+  n_a,
   noun,
   verb,
   adjective,
@@ -65,7 +66,9 @@ enum VerbFunctionalType {
 enum VerbTense {
   present('Präsens'),
   present_perfect('Perfekt'),
-  simple_past('Präteritum');
+  simple_past('Präteritum'),
+  subjective('Konjunktiv II - Präteritum');
+
 
   const VerbTense(this.germanTense);
 

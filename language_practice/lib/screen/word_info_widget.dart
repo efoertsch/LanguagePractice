@@ -318,6 +318,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
   Widget _getRulesWidget() {
     return WordRulesSection(
       rules: widget.wordInfo.rules ?? [],
+      defaultWordType: widget.wordInfo.type?.first ?? "",
       onRulesChanged: (newList) {
         setState(() {
           widget.wordInfo.rules = newList;
