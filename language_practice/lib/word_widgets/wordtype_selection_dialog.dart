@@ -53,11 +53,11 @@ Future<List<String>?> showWordTypeSelector(
                               );
                             }
                           } else {
-                            // If single selection, don't allow unchecking the active item
-                            // This ensures at least one item remains selected.
-                            if (selectedTypes.length <= 1 && isSelected) {
-                              return;
-                            }
+                            // // If single selection, don't allow unchecking the active item
+                            // // This ensures at least one item remains selected.
+                            // if (selectedTypes.length <= 1 && isSelected) {
+                            //   return;
+                            // }
                             selectedTypes.remove(type);
                           }
                         }
@@ -74,9 +74,9 @@ Future<List<String>?> showWordTypeSelector(
               ),
               ElevatedButton(
                 onPressed: () {
-                  if (selectionmade && selectedTypes.isNotEmpty) {
+                  //if (selectionmade && selectedTypes.isNotEmpty) {
                     Navigator.pop(context, selectedTypes);
-                  }
+                  //}
                 },
                 child: const Text('OK'),
               ),

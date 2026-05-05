@@ -7,7 +7,6 @@ import '../language_classes/word_info.dart';
 import '../translation_service/translation_service.dart';
 
 class LanguageRepository {
-  static final String collectionName = Constants.wordCollection;
   late final Db mongoDb;
   static late final LanguageRepository languageRepository;
   static late final SharedPreferences sharedPreferences;
