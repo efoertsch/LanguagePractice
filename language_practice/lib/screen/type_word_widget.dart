@@ -7,6 +7,7 @@ import 'package:language_practice/utility_widgets/row_with_label_and_child.dart'
 import 'package:language_practice/word_widgets/word_type_mixin.dart';
 
 import '../app/dialog_widgets.dart' show CommonWidgets;
+import '../language_classes/word_info.dart';
 import '../word_bloc/word_cubit.dart';
 import '../word_bloc/word_state.dart';
 
@@ -82,16 +83,9 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
           _gender = parts[0].toLowerCase();
           _spelledWord = parts[1];
         } else {
+          _spelledWord = value;
           _wordType = null;
           _gender = null;
-          CommonWidgets.showInfoDialog(
-            context: context,
-            title: 'Word Entry',
-            msg:
-                "Multiple words entered but no gender determined. The word will be used as is",
-            button1Text: 'OK',
-            button1Function: (() => _spelledWord = value),
-          );
         }
       }
     }
@@ -107,18 +101,7 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
     return BlocListener<WordCubit, WordState>(
       listener: (context, state) {
         if (state is LoadedWordInfoState) {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (routeContext) => BlocProvider.value(
-                value: BlocProvider.of<WordCubit>(context),
-                child: WordInfoWidget(wordInfo: state.word),
-              ),
-            ),
-          );
-          _wordController.text = "";
-          _gender = null;
-          _wordType = null;
-          _wordInputFieldFocusNode.requestFocus();
+          _navigateToWordInfoWidget(context, state.wordInfo);
         }
         if (state is ErrorWordState) {
           CommonWidgets.showInfoDialog(
@@ -134,6 +117,21 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
     );
   }
 
+  void _navigateToWordInfoWidget(BuildContext context, WordInfo wordInfo) async {
+   await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (routeContext) => BlocProvider.value(
+          value: BlocProvider.of<WordCubit>(context),
+          child: WordInfoWidget(wordInfo: wordInfo),
+        ),
+      ),
+    );
+    _wordController.text = "";
+    _gender = null;
+    _wordType = null;
+    _wordInputFieldFocusNode.requestFocus();
+  }
+
   Widget _getMenu(BuildContext context) {
     return PopupMenuButton<String>(
       icon: const Icon(Icons.menu),
@@ -142,19 +140,20 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
       onSelected: (value) {
         if (value == "set_word_type") {
           _getWordTypesDisplay();
+        } else {
+          // Pass the value (either 'german' or 'english') to the navigation method
+          _navigateToQuiz(context, value);
         }
-        else { // Pass the value (either 'german' or 'english') to the navigation method
-          _navigateToQuiz(context, value);  }
       },
       itemBuilder: (BuildContext context) => [
         const PopupMenuItem<String>(
-            value: 'english',
-           child: Row(
-             children: [
-               Icon(Icons.translate, color: Colors.black54),
-               SizedBox(width: 8),
-               Text("Quiz English to German"),
-             ],
+          value: 'english',
+          child: Row(
+            children: [
+              Icon(Icons.translate, color: Colors.black54),
+              SizedBox(width: 8),
+              Text("Quiz English to German"),
+            ],
           ),
         ),
         const PopupMenuItem<String>(
@@ -176,8 +175,11 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
   }
 
   Future<void> _getWordTypesDisplay() {
-    return displayWordTypes(context, [_defaultWordType ?? "adjective"], false,
-            (List<String> newTypes,) {_defaultWordType = newTypes[0];});
+    return displayWordTypes(context, [_defaultWordType ?? "adjective"], false, (
+      List<String> newTypes,
+    ) {
+      _defaultWordType = newTypes[0];
+    });
   }
 
   void _navigateToQuiz(BuildContext context, String languageMode) {

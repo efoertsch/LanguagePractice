@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:language_practice/app/dialog_widgets.dart';
-import 'package:language_practice/enums/word_enums.dart' show WordType;
 import 'package:language_practice/language_classes/word_info.dart';
 
 import '../enums/word_enums.dart' show WordType, VerbTense;
@@ -36,6 +35,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
     super.initState();
     _initControllers();
     _getGenders();
+
   }
 
   void _initControllers() async {
@@ -197,6 +197,22 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
     );
   }
 
+    void _checkWord(WordInfo? wordInfo){
+    final parts = wordInfo?.word?.split(' ') ?? [];
+    if (parts.length >= 2 && wordInfo?.gender == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        CommonWidgets.showInfoDialog(
+          context: context,
+          title: 'Word Entry',
+          msg:
+          "Multiple words entered but no gender determined. The word will be used as is",
+          button1Text: 'OK',
+          button1Function: (() => Navigator.of(context).pop()),
+        );
+      });
+    }
+  }
+
   void onTypesChanged(List<String> types) {
     if (mounted) {
       setState(() {
@@ -225,6 +241,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
     String displayWord = wordInfo?.word ?? "";
     bool isNoun = wordInfo?.type?.contains("noun") == true;
 
+    _checkWord(wordInfo);
     return WordSection(
       word: displayWord,
       onWordChanged: (newValue) {
