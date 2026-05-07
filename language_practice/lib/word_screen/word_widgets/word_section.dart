@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../utility_widgets/row_with_label_and_child.dart'
-    show RowWithLabelAndChildMixin;
+import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
 import 'gender_selector.dart';
 
 class WordSection extends StatefulWidget {

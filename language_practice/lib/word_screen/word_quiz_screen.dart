@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:language_practice/word_widgets/verb_tenses_widget.dart';
+import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
+import 'package:language_practice/word_screen/word_bloc/word_state.dart';
+import 'package:language_practice/word_screen/word_widgets/verb_tenses_widget.dart' show WordTensesWidget;
+import 'package:language_practice/word_screen/word_widgets/word_rules.dart' show WordRulesSection;
+import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart' show WordTypeMixin;
+
 import 'package:provider/provider.dart'; // Assuming you use provider/bloc
+
 import '../app/dialog_widgets.dart';
 import '../language_classes/word_info.dart';
-import '../word_bloc/word_cubit.dart';
-import '../word_bloc/word_state.dart';
-import '../word_widgets/word_rules.dart';
-import '../word_widgets/word_type_mixin.dart';
 
 class WordQuiz extends StatefulWidget {
   final String quizLanguage;

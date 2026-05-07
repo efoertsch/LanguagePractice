@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:language_practice/app/dialog_widgets.dart';
-import '../enums/word_enums.dart';
+import 'package:language_practice/enums/word_enums.dart' show WordType;
 
 Future<List<String>?> showWordTypeSelector(
     BuildContext context,

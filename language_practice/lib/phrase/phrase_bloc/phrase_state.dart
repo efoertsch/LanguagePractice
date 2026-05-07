@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import '../../language_classes/word_info.dart';
-import '../language_classes/phrase.dart';
+import 'package:language_practice/language_classes/phrase.dart';
+
 
 @immutable
 abstract class PhraseState {}

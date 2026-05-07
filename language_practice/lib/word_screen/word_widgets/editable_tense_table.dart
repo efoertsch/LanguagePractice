@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:language_practice/word_widgets/editable_conj_row.dart';
+import 'package:language_practice/word_screen/word_widgets/editable_conj_row.dart';
+
 
 class EditableTenseTable extends StatelessWidget {
   final int index;

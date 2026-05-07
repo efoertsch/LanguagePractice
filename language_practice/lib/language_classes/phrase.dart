@@ -5,9 +5,16 @@ class Phrase {
   String? _phrase;
   String? _english;
   String? _usage;
+  bool _previouslyEntered = false; // temp field
 
-  Phrase({ObjectId? id,String? phrase, String? english, String? usage}) {
-    if (id != null){
+  Phrase({
+    ObjectId? id,
+    String? phrase,
+    String? english,
+    List<String>? type,
+    String? usage,
+  }) {
+    if (id != null) {
       _id = id;
     }
     if (phrase != null) {
@@ -22,13 +29,27 @@ class Phrase {
   }
 
   ObjectId? get id => _id;
+
   set id(ObjectId? id) => _id = id;
+
   String? get phrase => _phrase;
+
   set phrase(String? phrase) => _phrase = phrase;
+
   String? get english => _english;
+
   set english(String? english) => _english = english;
+
   String? get usage => _usage;
+
   set usage(String? usage) => _usage = usage;
+
+
+  //temp field
+  bool get previouslyEntered => _previouslyEntered;
+
+  set previouslyEntered(bool value) => _previouslyEntered = value;
+
 
   Phrase.fromJson(Map<String, dynamic> json) {
     _id = json['_id'];

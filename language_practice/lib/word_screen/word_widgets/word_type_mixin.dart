@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../word_widgets/wordtype_selection_dialog.dart';
+import 'wordtype_selection_dialog.dart';
 
 mixin WordTypeMixin {
   Widget buildTypeChips({

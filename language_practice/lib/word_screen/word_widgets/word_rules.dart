@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:language_practice/language_classes/word_info.dart';
-import '../word_widgets/word_type_mixin.dart';
+import 'word_type_mixin.dart';
 import '../word_widgets/wordtype_selection_dialog.dart';
 
 class WordRulesSection extends StatelessWidget with WordTypeMixin {

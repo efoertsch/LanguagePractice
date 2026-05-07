@@ -1,3 +1,4 @@
+import 'package:language_practice/language_classes/phrase.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -95,10 +96,10 @@ class LanguageRepository {
     }
   }
 
-  Future<String> getGermanTranslation(String word) async {
+  Future<String> getGermanTranslation(String wordOrPhrase) async {
     try {
       final translation = await TranslationService.translateText(
-        text: word,
+        text: wordOrPhrase,
         targetLanguage: 'de', // Or your app's target language
         sourceLanguage: 'en',
       );
@@ -108,7 +109,7 @@ class LanguageRepository {
       // 1. Log the error locally if needed
       print("Repository Error: $e");
       // 2. Rethrow so the Cubit can catch it and emit the ErrorState
-     // throw Exception("Translation failed: $e");
+      // throw Exception("Translation failed: $e");
       return "";
     }
   }
@@ -124,4 +125,37 @@ class LanguageRepository {
     return jsonList.map((json) => WordInfo.fromJson(json)).toList();
   }
 
+  Future<Phrase?> getPhrase(String spelledPhrase) async {
+    Map<String, dynamic>? jsonMap = await phraseCollection!.findOne(
+      where.eq('phrase', spelledPhrase),
+    );
+    if (jsonMap == null) {
+      return null;
+    }
+    return Phrase.fromJson(jsonMap);
+  }
+
+
+  Future<WriteResult> savePhrase(Phrase phrase) async {
+    Map<String, dynamic> jsonMap = phrase.toJson();
+    WriteResult writeResult = await phraseCollection!.insertOne(jsonMap);
+    return writeResult;
+  }
+
+  Future<WriteResult> updatePhrase(Phrase phrase) async {
+    Map<String, dynamic> jsonMap = phrase.toJson();
+    WriteResult writeResult = await phraseCollection!.replaceOne(
+      where.eq('phrase', phrase.phrase),
+      jsonMap,
+    );
+    return writeResult;
+  }
+
+  Future<WriteResult> deletePhrase(Phrase phrase) async {
+    WriteResult writeResult = await phraseCollection!.deleteOne(
+      where.eq('phrase', phrase.phrase),
+    );
+    return writeResult;
+  }
 }
+

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:language_practice/screen/phrase_widget.dart'; // Assuming this exists
+import 'package:language_practice/app/dialog_widgets.dart';
+import 'package:language_practice/language_classes/phrase.dart';
+import 'package:language_practice/phrase/phrase_bloc/phrase_cubit.dart';
+import 'package:language_practice/phrase/phrase_bloc/phrase_state.dart';
+import 'package:language_practice/phrase/phrase_widgets/phrase_widget.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
-
-import '../app/dialog_widgets.dart' show CommonWidgets;
-import '../language_classes/phrase.dart'; // Updated for phrase
-import '../word_bloc/word_cubit.dart';
-import '../word_bloc/word_state.dart';
 
 class TypePhraseWidget extends StatefulWidget {
   const TypePhraseWidget({super.key});
@@ -37,20 +36,14 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Phrase Practice"),
-        backgroundColor: Colors.green, // Differentiated color for phrases
-        centerTitle: true,
-      ),
-      body: _createPhraseEntry(),
-    );
+    return  _createPhraseEntry();
   }
 
   Widget _createPhraseEntry() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
+        mainAxisSize:MainAxisSize.min,
         children: [
           buildHorizontalRow(
             label: "Phrase:",
@@ -72,20 +65,20 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
     if (value.trim().isEmpty) return;
 
     // Phrases are handled more simply than words (no gender/type parsing usually)
-    context.read<WordCubit>().getPhrase(
+    context.read<PhraseCubit>().getPhrase(
       spelledPhrase: value.trim(),
     );
   }
 
   Widget _processPhraseListener() {
-    return BlocListener<WordCubit, WordState>(
+    return BlocListener<PhraseCubit, PhraseState>(
       listener: (context, state) {
         // Handle phrase-specific success state
         if (state is LoadedPhraseInfoState) {
-          _navigateToPhraseInfoWidget(context, state.phraseInfo);
+          _navigateToPhraseInfoWidget(context, state.phrase);
         }
         // Handle shared error state
-        if (state is ErrorWordState) {
+        if (state is ErrorPhraseState) {
           CommonWidgets.showInfoDialog(
             context: context,
             title: 'Oops',
@@ -98,13 +91,12 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
       child: const SizedBox.shrink(),
     );
   }
-
-  void _navigateToPhraseInfoWidget(BuildContext context, PhraseInfo phraseInfo) async {
+  void _navigateToPhraseInfoWidget(BuildContext context, Phrase phrase) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (routeContext) => BlocProvider.value(
-          value: BlocProvider.of<WordCubit>(context),
-          child: PhraseInfoWidget(phraseInfo: phraseInfo),
+          value: BlocProvider.of<PhraseCubit>(context),
+          child: PhraseWidget(phrase: phrase),
         ),
       ),
     );

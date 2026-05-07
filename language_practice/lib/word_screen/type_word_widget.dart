@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:language_practice/screen/word_info_widget.dart';
-import 'package:language_practice/screen/word_quiz_screen.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
-import 'package:language_practice/word_widgets/word_type_mixin.dart';
+import 'package:language_practice/word_screen/word_bloc/word_cubit.dart' show WordCubit;
+import 'package:language_practice/word_screen/word_bloc/word_state.dart';
+import 'package:language_practice/word_screen/word_info_widget.dart';
+import 'package:language_practice/word_screen/word_quiz_screen.dart';
+import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
+
 
 import '../app/dialog_widgets.dart' show CommonWidgets;
 import '../language_classes/word_info.dart';
-import '../word_bloc/word_cubit.dart';
-import '../word_bloc/word_state.dart';
 
 class TypeWordWidget extends StatefulWidget {
-  const TypeWordWidget({super.key});
+  late final String? _defaultWordType;
+  TypeWordWidget({super.key, String? defaultWordType}){
+    _defaultWordType = defaultWordType;
+  }
 
   @override
   State<TypeWordWidget> createState() => _TypeWordWidgetState();
@@ -26,7 +30,6 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
   List<String> _genders = [];
   String? _wordType;
   String? _gender;
-  String? _defaultWordType;
   final FocusNode _wordInputFieldFocusNode = FocusNode();
 
   @override
@@ -38,21 +41,14 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Language Practice"),
-        backgroundColor: Colors.blue,
-        centerTitle: true,
-        actions: [_getMenu(context)],
-      ),
-      body: _createWordEntry(),
-    );
+    return  _createWordEntry();
   }
 
   Widget _createWordEntry() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
+        mainAxisSize:MainAxisSize.min,
         children: [
           buildHorizontalRow(
             label: "Word:",
@@ -71,10 +67,10 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
   }
 
   void _handleWordChange(String value) {
-    final parts = value.split(' ');
+    final parts = value.trim().split(' ');
     if (parts.length == 1) {
       _spelledWord = value;
-      _wordType = _defaultWordType;
+      _wordType = widget._defaultWordType;
       _gender = null;
     } else {
       if (parts.length == 2) {
@@ -132,67 +128,5 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
     _wordInputFieldFocusNode.requestFocus();
   }
 
-  Widget _getMenu(BuildContext context) {
-    return PopupMenuButton<String>(
-      icon: const Icon(Icons.menu),
-      // onCanceled: () {
-      //   print("Menu canceled");},
-      onSelected: (value) {
-        if (value == "set_word_type") {
-          _getWordTypesDisplay();
-        } else {
-          // Pass the value (either 'german' or 'english') to the navigation method
-          _navigateToQuiz(context, value);
-        }
-      },
-      itemBuilder: (BuildContext context) => [
-        const PopupMenuItem<String>(
-          value: 'english',
-          child: Row(
-            children: [
-              Icon(Icons.translate, color: Colors.black54),
-              SizedBox(width: 8),
-              Text("Quiz English to German"),
-            ],
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'german',
-          child: Row(
-            children: [
-              Icon(Icons.quiz, color: Colors.black54),
-              SizedBox(width: 8),
-              Text("Quiz German to English"),
-            ],
-          ),
-        ),
-        PopupMenuItem<String>(
-          value: 'set_word_type',
-          child: Text('Set default WordType'),
-        ),
-      ],
-    );
-  }
 
-  Future<void> _getWordTypesDisplay() {
-    return displayWordTypes(context, [_defaultWordType ?? "adjective"], false, (
-      List<String> newTypes,
-    ) {
-      _defaultWordType = newTypes[0];
-    });
-  }
-
-  void _navigateToQuiz(BuildContext context, String languageMode) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (routeContext) => BlocProvider.value(
-          value: BlocProvider.of<WordCubit>(context),
-          child: WordQuiz(
-            quizLanguage: languageMode, // Passing 'german' or 'english'
-          ),
-        ),
-      ),
-    );
-    _wordInputFieldFocusNode.requestFocus();
-  }
 }

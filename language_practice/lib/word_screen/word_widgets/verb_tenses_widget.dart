@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:language_practice/app/constants.dart' show Constants;
+import 'package:language_practice/enums/word_enums.dart';
 import 'package:language_practice/language_classes/word_info.dart';
 
-import '../app/constants.dart' show Constants;
-import '../enums/word_enums.dart' show VerbTense;
 
 class WordTensesWidget extends StatefulWidget {
   final List<Tense> tenses;

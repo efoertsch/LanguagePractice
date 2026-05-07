@@ -1,5 +1,6 @@
 {
-"phrase": "Zahlen Sie bar",
-"english": "Are you (formal) paying cash?",
-"usage": ""
+  "phrase": "Zahlen Sie bar",
+  "english": "Are you (formal) paying cash?",
+  "type": "type1, type2",
+  "usage": ""
 }

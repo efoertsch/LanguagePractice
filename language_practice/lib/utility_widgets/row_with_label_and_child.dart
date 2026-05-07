@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 mixin RowWithLabelAndChildMixin {
   Widget buildHorizontalRow({required String label, required Widget child}) {
     return Flexible(
+      fit: FlexFit.loose,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.baseline,
         textBaseline: TextBaseline.alphabetic,

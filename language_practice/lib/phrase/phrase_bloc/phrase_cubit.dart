@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:language_practice/phrase_bloc/phrase_state.dart';
+import 'package:language_practice/language_classes/phrase.dart';
+import 'package:language_practice/phrase/phrase_bloc/phrase_state.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 import '../../repository/language_repository.dart';
-import '../language_classes/phrase.dart';
+
 
 class PhraseCubit extends Cubit<PhraseState> {
   final LanguageRepository repository;
@@ -13,29 +14,29 @@ class PhraseCubit extends Cubit<PhraseState> {
   /// Fetches an existing phrase or prepares a new one for entry
   Future<void> getPhrase({required String spelledPhrase}) async {
     emit(LoadingPhraseState(spelledPhrase));
-    PhraseInfo? phraseInfo;
+    Phrase? phrase;
 
     try {
       // Fetch the phrase from the repository
-      phraseInfo = await repository.getPhrase(spelledPhrase);
+      phrase = await repository.getPhrase(spelledPhrase);
 
-      if (phraseInfo != null) {
-        phraseInfo.previouslyEntered = true;
+      if (phrase != null) {
+        phrase.previouslyEntered = true;
       } else {
         // New phrase logic: create the object and fetch initial translation
-        phraseInfo = PhraseInfo(phrase: spelledPhrase);
+        phrase = Phrase(phrase: spelledPhrase);
         String translation = await repository.getEnglishTranslation(spelledPhrase);
-        phraseInfo.english = translation.split(',');
+        phrase.english = translation;
       }
 
-      emit(LoadedPhraseInfoState(phraseInfo));
+      emit(LoadedPhraseInfoState(phrase));
     } catch (e) {
       emit(ErrorPhraseState("Failed to load phrase: ${e.toString()}"));
     }
   }
 
   /// Adds a new phrase to the database
-  Future<void> savePhrase(PhraseInfo phrase) async {
+  Future<void> savePhrase(Phrase phrase) async {
     try {
       WriteResult writeResult = await repository.savePhrase(phrase);
       if (writeResult.nInserted == 1) {
@@ -54,7 +55,7 @@ class PhraseCubit extends Cubit<PhraseState> {
   }
 
   /// Updates an existing phrase in the database
-  Future<void> updatePhrase(PhraseInfo phrase) async {
+  Future<void> updatePhrase(Phrase phrase) async {
     try {
       WriteResult writeResult = await repository.updatePhrase(phrase);
       // nMatched handles cases where values are the same and nothing actually changed in DB
@@ -74,7 +75,7 @@ class PhraseCubit extends Cubit<PhraseState> {
   }
 
   /// Deletes a phrase from the database
-  Future<void> deletePhrase(PhraseInfo phrase) async {
+  Future<void> deletePhrase(Phrase phrase) async {
     try {
       WriteResult writeResult = await repository.deletePhrase(phrase);
       if (writeResult.nRemoved == 1) {
