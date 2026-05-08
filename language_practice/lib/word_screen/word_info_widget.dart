@@ -5,15 +5,20 @@ import 'package:language_practice/app/dialog_widgets.dart';
 import 'package:language_practice/language_classes/word_info.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 import 'package:language_practice/word_screen/word_bloc/word_state.dart';
-import 'package:language_practice/word_screen/word_widgets/plural_widget.dart' show PluralWidget;
-import 'package:language_practice/word_screen/word_widgets/translated_word_widget.dart' show TranslatedWordWidget;
-import 'package:language_practice/word_screen/word_widgets/verb_tenses_widget.dart' show WordTensesWidget;
-import 'package:language_practice/word_screen/word_widgets/word_rules.dart' show WordRulesSection;
-import 'package:language_practice/word_screen/word_widgets/word_section.dart' show WordSection;
-import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart' show WordTypeMixin;
+import 'package:language_practice/word_screen/word_widgets/plural_widget.dart'
+    show PluralWidget;
+import 'package:language_practice/word_screen/word_widgets/translated_word_widget.dart'
+    show TranslatedWordWidget;
+import 'package:language_practice/word_screen/word_widgets/verb_tenses_widget.dart'
+    show WordTensesWidget;
+import 'package:language_practice/word_screen/word_widgets/word_rules.dart'
+    show WordRulesSection;
+import 'package:language_practice/word_screen/word_widgets/word_section.dart'
+    show WordSection;
+import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart'
+    show WordTypeMixin;
 
 import '../enums/word_enums.dart' show WordType, VerbTense;
-
 
 class WordInfoWidget extends StatefulWidget {
   final WordInfo wordInfo;
@@ -28,77 +33,16 @@ class WordInfoWidget extends StatefulWidget {
 class _WordInfoWidgetState extends State<WordInfoWidget>
     with TickerProviderStateMixin, WordTypeMixin {
   // Controllers to handle text input
-  final Map<String, TextEditingController> _controllers = {};
   List<String> _genders = [];
 
   @override
   void initState() {
     super.initState();
-    _initControllers();
     _getGenders();
-
   }
 
-  void _initControllers() async {
-    _controllers['word'] = TextEditingController(text: widget.wordInfo.word);
-    _controllers['plural'] = TextEditingController(
-      text: widget.wordInfo.plural,
-    );
-    // 1. Initialize translation controllers
-    if (widget.wordInfo.english != null) {
-      for (int i = 0; i < (widget.wordInfo.english!.length); i++) {
-        _controllers['english_$i'] = TextEditingController(
-          text: widget.wordInfo.english![i],
-        );
-      }
-    }
 
-    // 2. Initialize Tense controllers
-    if (widget.wordInfo.tenses != null) {
-      for (int t = 0; t < widget.wordInfo.tenses!.length; t++) {
-        final tense = widget.wordInfo.tenses![t];
-        // We use a naming convention: "tense_{index}_{field}"
-        _controllers['tense_${t}_name'] = TextEditingController(
-          text: tense.tense,
-        );
-        _controllers['english_${t}'] = TextEditingController(
-          text: tense.english,
-        );
-        _controllers['tense_${t}_s1'] = TextEditingController(
-          text: tense.s1stPersonSingular,
-        );
-        _controllers['tense_${t}_s2'] = TextEditingController(
-          text: tense.s2ndPersonSingular,
-        );
-        _controllers['tense_${t}_s3'] = TextEditingController(
-          text: tense.s3rdPersonSingular,
-        );
-        _controllers['tense_${t}_p1'] = TextEditingController(
-          text: tense.s1stPersonPlural,
-        );
-        _controllers['tense_${t}_p2'] = TextEditingController(
-          text: tense.s2ndPersonPlural,
-        );
-        _controllers['tense_${t}_p3'] = TextEditingController(
-          text: tense.s3rdPersonPlural,
-        );
-        _controllers['tense_${t}_helper'] = TextEditingController(
-          text: tense.helperVerb,
-        );
-        _controllers['tense_${t}_pastP'] = TextEditingController(
-          text: tense.pastParticiple,
-        );
-      }
-    }
-  }
 
-  @override
-  void dispose() {
-    for (var controller in _controllers.values) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -139,9 +83,9 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
                   _getWordWidget(widget.wordInfo),
                   const SizedBox(height: 8),
                   buildTypeChips(
-                    context:context,
+                    context: context,
                     types: widget.wordInfo.type,
-                   multipleSelectionAllowed:  true,
+                    multipleSelectionAllowed: true,
                     onTypesChanged: onTypesChanged,
                   ),
                   const SizedBox(height: 8),
@@ -198,7 +142,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
     );
   }
 
-    void _checkWord(WordInfo? wordInfo){
+  void _checkWord(WordInfo? wordInfo) {
     final parts = wordInfo?.word?.split(' ') ?? [];
     if (parts.length >= 2 && wordInfo?.gender == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -206,7 +150,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
           context: context,
           title: 'Word Entry',
           msg:
-          "Multiple words entered but no gender determined. The word will be used as is",
+              "Multiple words entered but no gender determined. The word will be used as is",
           button1Text: 'OK',
           button1Function: (() => Navigator.of(context).pop()),
         );
@@ -251,7 +195,8 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
         });
       },
       onWordFocusLost: () {
-        if (wordInfo!.type!.contains("noun") && widget.wordInfo.gender == null) {
+        if (wordInfo!.type!.contains("noun") &&
+            widget.wordInfo.gender == null) {
           CommonWidgets.showErrorDialog(
             context,
             "Gender Missing",
@@ -291,23 +236,23 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
   }
 
   Widget _getWordTensesSection(WordInfo wordInfo) {
-     if ( wordInfo.tenses == null ||  wordInfo.tenses!.isEmpty){
-        wordInfo.tenses=[_createPresentTense( wordInfo.english?.join(", ") ?? "")];
-     }
-      return WordTensesWidget(
-        tenses: wordInfo.tenses ?? <Tense>[],
-        onTenseChanged: (index, updatedTense) {
-          setState(() {
-             wordInfo.tenses![index] = updatedTense;
-          });
-        },
-      );
+    if (wordInfo.tenses == null || wordInfo.tenses!.isEmpty) {
+      wordInfo.tenses = [
+        _createPresentTense(wordInfo.english?.join(", ") ?? ""),
+      ];
+    }
+    return WordTensesWidget(
+      tenses: wordInfo.tenses ?? <Tense>[],
+      onTenseChanged: (index, updatedTense) {
+        setState(() {
+          wordInfo.tenses![index] = updatedTense;
+        });
+      },
+    );
   }
 
   Tense _createPresentTense(String english) {
-    return (Tense(tense: VerbTense.present.germanTense,
-      english: english
-     ));
+    return (Tense(tense: VerbTense.present.germanTense, english: english));
   }
 
   List<Widget> _getPluralWidget(WordInfo word) {
@@ -385,5 +330,4 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
       ),
     );
   }
-
 }

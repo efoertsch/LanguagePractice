@@ -31,12 +31,12 @@ class _LangaugeEntryState extends State<LangaugeEntry> with WordTypeMixin {
           mainAxisSize: MainAxisSize.min,
           children: [
             // Header for Word Section
-            _buildSectionHeader(context, "Words", Colors.blue),
+            _buildSectionHeader(context, "Word", Colors.blue),
             TypeWordWidget(defaultWordType: _defaultWordType),
             const Divider(height: 40, thickness: 2),
 
             // Header for Phrase Section
-            _buildSectionHeader(context, "Phrases", Colors.green),
+            _buildSectionHeader(context, "Phrase", Colors.green),
             const TypePhraseWidget(),
 
             const SizedBox(height: 20),
