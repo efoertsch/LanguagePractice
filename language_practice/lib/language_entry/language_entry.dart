@@ -109,7 +109,10 @@ class _LangaugeEntryState extends State<LangaugeEntry> with WordTypeMixin {
       [_defaultWordType ?? WordType.adjective.displayName],
       false,
       (List<String> newTypes) {
-        _defaultWordType = newTypes[0];
+        setState(() {
+          _defaultWordType = newTypes[0];
+        });
+
       },
     );
   }

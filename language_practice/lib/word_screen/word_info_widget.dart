@@ -37,12 +37,18 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
 
   @override
   void initState() {
-    super.initState();
     _getGenders();
+    if (widget.wordInfo.type != null
+        && widget.wordInfo.type!.contains(WordType.verb.displayName)
+        && widget.wordInfo.tenses == null){
+      widget.wordInfo.tenses = [Tense(tense: VerbTense.present.germanTense,
+          english: widget.wordInfo.word,
+          s1stPersonPlural: widget.wordInfo.word,
+          s3rdPersonPlural: widget.wordInfo.word
+      )];
+    }
+    super.initState();
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
