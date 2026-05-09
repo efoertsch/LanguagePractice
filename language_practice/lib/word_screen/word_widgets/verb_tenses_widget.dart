@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:language_practice/app/constants.dart' show Constants;
 import 'package:language_practice/enums/word_enums.dart';
 import 'package:language_practice/language_classes/word_info.dart';
+import 'package:language_practice/phrase/phrase_widgets/conjugated_tense_widget.dart';
 
 class WordTensesWidget extends StatefulWidget {
   final List<Tense> tenses;
@@ -19,13 +20,28 @@ class WordTensesWidget extends StatefulWidget {
 
 class _WordTensesWidgetState extends State<WordTensesWidget> {
   int _activeTenseIndex = 0;
+  late final ValueNotifier<String> firstAndThirdPersonSingular;
+  late final ValueNotifier<String> firstAndThirdPersonPlural;
+  late  Tense currentTense;
+  late final  bool isReadOnly;
+
+  @override
+  void initState() {
+    currentTense = widget.tenses[_activeTenseIndex];
+    firstAndThirdPersonSingular = ValueNotifier<String>(
+      currentTense.s1stPersonSingular ?? "",
+    );
+    firstAndThirdPersonPlural = ValueNotifier<String>(
+      currentTense.s1stPersonPlural ?? "",
+    );
+    isReadOnly = widget.onTenseChanged == null;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    bool isReadOnly = widget.onTenseChanged == null;
+    currentTense = widget.tenses[_activeTenseIndex];
     if (widget.tenses.isEmpty) return const SizedBox.shrink();
-
-    Tense currentTense = widget.tenses[_activeTenseIndex];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +111,8 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
 
         const SizedBox(height: 16),
         // English Translation for the selected Tense
-        _buildTenseInput(
+        ConjugatedTenseWidget(
+          activeTenseIndex: _activeTenseIndex,
           label: "English",
           value: currentTense.english ?? "",
           isReadOnly: isReadOnly,
@@ -222,69 +239,13 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
     return availableTenses;
   }
 
-  Widget _buildTenseInput({
-    required String label,
-    required String value,
-    required bool isReadOnly,
-    Function(String)? onChanged,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 60,
-            child: Text(
-              label,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-            ),
-          ),
-          const SizedBox(width: 12),
-          SizedBox(
-            width: 250,
-            child: isReadOnly
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8.0,
-                      horizontal: 10,
-                    ),
-                    child: Text(
-                      value.isEmpty ? "-" : value,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                  )
-                : TextFormField(
-                    initialValue: value,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                    key: Key("${_activeTenseIndex}_$label"),
-                    onChanged: onChanged,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 8,
-                      ),
-                    ),
-                  ),
-          ),
-        ],
-      ),
-    );
-  }
-
   List<Widget> _getPresentPerfectFields({
     required Tense currentTense,
     required bool isReadOnly,
   }) {
     return [
-      _buildTenseInput(
+      ConjugatedTenseWidget(
+        activeTenseIndex: _activeTenseIndex,
         label: "Helper Verb",
         value: currentTense.helperVerb ?? "",
         isReadOnly: isReadOnly,
@@ -296,7 +257,8 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
           ); // Use ?.call
         },
       ),
-      _buildTenseInput(
+      ConjugatedTenseWidget(
+        activeTenseIndex: _activeTenseIndex,
         label: "Past Part.",
         value: currentTense.pastParticiple ?? "",
         isReadOnly: isReadOnly,
@@ -317,9 +279,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
   }) {
     // Helper to dry up the repeated calls
     void update(VoidCallback action) {
-      setState(() {
-        action();
-      });
+      action();
       widget.onTenseChanged?.call(_activeTenseIndex, currentTense);
     }
 
@@ -328,32 +288,38 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
-            child: _buildTenseInput(
+            child: ConjugatedTenseWidget(
+              activeTenseIndex: _activeTenseIndex,
               label: Constants.deNominativePronouns[0],
               value: currentTense.s1stPersonSingular ?? "",
               isReadOnly: isReadOnly,
               onChanged: (val) => update(() {
                 currentTense.s1stPersonSingular = val;
-                if (currentTense.tense == VerbTense.simple_past.germanTense) {
-                  currentTense.s3rdPersonSingular = val;
-                }
-                ;
               }),
+              valueNotifier:
+                  currentTense.tense == VerbTense.simple_past.germanTense
+                  ? firstAndThirdPersonSingular
+                  : null,
             ),
           ),
           const SizedBox(width: 20),
           Flexible(
-            child: _buildTenseInput(
+            child: ConjugatedTenseWidget(
+              activeTenseIndex: _activeTenseIndex,
               label: Constants.deNominativePronouns[3],
               value: currentTense.s1stPersonPlural ?? "",
               isReadOnly: isReadOnly,
-              onChanged: (val) => update(() {
-                currentTense.s1stPersonPlural = val;
-                if (currentTense.tense == VerbTense.present.germanTense ||
-                    currentTense.tense == VerbTense.simple_past.germanTense) {
-                  currentTense.s3rdPersonPlural = val;
-                }
-              }),
+              onChanged: (val) {
+                update(() {
+                  currentTense.s1stPersonPlural = val;
+                  firstAndThirdPersonPlural.value = val;
+                });
+              },
+              valueNotifier:
+                  (currentTense.tense == VerbTense.present.germanTense ||
+                      currentTense.tense == VerbTense.simple_past.germanTense)
+                  ? firstAndThirdPersonPlural
+                  : null,
             ),
           ),
         ],
@@ -362,7 +328,8 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
-            child: _buildTenseInput(
+            child: ConjugatedTenseWidget(
+              activeTenseIndex: _activeTenseIndex,
               label: Constants.deNominativePronouns[1],
               value: currentTense.s2ndPersonSingular ?? "",
               isReadOnly: isReadOnly,
@@ -372,7 +339,8 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
           ),
           const SizedBox(width: 20),
           Flexible(
-            child: _buildTenseInput(
+            child: ConjugatedTenseWidget(
+              activeTenseIndex: _activeTenseIndex,
               label: Constants.deNominativePronouns[4],
               value: currentTense.s2ndPersonPlural ?? "",
               isReadOnly: isReadOnly,
@@ -386,32 +354,35 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
-            child: _buildTenseInput(
+            child: ConjugatedTenseWidget(
+              activeTenseIndex: _activeTenseIndex,
               label: Constants.deNominativePronouns[2],
               value: currentTense.s3rdPersonSingular ?? "",
-
               isReadOnly: isReadOnly,
               onChanged: (val) => update(() {
                 currentTense.s3rdPersonSingular = val;
-                if (currentTense.tense == VerbTense.simple_past.germanTense) {
-                  currentTense.s1stPersonSingular = val;
-                }
               }),
+              valueNotifier:
+                  currentTense.tense == VerbTense.simple_past.germanTense
+                  ? firstAndThirdPersonSingular
+                  : null,
             ),
           ),
           const SizedBox(width: 20),
           Flexible(
-            child: _buildTenseInput(
+            child: ConjugatedTenseWidget(
+              activeTenseIndex: _activeTenseIndex,
               label: Constants.deNominativePronouns[5],
               value: currentTense.s3rdPersonPlural ?? "",
               isReadOnly: isReadOnly,
               onChanged: (val) => update(() {
                 currentTense.s3rdPersonPlural = val;
-                if (currentTense.tense == VerbTense.present.germanTense ||
-                    currentTense.tense == VerbTense.simple_past.germanTense) {
-                  currentTense.s1stPersonPlural = val;
-                }
               }),
+              valueNotifier:
+                  (currentTense.tense == VerbTense.present.germanTense ||
+                      currentTense.tense == VerbTense.simple_past.germanTense)
+                  ? firstAndThirdPersonPlural
+                  : null,
             ),
           ),
         ],

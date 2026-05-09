@@ -143,7 +143,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
   }
 
   void _checkWord(WordInfo? wordInfo) {
-    final parts = wordInfo?.word?.split(' ') ?? [];
+    final parts = wordInfo?.word?.trim().split(' ') ?? [];
     if (parts.length >= 2 && wordInfo?.gender == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         CommonWidgets.showInfoDialog(
@@ -195,8 +195,8 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
         });
       },
       onWordFocusLost: () {
-        if (wordInfo!.type!.contains("noun") &&
-            widget.wordInfo.gender == null) {
+        if (wordInfo!.type!.contains("noun")) {
+          if( widget.wordInfo.gender == null) {
           CommonWidgets.showErrorDialog(
             context,
             "Gender Missing",
@@ -211,7 +211,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
                 "${_genders..map((gender) => gender).join(', ')}",
           );
         }
-      },
+      }},
       selectedGender: (isNoun ? (wordInfo?.gender ?? _genders.first) : null),
       genders: (isNoun ? _genders.map((gender) => gender).toList() : null),
       onGenderChanged: (isNoun
@@ -244,9 +244,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
     return WordTensesWidget(
       tenses: wordInfo.tenses ?? <Tense>[],
       onTenseChanged: (index, updatedTense) {
-        setState(() {
           wordInfo.tenses![index] = updatedTense;
-        });
       },
     );
   }
