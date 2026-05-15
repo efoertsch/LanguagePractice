@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
 import 'package:language_practice/enums/word_enums.dart' show WordType;
 import 'package:language_practice/phrase/phrase_widgets/type_phrase_widget.dart';
+import 'package:language_practice/rule/rule_widgets/type_rule_widget.dart';
 import 'package:language_practice/word_screen/type_word_widget.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 import 'package:language_practice/word_screen/word_quiz_screen.dart';
@@ -33,13 +34,18 @@ class _LangaugeEntryState extends State<LangaugeEntry> with WordTypeMixin {
             // Header for Word Section
             _buildSectionHeader(context, "Word", Colors.blue),
             TypeWordWidget(defaultWordType: _defaultWordType),
-            const Divider(height: 40, thickness: 2),
+            const Divider(height: 20, thickness: 2),
 
             // Header for Phrase Section
             _buildSectionHeader(context, "Phrase", Colors.green),
             const TypePhraseWidget(),
 
+            const Divider(height:20, thickness: 2),
+            _buildSectionHeader(context, "Grammar Rules", Colors.deepPurple),
+            const TypeRuleWidget(),
+
             const SizedBox(height: 20),
+
           ],
         ),
       ),

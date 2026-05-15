@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:language_practice/app/constants.dart' show Constants;
 import 'package:language_practice/enums/word_enums.dart';
-import 'package:language_practice/language_classes/word_info.dart';
+import 'package:language_practice/repository/language_classes/word_info.dart';
 import 'package:language_practice/word_screen/word_widgets/conjugated_tense_widget.dart';
 
 class WordTensesWidget extends StatefulWidget {
   final List<Tense> tenses;
-  final Function(int, Tense)? onTenseChanged; // Made optional (?)
+  final Function(int, Tense)? onTenseChanged;
+  final ValueNotifier<String>? englishValueNotifier;
 
   const WordTensesWidget({
     super.key,
     required this.tenses,
     this.onTenseChanged,
+    this.englishValueNotifier,
   });
 
   @override
@@ -34,7 +36,6 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
     firstAndThirdPersonPlural = ValueNotifier<String>(
       currentTense.s1stPersonPlural ?? "",
     );
-    presentTenseEnglish = ValueNotifier<String>(currentTense.english ?? "");
     isReadOnly = widget.onTenseChanged == null;
     super.initState();
   }
@@ -121,6 +122,10 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
             currentTense.english = val;
             widget.onTenseChanged?.call(_activeTenseIndex, currentTense);
           }),
+          valueNotifier:
+          currentTense.tense == VerbTense.present.germanTense
+              ? widget.englishValueNotifier
+              : null,
           //valueNotifier:
           //currentTense.tense == VerbTense.present.germanTense
           //    ? presentTenseEnglish
@@ -368,7 +373,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
                 currentTense.s3rdPersonSingular = val;
               }),
               valueNotifier:
-                  currentTense.tense == VerbTense.simple_past.germanTense
+                  currentTense. tense == VerbTense.simple_past.germanTense
                   ? firstAndThirdPersonSingular
                   : null,
             ),

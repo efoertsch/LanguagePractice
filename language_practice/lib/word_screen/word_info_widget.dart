@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:language_practice/app/dialog_widgets.dart';
-import 'package:language_practice/language_classes/word_info.dart';
+import 'package:language_practice/repository/language_classes/word_info.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 import 'package:language_practice/word_screen/word_bloc/word_state.dart';
 import 'package:language_practice/word_screen/word_widgets/plural_widget.dart'
@@ -34,6 +34,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
     with TickerProviderStateMixin, WordTypeMixin {
   // Controllers to handle text input
   List<String> _genders = [];
+  late final ValueNotifier<String> presentTenseEnglish;
 
   @override
   void initState() {
@@ -47,6 +48,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
           s3rdPersonPlural: widget.wordInfo.word
       )];
     }
+    presentTenseEnglish = ValueNotifier<String>(widget.wordInfo.english?.join(', ') ?? "");
     super.initState();
   }
 
@@ -95,7 +97,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
                     onTypesChanged: onTypesChanged,
                   ),
                   const SizedBox(height: 8),
-                  _getTranslatedLanguageWidget(),
+                  _getTranslatedLanguageWidget(englishValueNotifier: presentTenseEnglish),
                   const SizedBox(height: 8),
                   if (widget.wordInfo.type != null &&
                       widget.wordInfo.type!.contains("noun"))
@@ -230,14 +232,13 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
     );
   }
 
-  Widget _getTranslatedLanguageWidget() {
+  Widget _getTranslatedLanguageWidget({ValueNotifier<String>? englishValueNotifier}) {
     return TranslatedWordWidget(
       translatedLanguage: widget.wordInfo.english ?? <String>[],
-      onTranslatedLanguageChanged: (newList) {
-        setState(() {
+      onChange: (newList) {
           widget.wordInfo.english = newList;
-        });
       },
+      englishValueNotifier: englishValueNotifier,
     );
   }
 

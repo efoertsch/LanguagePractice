@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:language_practice/app/dialog_widgets.dart';
-import 'package:language_practice/language_classes/phrase.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_cubit.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_state.dart';
 import 'package:language_practice/phrase/phrase_widgets/phrase_widget.dart';
+import 'package:language_practice/repository/language_classes/phrase.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
 
 class TypePhraseWidget extends StatefulWidget {
@@ -17,7 +16,6 @@ class TypePhraseWidget extends StatefulWidget {
 
 class _TypePhraseWidgetState extends State<TypePhraseWidget>
     with RowWithLabelAndChildMixin {
-  final GetIt getIt = GetIt.instance;
   late TextEditingController _phraseController;
   final FocusNode _phraseInputFieldFocusNode = FocusNode();
 

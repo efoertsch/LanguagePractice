@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:language_practice/language_classes/phrase.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_state.dart';
+import 'package:language_practice/repository/language_classes/phrase.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 import '../../repository/language_repository.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:language_practice/language_classes/word_info.dart';
+import 'package:language_practice/repository/language_classes/word_info.dart';
 import '../word_widgets/word_type_mixin.dart';
 
 /// A Stateless widget that combines word display with the type selection logic.

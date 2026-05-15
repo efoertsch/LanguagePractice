@@ -1,10 +1,12 @@
-import 'package:language_practice/language_classes/phrase.dart';
+
+import 'package:language_practice/repository/language_classes/phrase.dart';
+import 'package:language_practice/repository/language_classes/rule.dart';
+import 'package:language_practice/repository/language_classes/word_info.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app/constants.dart' show Constants;
 import '../enums/word_enums.dart' show GermanGender;
-import '../language_classes/word_info.dart';
 import '../translation_service/translation_service.dart';
 
 class LanguageRepository {
@@ -14,6 +16,7 @@ class LanguageRepository {
 
   DbCollection? wordCollection;
   DbCollection? phraseCollection;
+  DbCollection? ruleCollection;
 
   //LanguageRepository({required this.mongoDb});
 
@@ -24,6 +27,7 @@ class LanguageRepository {
     languageRepository.mongoDb = mongoDb;
     await languageRepository._getWordCollection();
     await languageRepository._getPhraseCollection();
+    await languageRepository._getRuleCollection();
     sharedPreferences = await SharedPreferences.getInstance();
     return languageRepository;
   }
@@ -40,6 +44,11 @@ class LanguageRepository {
   Future<DbCollection> _getPhraseCollection() async {
     phraseCollection ??= await _getCollection(Constants.phraseCollection);
     return phraseCollection!;
+  }
+
+  Future<DbCollection> _getRuleCollection() async {
+    ruleCollection ??= await _getCollection(Constants.ruleCollection);
+    return ruleCollection!;
   }
 
   Future<WordInfo?> getWord(String word) async {
@@ -157,5 +166,39 @@ class LanguageRepository {
     );
     return writeResult;
   }
+
+  Future<Rule?> getRule(String ruleName) async {
+    Map<String, dynamic>? jsonMap = await ruleCollection!.findOne(
+      where.eq('rule', ruleName),
+    );
+    if (jsonMap == null) {
+      return null;
+    }
+    return Rule.fromJson(jsonMap);
+  }
+
+  Future<WriteResult> saveRule(Rule rule) async {
+    Map<String, dynamic> jsonMap = rule.toJson();
+    WriteResult writeResult = await ruleCollection!.insertOne(jsonMap);
+    return writeResult;
+  }
+
+  Future<WriteResult> updateRule(Rule rule) async {
+    Map<String, dynamic> jsonMap = rule.toJson();
+    WriteResult writeResult = await ruleCollection!.replaceOne(
+      where.eq('rule', rule.rule),
+      jsonMap,
+    );
+    return writeResult;
+  }
+
+  Future<WriteResult> deleteRule(Rule rule) async {
+    WriteResult writeResult = await ruleCollection!.deleteOne(
+      where.eq('rule', rule.rule),
+    );
+    return writeResult;
+  }
+
+
 }
 

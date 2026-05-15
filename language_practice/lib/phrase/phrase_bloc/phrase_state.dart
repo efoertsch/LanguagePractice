@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:language_practice/language_classes/phrase.dart';
+import 'package:language_practice/repository/language_classes/phrase.dart';
 
 
 @immutable

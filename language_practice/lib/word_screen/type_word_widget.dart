@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:language_practice/repository/language_classes/word_info.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart' show WordCubit;
 import 'package:language_practice/word_screen/word_bloc/word_state.dart';
 import 'package:language_practice/word_screen/word_info_widget.dart';
-import 'package:language_practice/word_screen/word_quiz_screen.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
 
-
 import '../app/dialog_widgets.dart' show CommonWidgets;
-import '../language_classes/word_info.dart';
+
 
 class TypeWordWidget extends StatefulWidget {
   late final String? _defaultWordType;

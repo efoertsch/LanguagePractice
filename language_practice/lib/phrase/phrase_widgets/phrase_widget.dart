@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:language_practice/language_classes/phrase.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_cubit.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_state.dart';
+import 'package:language_practice/repository/language_classes/phrase.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
+
+import '../../app/dialog_widgets.dart' show CommonWidgets;
 
 class PhraseWidget extends StatefulWidget {
   final Phrase phrase;
@@ -57,13 +59,7 @@ class _phraseWidgetState extends State<PhraseWidget>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PhraseCubit, PhraseState>(
-      listener: (context, state) {
-        if (state is PhraseSavedState || state is PhraseDeletedState) {
-          Navigator.of(context).pop();
-        }
-      },
-      child: Scaffold(
+    return  Scaffold(
         appBar: AppBar(
           title: Text(_phrase.previouslyEntered ? "Edit Phrase" : "New Phrase"),
           actions: [
@@ -74,7 +70,26 @@ class _phraseWidgetState extends State<PhraseWidget>
         ),
         floatingActionButton: _getFloatingActionButtonRow(context),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        body: SingleChildScrollView(
+        body:
+        BlocListener<PhraseCubit, PhraseState>(
+          listener: (context, state) {
+            if (state is PhraseSavedState || state is PhraseDeletedState) {
+              String message = state is PhraseSavedState ? "Saved" : "Deleted";
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: state is PhraseSavedState
+                      ? Colors.green
+                      : Colors.redAccent,
+                  content: Text("${widget.phrase.phrase} $message."),
+                ),
+              );
+              Navigator.of(context).pop(); // return to prior screen
+            }
+            if (state is ErrorPhraseState) {
+              CommonWidgets.showErrorDialog(context, "Error", state.message);
+            }
+          },
+          child:SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,

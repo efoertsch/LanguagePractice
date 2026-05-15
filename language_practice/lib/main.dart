@@ -5,6 +5,7 @@ import 'package:language_practice/language_app/langauge_app.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_cubit.dart' show PhraseCubit;
 import 'package:language_practice/repository/language_repository.dart';
 import 'package:language_practice/repository/mongo_db_connector.dart';
+import 'package:language_practice/rule/rule_bloc/rule_cubit.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -29,6 +30,7 @@ void main() async {
     getIt.registerSingleton<LanguageRepository>(languageRepository);
     getIt.registerFactory(() => WordCubit(repository: getIt<LanguageRepository>()));
     getIt.registerFactory(() => PhraseCubit(repository: getIt<LanguageRepository>()));
+    getIt.registerFactory(() => RuleCubit(repository: getIt<LanguageRepository>()));
     runApp(const LanguageApp());
   } catch (e) {
     // Log the error or handle it (e.g., show a "Database Offline" screen later)

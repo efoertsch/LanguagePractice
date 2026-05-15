@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:language_practice/language_entry/language_entry.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_cubit.dart';
+import 'package:language_practice/rule/rule_bloc/rule_cubit.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 
 // ─── App Entry ───────────────────────────────────────────────────────────────
@@ -20,6 +21,7 @@ class LanguageApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (_) => getIt<WordCubit>()),
           BlocProvider(create: (_) => getIt<PhraseCubit>()),
+          BlocProvider(create: (_) => getIt<RuleCubit>()),
         ],
         child: LangaugeEntry(),
       ),
