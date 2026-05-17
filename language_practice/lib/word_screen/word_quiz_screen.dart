@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:language_practice/repository/language_classes/word_info.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 import 'package:language_practice/word_screen/word_bloc/word_state.dart';
-import 'package:language_practice/word_screen/word_widgets/verb_tenses_widget.dart' show WordTensesWidget;
-import 'package:language_practice/word_screen/word_widgets/word_rules.dart' show WordRulesSection;
-import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart' show WordTypeMixin;
+import 'package:language_practice/word_screen/word_widgets/verb_tenses_widget.dart'
+    show WordTensesWidget;
+import 'package:language_practice/word_screen/word_widgets/word_rules.dart'
+    show WordRulesSection;
+import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart'
+    show WordTypeMixin;
 
 import '../app/dialog_widgets.dart';
-
 
 class WordQuiz extends StatefulWidget {
   final String quizLanguage;
@@ -20,6 +22,8 @@ class WordQuiz extends StatefulWidget {
 }
 
 class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
+  final TextEditingController _quizAnswerController = TextEditingController();
+  final TextEditingController _quizWordController = TextEditingController();
   List<String> _selectedTypes = [];
   List<WordInfo> _wordList = [];
   int _currentIndex = 0;
@@ -30,6 +34,14 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    // 3. Dispose the controller when finished
+    _quizAnswerController.dispose();
+    _quizWordController.dispose();
+    super.dispose();
+  }
+
   void _handleTypesChanged(List<String> newTypes) {
     setState(() {
       _selectedTypes = newTypes;
@@ -38,7 +50,7 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
 
   Future<void> _startQuiz() async {
     if (_selectedTypes.isNotEmpty) {
-      context.read<WordCubit>().getListOfWordsFromType(_selectedTypes);
+      context.read<WordCubit>().getQuizWordsForTypes(_selectedTypes);
     }
   }
 
@@ -49,10 +61,10 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
-          children: [ // Removed mainAxisSize: min to allow Spacer to work
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
             _getWordListListener(),
-
-            // Grouping Prompt and Chips close together
             if (_wordList.isEmpty) _getQuizPrompt(),
             Row(
               children: [
@@ -63,17 +75,13 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
             ),
             const SizedBox(height: 16),
             if (_wordList.isNotEmpty) ...[
-              _getWordDisplay(),
+              _getQuizWordWidget(),
               const SizedBox(height: 10),
-              // If Check is pressed, show the details scroll area
               if (_showDetails)
-                Expanded(
-                  child: _displayWord(_wordList[_currentIndex]),
-                )
+                _getAnswerWordWidget(_wordList[_currentIndex])
               else
                 const Spacer(),
-              // Pushes buttons to bottom when details are hidden
-              _getBottomButtons(),
+              _getBottomControls(),
             ],
           ],
         ),
@@ -105,135 +113,123 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
   }
 
   Widget _getQuizPrompt() {
-    return
-      Text(
-        "Select types and press Start",
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-      );
-  }
-
-  Widget _getWordDisplay() {
-    return SingleChildScrollView(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              child: Text(
-                _wordList.isNotEmpty
-                    ? _getQuizWord(wordInfo: _wordList[_currentIndex],
-                    quizLanguage: widget.quizLanguage) // Show English
-                    : "Select types and press Start",
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          // CHECK BUTTON
-          OutlinedButton.icon(
-            onPressed: () => setState(() => _showDetails = !_showDetails),
-            icon: Icon(_showDetails ? Icons.visibility_off : Icons.visibility),
-            label: Text(_showDetails ? "Hide Details" : "Check"),
-          ),
-        ],
-      ),
+    return Text(
+      "Select types and press Start",
+      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
     );
   }
 
-  String _getQuizWord(
-      {required WordInfo wordInfo, required String quizLanguage}) {
-    return (quizLanguage == 'german' ? _getGermanWord(wordInfo)
-        : wordInfo.english?.join(", ") ??
-        "");
-  }
-
-  String _getAnswerWord(
-      {required WordInfo wordInfo, required String quizLanguage}) {
-    return (quizLanguage == 'german' ? (wordInfo.english?.join(", ") ??
-        "") : _getGermanWord(wordInfo));
-        }
-
-
-  Expanded _getQuizWordRow() {
-    // Determine what to show as the "Answer" based on the quiz mode
-    String displayText = "Answer";
-
-    if (_wordList.isNotEmpty) {
-      final currentWord = _wordList[_currentIndex];
-      // If quizLanguage is german, we are guessing English (translation)
-      // If quizLanguage is english, we are guessing German (word)
-      displayText = (widget.quizLanguage == 'german')
-          ? (currentWord.english?.join(", ") ?? "")
-          : (currentWord.word ?? "");
-    }
-
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey.shade300),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Text(
-          displayText,
-          style: TextStyle(
-            fontSize: 18,
-            color: _wordList.isNotEmpty ? Colors.black : Colors.grey,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _displayWord(WordInfo wordInfo) {
-    return ListView(
+  Widget _getQuizWordWidget() {
+    _quizWordController.text = _wordList.isNotEmpty
+        ? _getQuizWord(
+            wordInfo: _wordList[_currentIndex],
+            quizLanguage: widget.quizLanguage,
+          )
+        : "Select types and press Start";
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-             Row(
-               children: [
-                 Text("Answer :",
-                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-                 SizedBox(width: 8,),
-                 Text( _getAnswerWord(wordInfo: _wordList[_currentIndex],
-                      quizLanguage: widget.quizLanguage ),
-                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                 ),
-               ],
-             ),
-              const SizedBox(height: 8),
-              buildTypeChips(
-                  context: context,
-                  types: wordInfo.type
-              ),
-              const SizedBox(height: 8),
-              if ( wordInfo.type != null &&
-                  wordInfo.type!.contains("noun"))
-              // Update this section in your _displayWord method:
-                if (wordInfo.type != null && wordInfo.type!.contains("noun"))
-                  _getPluralWidget(wordInfo.plural),
-
-              if ( wordInfo.type != null &&
-                  wordInfo.type!.contains("verb"))
-                _getWordTensesSection(wordInfo.tenses ?? []),
-              const SizedBox(height: 8),
-              _getRulesWidget(wordInfo.rules ?? []),
-              const SizedBox(height: 100),
-            ],
+        Flexible(
+          child: Text(
+            "Word:  ",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+        ),
+        SizedBox(width: 8),
+        Flexible(
+          child: TextField(
+            controller: _quizWordController,
+            style: const TextStyle(
+              fontSize: 22, // Increased size for better visibility
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.left,
+            minLines: 1,
+            maxLines: 3,
           ),
         ),
       ],
+    );
+  }
+
+  String _getQuizWord({
+    required WordInfo wordInfo,
+    required String quizLanguage,
+  }) {
+    return (quizLanguage == 'german'
+        ? _getGermanWord(wordInfo)
+        : wordInfo.english?.join(", ") ?? "");
+  }
+
+  String _getAnswerWord({
+    required WordInfo wordInfo,
+    required String quizLanguage,
+  }) {
+    return (quizLanguage == 'german'
+        ? (wordInfo.english?.join(", ") ?? "")
+        : _getGermanWord(wordInfo));
+  }
+
+  Widget _getAnswerWordWidget(WordInfo wordInfo) {
+    _quizAnswerController.text = _getAnswerWord(
+      wordInfo: _wordList[_currentIndex],
+      quizLanguage: widget.quizLanguage,
+    );
+    return Expanded(
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        "Answer :",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Flexible(
+                      child: TextField(
+                        controller: _quizAnswerController,
+                        readOnly: true,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                        decoration: InputDecoration(border: OutlineInputBorder()),
+                        minLines: 1,
+                        maxLines: 4,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                buildTypeChips(context: context, types: wordInfo.type),
+                const SizedBox(height: 8),
+                if (wordInfo.type != null && wordInfo.type!.contains("noun"))
+                  // Update this section in your _displayWord method:
+                  if (wordInfo.type != null && wordInfo.type!.contains("noun"))
+                    _getPluralWidget(wordInfo.plural),
+
+                if (wordInfo.type != null && wordInfo.type!.contains("verb"))
+                  _getWordTensesSection(wordInfo.tenses ?? []),
+                const SizedBox(height: 8),
+                _getRulesWidget(wordInfo.rules ?? []),
+                const SizedBox(height: 100),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -247,10 +243,7 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
             "Plural: ",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(
-            plural ?? "N/A",
-            style: const TextStyle(fontSize: 16),
-          ),
+          Text(plural ?? "N/A", style: const TextStyle(fontSize: 16)),
         ],
       ),
     );
@@ -277,14 +270,38 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
           CommonWidgets.showInfoDialog(
             context: context,
             title: 'Oops',
-            msg:
-            "An error occurred: ${state.message}",
+            msg: "An error occurred: ${state.message}",
             button1Text: 'OK',
             button1Function: (() => Navigator.pop(context)),
           );
         }
       },
       child: SizedBox.shrink(),
+    );
+  }
+
+  Widget _getBottomControls() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: _showDetails
+          ? _getBottomButtons() // Returns the Yes/No Row
+          : _getCheckButton(), // Returns the single Check button
+    );
+  }
+
+  Widget _getCheckButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: ElevatedButton.icon(
+        onPressed: () => setState(() => _showDetails = true),
+        icon: const Icon(Icons.visibility),
+        label: const Text("Check"),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue.shade100,
+          foregroundColor: Colors.blue.shade900,
+        ),
+      ),
     );
   }
 
@@ -298,7 +315,7 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
           ElevatedButton.icon(
             onPressed: () => _handleAnswer(false),
             icon: const Icon(Icons.close),
-            label: const Text("No"),
+            label: const Text("Incorrect"),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(120, 45),
               backgroundColor: Colors.red.shade100,
@@ -309,7 +326,7 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
           ElevatedButton.icon(
             onPressed: () => _handleAnswer(true),
             icon: const Icon(Icons.check),
-            label: const Text("Yes"),
+            label: const Text("Correct"),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(120, 45),
               backgroundColor: Colors.green.shade100,
@@ -322,6 +339,15 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
   }
 
   void _handleAnswer(bool isCorrect) {
+    final currentWord = _wordList[_currentIndex];
+    // Update the score in the database
+    if (currentWord.id != null) {
+      context.read<WordCubit>().updateWordScore(
+        currentWord.id!,
+        isCorrect ? 1 : -1,
+      );
+    }
+
     setState(() {
       _showDetails = false;
       if (_currentIndex < _wordList.length - 1) {
@@ -349,6 +375,4 @@ class _WordQuizState extends State<WordQuiz> with WordTypeMixin {
     }
     return wordInfo.word ?? "";
   }
-
-
 }

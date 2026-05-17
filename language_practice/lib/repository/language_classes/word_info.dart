@@ -4,7 +4,7 @@ class WordInfo {
   ObjectId? _id;
   String? _word;
   List<String>? _english;
-  int? _quizErrors;
+  int? _quizScore;
 
   String? _plural;
   String? _gender;
@@ -19,7 +19,7 @@ class WordInfo {
     ObjectId? id,
     String? word,
     List<String>? english,
-    int? quizErrors,
+    int? quizScore,
     String? plural,
     String? gender,
     List<String>? type,
@@ -37,10 +37,10 @@ class WordInfo {
     if (english != null) {
       _english = english;
     }
-    if (quizErrors != null) {
-      _quizErrors = quizErrors;
+    if (quizScore != null) {
+      _quizScore = quizScore;
     } else {
-      _quizErrors = 0;
+      _quizScore = 0;
     }
     if (plural != null) {
       _plural = plural;
@@ -77,7 +77,7 @@ class WordInfo {
 
   set english(List<String>? english) => _english = english;
 
-  set quizErrors(int? quizerrors) => _quizErrors = quizerrors;
+  set quizScore(int? quizScore) => _quizScore = quizScore;
 
   String? get plural => _plural;
 
@@ -123,7 +123,7 @@ class WordInfo {
         _english!.add(v);
       });
     }
-    _quizErrors=json['quiz_errors'];
+    _quizScore=json['quiz_score'];
     _plural = json['plural'];
     _gender = json['gender'];
 
@@ -153,7 +153,7 @@ class WordInfo {
     data['_id'] = _id;
     data['word'] = _word;
     data['english'] = _english;
-    data['quizErrors'] = _quizErrors;
+    data['quiz_score'] = _quizScore;
     data['plural'] = _plural;
     data['gender'] = _gender;
     data['type'] = _type;

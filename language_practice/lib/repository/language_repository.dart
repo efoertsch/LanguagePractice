@@ -123,15 +123,23 @@ class LanguageRepository {
     }
   }
 
-  Future<List<WordInfo>> getListOfWordsFromType(String type) async {
+  Future<List<WordInfo>> getQuizWordsForTypes(String type) async {
     // 1. Query the collection.
-    // In mongo_dart, if 'type' is a list in the DB, where.eq will find items containing the value.
+    // In mongo_dart, if 'type' is a list in the DB,
+    // where.eq will find items containing the value.
     final List<Map<String, dynamic>> jsonList = await wordCollection!
-        .find(where.eq('type', type))
+        .find(where.eq('type', type).and( where.lte('quiz_score',0)))
         .toList();
 
     // 2. Map the list of JSON maps to a list of WordInfo objects
     return jsonList.map((json) => WordInfo.fromJson(json)).toList();
+  }
+
+  Future<WriteResult> updateQuizScore(ObjectId id, int increment) async {
+    return await wordCollection!.updateOne(
+      where.id(id),
+      modify.inc('quiz_score', increment), // This adds the integer (e.g., -1 or 1) to the current 'score' field
+    );
   }
 
   Future<Phrase?> getPhrase(String spelledPhrase) async {
