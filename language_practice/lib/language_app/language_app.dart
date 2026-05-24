@@ -6,6 +6,8 @@ import 'package:language_practice/phrase/phrase_bloc/phrase_cubit.dart';
 import 'package:language_practice/rule/rule_bloc/rule_cubit.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 
+import '../quiz_widgets/quiz_bloc/quiz_cubit.dart';
+
 // ─── App Entry ───────────────────────────────────────────────────────────────
 class LanguageApp extends StatelessWidget {
   const LanguageApp({super.key});
@@ -22,8 +24,9 @@ class LanguageApp extends StatelessWidget {
           BlocProvider(create: (_) => getIt<WordCubit>()),
           BlocProvider(create: (_) => getIt<PhraseCubit>()),
           BlocProvider(create: (_) => getIt<RuleCubit>()),
+          BlocProvider(create: (_) => getIt<QuizCubit>()),
         ],
-        child: LangaugeEntry(),
+        child: LanguageEntry(),
       ),
     );
   }

@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider;
+import 'package:flutter_bloc/flutter_bloc.dart'
+    show BlocProvider, MultiBlocProvider;
+import 'package:get_it/get_it.dart';
 import 'package:language_practice/enums/word_enums.dart' show WordType;
+import 'package:language_practice/phrase/phrase_bloc/phrase_cubit.dart';
 import 'package:language_practice/phrase/phrase_widgets/type_phrase_widget.dart';
+import 'package:language_practice/quiz_widgets/master_quiz.dart';
+import 'package:language_practice/rule/rule_bloc/rule_cubit.dart';
 import 'package:language_practice/rule/rule_widgets/type_rule_widget.dart';
 import 'package:language_practice/word_screen/type_word_widget.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 import 'package:language_practice/word_screen/word_quiz_screen.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
 
-class LangaugeEntry extends StatefulWidget {
-  const LangaugeEntry({super.key});
+import '../quiz_widgets/quiz_bloc/quiz_cubit.dart';
+
+class LanguageEntry extends StatefulWidget {
+  const LanguageEntry({super.key});
 
   @override
-  State<LangaugeEntry> createState() => _LangaugeEntryState();
+  State<LanguageEntry> createState() => _LanguageEntryState();
 }
 
-class _LangaugeEntryState extends State<LangaugeEntry> with WordTypeMixin {
+class _LanguageEntryState extends State<LanguageEntry> with WordTypeMixin {
   String? _defaultWordType = null;
+  final getIt = GetIt.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +48,11 @@ class _LangaugeEntryState extends State<LangaugeEntry> with WordTypeMixin {
             _buildSectionHeader(context, "Phrase", Colors.green),
             const TypePhraseWidget(),
 
-            const Divider(height:20, thickness: 2),
+            const Divider(height: 20, thickness: 2),
             _buildSectionHeader(context, "Grammar Rules", Colors.deepPurple),
             const TypeRuleWidget(),
 
             const SizedBox(height: 20),
-
           ],
         ),
       ),
@@ -75,6 +82,8 @@ class _LangaugeEntryState extends State<LangaugeEntry> with WordTypeMixin {
       onSelected: (value) {
         if (value == "set_word_type") {
           _getWordTypesDisplay();
+        } else if (value == "quiz_all") {
+          _navigateToMasterQuiz(context);
         } else {
           // Pass the value (either 'german' or 'english') to the navigation method
           _navigateToQuiz(context, value);
@@ -105,6 +114,16 @@ class _LangaugeEntryState extends State<LangaugeEntry> with WordTypeMixin {
           value: 'set_word_type',
           child: Text('Set default WordType'),
         ),
+        const PopupMenuItem<String>(
+          value: 'quiz_all',
+          child: Row(
+            children: [
+              Icon(Icons.quiz, color: Colors.black54),
+              SizedBox(width: 8),
+              Text("Quiz Words,Phrases, Rules"),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -118,7 +137,6 @@ class _LangaugeEntryState extends State<LangaugeEntry> with WordTypeMixin {
         setState(() {
           _defaultWordType = newTypes[0];
         });
-
       },
     );
   }
@@ -135,4 +153,17 @@ class _LangaugeEntryState extends State<LangaugeEntry> with WordTypeMixin {
       ),
     );
   }
+
+  void _navigateToMasterQuiz(BuildContext context) {
+    Navigator.of(context).push(
+        MaterialPageRoute(
+            builder: (context) => MultiBlocProvider(
+        providers: [
+        BlocProvider(create: (_) => getIt<WordCubit>()),
+    BlocProvider(create: (_) => getIt<PhraseCubit>()),
+    BlocProvider(create: (_) => getIt<RuleCubit>()),
+    BlocProvider(create: (_) => getIt<QuizCubit>())],
+    child: const MasterQuizViewer())));
+  }
+
 }

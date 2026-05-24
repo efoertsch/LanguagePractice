@@ -5,16 +5,7 @@ import 'package:language_practice/app/dialog_widgets.dart';
 import 'package:language_practice/repository/language_classes/word_info.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 import 'package:language_practice/word_screen/word_bloc/word_state.dart';
-import 'package:language_practice/word_screen/word_widgets/plural_widget.dart'
-    show PluralWidget;
-import 'package:language_practice/word_screen/word_widgets/translated_word_widget.dart'
-    show TranslatedWordWidget;
-import 'package:language_practice/word_screen/word_widgets/verb_tenses_widget.dart'
-    show WordTensesWidget;
-import 'package:language_practice/word_screen/word_widgets/word_rules.dart'
-    show WordRulesSection;
-import 'package:language_practice/word_screen/word_widgets/word_section.dart'
-    show WordSection;
+import 'package:language_practice/word_screen/word_widgets/word_info_layout_widget.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart'
     show WordTypeMixin;
 
@@ -32,7 +23,6 @@ class WordInfoWidget extends StatefulWidget {
 
 class _WordInfoWidgetState extends State<WordInfoWidget>
     with TickerProviderStateMixin, WordTypeMixin {
-  // Controllers to handle text input
   List<String> _genders = [];
   late final ValueNotifier<String> presentTenseEnglish;
 
@@ -83,32 +73,9 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 8),
-                  _getWordWidget(widget.wordInfo),
-                  const SizedBox(height: 8),
-                  buildTypeChips(
-                    context: context,
-                    types: widget.wordInfo.type,
-                    multipleSelectionAllowed: true,
-                    onTypesChanged: onTypesChanged,
-                  ),
-                  const SizedBox(height: 8),
-                  _getTranslatedLanguageWidget(englishValueNotifier: presentTenseEnglish),
-                  const SizedBox(height: 8),
-                  if (widget.wordInfo.type != null &&
-                      widget.wordInfo.type!.contains("noun"))
-                    ..._getPluralWidget(widget.wordInfo),
-                  if (widget.wordInfo.type != null &&
-                      widget.wordInfo.type!.contains("verb"))
-                    _getWordTensesSection(widget.wordInfo),
-                  const SizedBox(height: 8),
-                  _getRulesWidget(),
-                  const SizedBox(height: 100),
-                ],
+              child: WordInfoWidgetLayout(
+                wordInfo: widget.wordInfo,
+                genders: _genders
               ),
             ),
           ],
@@ -147,151 +114,6 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
           icon: const Icon(Icons.save),
         ),
       ],
-    );
-  }
-
-  void _checkWord(WordInfo? wordInfo) {
-    final parts = wordInfo?.word?.trim().split(' ') ?? [];
-    if (parts.length >= 2 && wordInfo?.gender == null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        CommonWidgets.showInfoDialog(
-          context: context,
-          title: 'Word Entry',
-          msg:
-              "Multiple words entered but no gender determined. The word will be used as is",
-          button1Text: 'OK',
-          button1Function: (() => Navigator.of(context).pop()),
-        );
-      });
-    }
-  }
-
-  void onTypesChanged(List<String> types) {
-    if (mounted) {
-      setState(() {
-        widget.wordInfo.type = types;
-        if (types.isNotEmpty &&
-            types.contains(WordType.noun.displayName) &&
-            widget.wordInfo.gender == null) {
-          widget.wordInfo.gender = _genders.first;
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: Colors.green,
-              content: Text(
-                "Default gender of ${widget.wordInfo.gender} assigned. Change as needed",
-              ),
-            ),
-          );
-        } else if (types.isNotEmpty &&
-            !types.contains(WordType.noun.displayName)) {
-          widget.wordInfo.gender = null;
-        }
-      });
-    }
-  }
-
-  Widget _getWordWidget(WordInfo? wordInfo) {
-    String displayWord = wordInfo?.word ?? "";
-    bool isNoun = wordInfo?.type?.contains("noun") == true;
-
-    _checkWord(wordInfo);
-    return WordSection(
-      word: displayWord,
-      onWordChanged: (newValue) {
-        setState(() {
-          wordInfo?.word = newValue;
-        });
-      },
-      onWordFocusLost: () {
-        if (wordInfo!.type!.contains("noun")) {
-          if( widget.wordInfo.gender == null) {
-          CommonWidgets.showErrorDialog(
-            context,
-            "Gender Missing",
-            "Please add the noun gender to the word. The gender for a noun must be one of the following: "
-                "${_genders.map((gender) => gender).join(', ')}",
-          );
-        } else if (!_genders.contains(wordInfo.gender)) {
-          CommonWidgets.showErrorDialog(
-            context,
-            "Gender Error",
-            " The gender for a noun must be one of the following: "
-                "${_genders..map((gender) => gender).join(', ')}",
-          );
-        }
-      }},
-      selectedGender: (isNoun ? (wordInfo?.gender ?? _genders.first) : null),
-      genders: (isNoun ? _genders.map((gender) => gender).toList() : null),
-      onGenderChanged: (isNoun
-          ? (newValue) {
-              setState(() {
-                wordInfo?.gender = newValue;
-              });
-            }
-          : null),
-    );
-  }
-
-  Widget _getTranslatedLanguageWidget({ValueNotifier<String>? englishValueNotifier}) {
-    return TranslatedWordWidget(
-      translatedLanguage: widget.wordInfo.english ?? <String>[],
-      onChange: (newList) {
-          widget.wordInfo.english = newList;
-      },
-      englishValueNotifier: englishValueNotifier,
-    );
-  }
-
-  Widget _getWordTensesSection(WordInfo wordInfo) {
-    if (wordInfo.tenses == null || wordInfo.tenses!.isEmpty) {
-      wordInfo.tenses = [
-        _createPresentTense(wordInfo.english?.join(", ") ?? ""),
-      ];
-    }
-    return WordTensesWidget(
-      tenses: wordInfo.tenses ?? <Tense>[],
-      onTenseChanged: (index, updatedTense) {
-          wordInfo.tenses![index] = updatedTense;
-      },
-    );
-  }
-
-  Tense _createPresentTense(String english) {
-    return (Tense(tense: VerbTense.present.germanTense, english: english));
-  }
-
-  List<Widget> _getPluralWidget(WordInfo word) {
-    List<Widget> widgets = [];
-    widgets.add(const SizedBox(height: 8));
-    widgets.add(
-      PluralWidget(
-        pluralNoun: word.plural ?? "",
-        onPluralChanged: (newValue) {
-          word.plural = newValue;
-        },
-        onFocusLost: () {
-          if (word.plural == null || word.plural!.isEmpty) {
-            CommonWidgets.showErrorDialog(
-              context,
-              "Missing plural form",
-              "Please enter a plural form for ${word.plural}",
-            );
-          }
-        },
-      ),
-    );
-    return widgets;
-  }
-
-  Widget _getRulesWidget() {
-    return WordRulesSection(
-      rules: widget.wordInfo.rules ?? [],
-      defaultWordType: widget.wordInfo.type?.first ?? "",
-      onRulesChanged: (newList) {
-        setState(() {
-          widget.wordInfo.rules = newList;
-        });
-      },
     );
   }
 

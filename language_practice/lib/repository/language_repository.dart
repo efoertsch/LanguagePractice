@@ -1,4 +1,3 @@
-
 import 'package:language_practice/repository/language_classes/phrase.dart';
 import 'package:language_practice/repository/language_classes/rule.dart';
 import 'package:language_practice/repository/language_classes/word_info.dart';
@@ -62,10 +61,9 @@ class LanguageRepository {
   }
 
   Future<WriteResult> updateWord(WordInfo word) async {
-    Map<String, dynamic> jsonMap = word.toJson();
     WriteResult writeResult = await wordCollection!.replaceOne(
-      where.eq('word', word.word),
-      jsonMap,
+      where.id(word.id!),
+      word.toJson(),
     );
     return writeResult;
   }
@@ -123,13 +121,28 @@ class LanguageRepository {
     }
   }
 
-  Future<List<WordInfo>> getQuizWordsForTypes(String type) async {
-    // 1. Query the collection.
-    // In mongo_dart, if 'type' is a list in the DB,
-    // where.eq will find items containing the value.
+  Future<List<WordInfo>> getQuizWordsForTypes({
+    required String type,
+    int score = 0,
+    int limit = 10,
+  }) async {
+    // 1. Initialize empty selector
+    SelectorBuilder query = where;
+    SelectorBuilder typeQuery = where;
+    query.lte('quiz_score', score);
+    if (type.isNotEmpty) {
+      typeQuery = where.eq('type', type);
+      query.and(typeQuery);
+    }
+    ;
+
     final List<Map<String, dynamic>> jsonList = await wordCollection!
-        .find(where.eq('type', type).and( where.lte('quiz_score',0)))
+        .find(query.limit(limit))
         .toList();
+
+    // final List<Map<String, dynamic>> jsonList = await wordCollection!
+    //     .find(where.eq('type', type).and( where.lte('quiz_score',0)))
+    //     .toList();
 
     // 2. Map the list of JSON maps to a list of WordInfo objects
     return jsonList.map((json) => WordInfo.fromJson(json)).toList();
@@ -138,7 +151,10 @@ class LanguageRepository {
   Future<WriteResult> updateQuizScore(ObjectId id, int increment) async {
     return await wordCollection!.updateOne(
       where.id(id),
-      modify.inc('quiz_score', increment), // This adds the integer (e.g., -1 or 1) to the current 'score' field
+      modify.inc(
+        'quiz_score',
+        increment,
+      ), // This adds the integer (e.g., -1 or 1) to the current 'score' field
     );
   }
 
@@ -152,7 +168,6 @@ class LanguageRepository {
     return Phrase.fromJson(jsonMap);
   }
 
-
   Future<WriteResult> savePhrase(Phrase phrase) async {
     Map<String, dynamic> jsonMap = phrase.toJson();
     WriteResult writeResult = await phraseCollection!.insertOne(jsonMap);
@@ -160,10 +175,9 @@ class LanguageRepository {
   }
 
   Future<WriteResult> updatePhrase(Phrase phrase) async {
-    Map<String, dynamic> jsonMap = phrase.toJson();
     WriteResult writeResult = await phraseCollection!.replaceOne(
-      where.eq('phrase', phrase.phrase),
-      jsonMap,
+      where.id(phrase.id!),
+      phrase.toJson(),
     );
     return writeResult;
   }
@@ -192,10 +206,9 @@ class LanguageRepository {
   }
 
   Future<WriteResult> updateRule(Rule rule) async {
-    Map<String, dynamic> jsonMap = rule.toJson();
     WriteResult writeResult = await ruleCollection!.replaceOne(
-      where.eq('rule', rule.rule),
-      jsonMap,
+      where.id(rule.id!),
+      rule.toJson(),
     );
     return writeResult;
   }
@@ -206,7 +219,4 @@ class LanguageRepository {
     );
     return writeResult;
   }
-
-
 }
-

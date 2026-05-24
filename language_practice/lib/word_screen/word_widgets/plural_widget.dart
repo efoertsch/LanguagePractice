@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class PluralWidget extends StatefulWidget {
   final String pluralNoun;
-  final Function(String) onPluralChanged;
-  final Function() onFocusLost;
+  final Function(String)? onPluralChanged;
+  final Function()? onFocusLost;
 
   const PluralWidget({
     super.key,
@@ -28,7 +28,7 @@ class _PluralWidgetState extends State<PluralWidget> {
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
         // Logic for when focus is LOST
-        widget.onFocusLost();
+        widget.onFocusLost?.call();
       }
     });
   }
@@ -55,6 +55,7 @@ class _PluralWidgetState extends State<PluralWidget> {
           // Input portion
           Flexible(
             child: TextField(
+              readOnly:  widget.onPluralChanged == null,
               controller: _pluralController,
               onChanged: widget.onPluralChanged,
               decoration: const InputDecoration(

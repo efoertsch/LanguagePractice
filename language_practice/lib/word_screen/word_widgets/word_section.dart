@@ -4,8 +4,8 @@ import 'gender_selector.dart';
 
 class WordSection extends StatefulWidget {
   final String word;
-  final Function(String) onWordChanged;
-  final Function() onWordFocusLost;
+  final Function(String)? onWordChanged;
+  final Function()? onWordFocusLost;
   final String? selectedGender;
   final List<String>? genders;
   final Function(String)? onGenderChanged;
@@ -36,7 +36,7 @@ class _WordSectionState extends State<WordSection>
     _wordFocusNode = FocusNode();
     _wordFocusNode.addListener(() {
       if (!_wordFocusNode.hasFocus) {
-        widget.onWordFocusLost();
+        widget.onWordFocusLost?.call();
       }
     });
   }
@@ -62,14 +62,15 @@ class _WordSectionState extends State<WordSection>
               child: GenderSelector(
                 selectedGender: widget.selectedGender,
                 genders: widget.genders!,
-                onGenderChanged: widget.onGenderChanged!,
+                onGenderChanged: widget.onGenderChanged,
               ),
             ),
             const SizedBox(width: 10),
           ],
           Expanded(
             flex: 9,
-            child: TextField(
+            child: TextFormField(
+              readOnly: widget.onWordChanged == null,
               focusNode: _wordFocusNode,
               controller: _wordController,
               onChanged: widget.onWordChanged,

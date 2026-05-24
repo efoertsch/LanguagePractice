@@ -58,86 +58,105 @@ class _RuleWidgetState extends State<RuleWidget>
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        appBar: AppBar(
-          title: Text(_rule.id != null ? "Edit Rule" : "New Rule"),
-          backgroundColor: Colors.deepPurple, // Differentiated color for rules
-          centerTitle: true,
-          actions: [
-            if (_rule.id != null)
-              IconButton(onPressed: _onDelete, icon: const Icon(Icons.delete)),
-            IconButton(onPressed: _onSave, icon: const Icon(Icons.save)),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(_rule.id != null ? "Edit Rule" : "New Rule"),
+        backgroundColor: Colors.deepPurple, // Differentiated color for rules
+        centerTitle: true,
+        actions: [
+          if (_rule.id != null)
+            IconButton(onPressed: _onDelete, icon: const Icon(Icons.delete)),
+          IconButton(onPressed: _onSave, icon: const Icon(Icons.save)),
+        ],
+      ),
+      //floatingActionButton: _getFloatingActionButtonRow(context),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      body: BlocListener<RuleCubit, RuleState>(
+        listener: (context, state) {
+          if (state is RuleSavedState || state is RuleDeletedState) {
+            String message = state is RuleSavedState ? "Saved" : "Deleted";
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: state is RuleSavedState
+                    ? Colors.green
+                    : Colors.redAccent,
+                content: Text("${widget.rule.rule} $message."),
+              ),
+            );
+            Navigator.of(context).pop(); // return to prior screen
+          }
+          if (state is ErrorRuleState) {
+            CommonWidgets.showErrorDialog(context, "Error", state.message);
+          }
+        },
+        child: CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildListDelegate([
+                SingleChildScrollView(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      buildHorizontalRow(
+                        label: "Rule Name:",
+                        child: TextField(
+                          controller: _ruleController,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: "e.g., Passive Voice",
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      buildTypeChips(
+                        context: context,
+                        types: widget.rule.type,
+                        multipleSelectionAllowed: true,
+                        onTypesChanged: onTypesChanged,
+                      ),
+                      const SizedBox(height: 16),
+                      buildHorizontalRow(
+                        label: "Explanation:",
+                        child: TextField(
+                          controller: _explanationController,
+                          maxLines: 5,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: "Explain the grammar rule here...",
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      buildHorizontalRow(
+                        label: "Example:",
+                        child: TextField(
+                          controller: _exampleController,
+                          minLines: 1,
+                          maxLines: 20,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: "Provide a usage example",
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
+                ),
+              ]),
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false, // Essential for positioning at the bottom
+              child: Column(
+                children: [
+                  Spacer(), // Pushes the following widget to the bottom
+                  _getFloatingActionButtonRow(context),
+                  const SizedBox(height: 8),
+                ],
+              ),
+            ),
           ],
-        ),
-        floatingActionButton: _getFloatingActionButtonRow(context),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        body: BlocListener<RuleCubit, RuleState>(
-          listener: (context, state) {
-            if (state is RuleSavedState || state is RuleDeletedState) {
-              String message = state is RuleSavedState ? "Saved" : "Deleted";
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: state is RuleSavedState
-                      ? Colors.green
-                      : Colors.redAccent,
-                  content: Text("${widget.rule.rule} $message."),
-                ),
-              );
-              Navigator.of(context).pop(); // return to prior screen
-            }
-            if (state is ErrorRuleState) {
-              CommonWidgets.showErrorDialog(context, "Error", state.message);
-            }
-
-          },
-          child:SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              buildHorizontalRow(
-                label: "Rule Name:",
-                child: TextField(
-                  controller: _ruleController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "e.g., Passive Voice",
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              buildTypeChips(
-                context: context,
-                types: widget.rule.type,
-                multipleSelectionAllowed: false,
-                onTypesChanged: onTypesChanged,
-              ),
-              const SizedBox(height: 16),
-              buildHorizontalRow(
-                label: "Explanation:",
-                child: TextField(
-                  controller: _explanationController,
-                  maxLines: 5,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Explain the grammar rule here...",
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              buildHorizontalRow(
-                label: "Example:",
-                child: TextField(
-                  controller: _exampleController,
-                  maxLines: 3,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Provide a usage example",
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );
@@ -171,7 +190,7 @@ class _RuleWidgetState extends State<RuleWidget>
           onPressed: () async {
             _onSave();
           },
-          label: Text(widget.rule.id !=null ? "Update" : "Save"),
+          label: Text(widget.rule.id != null ? "Update" : "Save"),
           icon: const Icon(Icons.save),
           backgroundColor: Colors.deepPurpleAccent,
         ),
@@ -185,9 +204,9 @@ class _RuleWidgetState extends State<RuleWidget>
       context: context,
       barrierDismissible: false,
       builder: (dialogContext) => AlertDialog(
-        title: Text(widget.rule.id !=null ? "Delete Rule?" : "Cancel"),
+        title: Text(widget.rule.id != null ? "Delete Rule?" : "Cancel"),
         content: Text(
-          "Are you sure you want to ${widget.rule.id !=null ? ("delete '${widget.rule.rule}' permanently?") : "not add the rule?"}",
+          "Are you sure you want to ${widget.rule.id != null ? ("delete '${widget.rule.rule}' permanently?") : "not add the rule?"}",
         ),
         actions: [
           TextButton(
@@ -197,14 +216,14 @@ class _RuleWidgetState extends State<RuleWidget>
           TextButton(
             onPressed: () async {
               Navigator.pop(dialogContext);
-              if (widget.rule.id !=null) {
+              if (widget.rule.id != null) {
                 cubit.deleteRule(widget.rule);
               } else {
                 Navigator.pop(context);
               }
             },
             child: Text(
-              widget.rule.id !=null ? "Delete" : "Don't Save",
+              widget.rule.id != null ? "Delete" : "Don't Save",
               style: const TextStyle(color: Colors.red),
             ),
           ),

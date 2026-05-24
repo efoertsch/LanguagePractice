@@ -3,14 +3,14 @@ import 'package:language_practice/utility_widgets/row_with_label_and_child.dart'
 
 class TranslatedWordWidget extends StatefulWidget {
   final List<String> translatedLanguage;
-  final Function(List<String>) onChange;
+  final Function(List<String>)? onChange;
   final ValueNotifier<String>? englishValueNotifier;
 
 
   const TranslatedWordWidget({
     super.key,
     required this.translatedLanguage,
-    required this.onChange,
+     this.onChange,
     this.englishValueNotifier,
   });
 
@@ -64,20 +64,9 @@ class _TranslatedWordWidgetState extends State<TranslatedWordWidget> with RowWit
       if (_controller.text != newValue) {
         _controller.text = newValue;
         // Ensure the parent's data model is updated as well
-        widget.onChange.call(newValue.split(','));
+        widget.onChange?.call(newValue.split(','));
       }
     }
-  }
-
-
-  List<String> _handleEnglishChange(String value) {
-    // Split by comma, trim whitespace, and filter out empty entries
-    List<String> newList = value
-        .split(',')
-        .map((s) => s.trim())
-        .where((s) => s.isNotEmpty)
-        .toList();
-    return newList;
   }
 
 
@@ -89,7 +78,7 @@ class _TranslatedWordWidgetState extends State<TranslatedWordWidget> with RowWit
         children: [
           _getLabel(),
           const SizedBox(width: 12),
-          _getTextField(),
+          _getTranslatedTextField(),
         ],
       ),
     );
@@ -105,9 +94,10 @@ class _TranslatedWordWidgetState extends State<TranslatedWordWidget> with RowWit
     );
   }
 
-  Widget _getTextField() {
+  Widget _getTranslatedTextField() {
     return Flexible(
       child: TextFormField(
+        readOnly: widget.onChange == null,
         // Stable key (no $value) preserves focus during rebuilds
         key: Key("trans_english}"),
         controller: _controller,
@@ -116,7 +106,7 @@ class _TranslatedWordWidgetState extends State<TranslatedWordWidget> with RowWit
           // Update the notifier so other linked fields see the change
           widget.englishValueNotifier?.value = val.trim();
           // Notify the parent callback
-          widget.onChange(widget.englishValueNotifier!.value.trim().split(','));
+          widget.onChange?.call(widget.englishValueNotifier!.value.trim().split(','));
         },
         decoration: const InputDecoration(
           border: OutlineInputBorder(),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class GenderSelector extends StatefulWidget {
   final String? selectedGender;
   final List<String> genders;
-  final Function(String) onGenderChanged;
+  final Function(String)? onGenderChanged;
 
   const GenderSelector({
     super.key,
@@ -38,7 +38,7 @@ class _GenderSelectorState extends State<GenderSelector> {
         );
 
         if (result != null) {
-          widget.onGenderChanged(result);
+          widget.onGenderChanged?.call(result);
           _genderController.text = result;
           // Move focus to the next field (usually the Word field)
           _genderFocusNode.nextFocus();
@@ -69,8 +69,8 @@ class _GenderSelectorState extends State<GenderSelector> {
   Widget build(BuildContext context) {
     return TextField(
       controller: _genderController,
-      focusNode: _genderFocusNode,
-      readOnly: true, // Prevent keyboard from showing up
+      focusNode: widget.onGenderChanged == null ? null : _genderFocusNode,
+      readOnly: widget.onGenderChanged == null,
       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       // decoration: const InputDecoration(
       //   isDense: true,
