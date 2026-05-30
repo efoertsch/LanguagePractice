@@ -5,6 +5,7 @@ class Phrase {
   String? _phrase;
   String? _english;
   String? _usage;
+  int? _quizScore;
   bool _previouslyEntered = false; // temp field
 
   Phrase({
@@ -13,6 +14,7 @@ class Phrase {
     String? english,
     List<String>? type,
     String? usage,
+    int? quizScore
   }) {
     if (id != null) {
       _id = id;
@@ -25,6 +27,11 @@ class Phrase {
     }
     if (usage != null) {
       this._usage = usage;
+    }
+    if (quizScore != null) {
+      _quizScore = quizScore;
+    } else {
+      _quizScore = 0;
     }
   }
 
@@ -44,6 +51,9 @@ class Phrase {
 
   set usage(String? usage) => _usage = usage;
 
+  set quizScore(int? quizScore) => _quizScore = quizScore;
+  int? get quizScore => _quizScore;
+
 
   //temp field
   bool get previouslyEntered => _previouslyEntered;
@@ -56,6 +66,7 @@ class Phrase {
     _phrase = json['phrase'];
     _english = json['english'];
     _usage = json['usage'];
+    _quizScore=json['quiz_score'];
   }
 
   Map<String, dynamic> toJson() {
@@ -64,6 +75,7 @@ class Phrase {
     data['phrase'] = this._phrase;
     data['english'] = this._english;
     data['usage'] = this._usage;
+    data['quiz_score'] = _quizScore;
     return data;
   }
 }

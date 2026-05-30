@@ -100,6 +100,8 @@ class _TranslatedWordWidgetState extends State<TranslatedWordWidget> with RowWit
         readOnly: widget.onChange == null,
         // Stable key (no $value) preserves focus during rebuilds
         key: Key("trans_english}"),
+        minLines: 1,
+        maxLines: 3,
         controller: _controller,
         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
         onChanged: (val) {

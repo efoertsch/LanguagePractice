@@ -1,5 +1,9 @@
 # language_practice
 
+To build debuggable executable for macOS:
+    flutter build macos --debug
+
+
 
 
 Notes: 

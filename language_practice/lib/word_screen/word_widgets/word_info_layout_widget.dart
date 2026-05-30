@@ -227,6 +227,10 @@ class _WordInfoWidgetLayoutState extends State<WordInfoWidgetLayout>
         ];
       }
     }
+    if (!editable && (wordInfo.tenses == null || wordInfo.tenses!.isEmpty)) {
+      return const SizedBox.shrink();
+    };
+
     return WordTensesWidget(
       tenses: wordInfo.tenses ?? <Tense>[],
       onTenseChanged: editable
@@ -274,7 +278,7 @@ class _WordInfoWidgetLayoutState extends State<WordInfoWidgetLayout>
   Widget _getRulesWidget({required WordInfo wordInfo, editable = true}) {
     return WordRulesSection(
       rules: wordInfo.rules ?? [],
-      defaultWordType: wordInfo.type?.first ?? "",
+      defaultWordType: wordInfo.type?.firstOrNull ?? "",
       onRulesChanged: editable
           ? (newList) {
               setState(() {

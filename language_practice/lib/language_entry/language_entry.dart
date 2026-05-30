@@ -22,9 +22,29 @@ class LanguageEntry extends StatefulWidget {
   State<LanguageEntry> createState() => _LanguageEntryState();
 }
 
-class _LanguageEntryState extends State<LanguageEntry> with WordTypeMixin {
+class _LanguageEntryState extends State<LanguageEntry>
+    with WidgetsBindingObserver, WordTypeMixin {
   String? _defaultWordType = null;
   final getIt = GetIt.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // Force a UI refresh when the app and OS wake up
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,14 +176,17 @@ class _LanguageEntryState extends State<LanguageEntry> with WordTypeMixin {
 
   void _navigateToMasterQuiz(BuildContext context) {
     Navigator.of(context).push(
-        MaterialPageRoute(
-            builder: (context) => MultiBlocProvider(
-        providers: [
-        BlocProvider(create: (_) => getIt<WordCubit>()),
-    BlocProvider(create: (_) => getIt<PhraseCubit>()),
-    BlocProvider(create: (_) => getIt<RuleCubit>()),
-    BlocProvider(create: (_) => getIt<QuizCubit>())],
-    child: const MasterQuizViewer())));
+      MaterialPageRoute(
+        builder: (context) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => getIt<WordCubit>()),
+            BlocProvider(create: (_) => getIt<PhraseCubit>()),
+            BlocProvider(create: (_) => getIt<RuleCubit>()),
+            BlocProvider(create: (_) => getIt<QuizCubit>()),
+          ],
+          child: const MasterQuizViewer(),
+        ),
+      ),
+    );
   }
-
 }

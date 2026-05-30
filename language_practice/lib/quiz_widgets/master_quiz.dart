@@ -9,7 +9,6 @@ import 'package:language_practice/repository/language_classes/rule.dart';
 import 'package:language_practice/repository/language_classes/word_info.dart';
 import 'package:language_practice/rule/rule_widgets/rule_widget.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
-import 'package:language_practice/word_screen/word_info_widget.dart';
 import 'package:language_practice/word_screen/word_widgets/word_info_layout_widget.dart';
 
 import '../app/dialog_widgets.dart' show CommonWidgets;
@@ -93,7 +92,7 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
         if (state is ListOfQuizStuffState) {
           setState(() {
             _quizItems = state.listOfQuizStuff;
-            _selectedQuizItem = 0;
+            _selectedQuizItem = null;
           });
         }
         if (state is ErrorQuizState) {
@@ -279,7 +278,7 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
     if (item.id != null) {
       context.read<WordCubit>().updateWordScore(
         item.id!,
-        isCorrect ? 1 : -1,
+        isCorrect ? 1 : -2,
       );
     }
   }

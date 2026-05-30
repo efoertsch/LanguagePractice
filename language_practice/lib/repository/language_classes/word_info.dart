@@ -79,6 +79,8 @@ class WordInfo {
 
   set quizScore(int? quizScore) => _quizScore = quizScore;
 
+  int? get quizScore => _quizScore;
+
   String? get plural => _plural;
 
   set plural(String? plural) => _plural = plural;
