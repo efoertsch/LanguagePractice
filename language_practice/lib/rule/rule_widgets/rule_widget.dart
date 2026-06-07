@@ -4,6 +4,7 @@ import 'package:language_practice/app/dialog_widgets.dart' show CommonWidgets;
 import 'package:language_practice/repository/language_classes/rule.dart';
 import 'package:language_practice/rule/rule_bloc/rule_cubit.dart';
 import 'package:language_practice/rule/rule_bloc/rule_state.dart';
+import 'package:language_practice/rule/rule_widgets/rule_layout_widget.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
 
@@ -18,53 +19,28 @@ class RuleWidget extends StatefulWidget {
 
 class _RuleWidgetState extends State<RuleWidget>
     with RowWithLabelAndChildMixin, WordTypeMixin {
-  late TextEditingController _ruleController;
-  late TextEditingController _explanationController;
-  late TextEditingController _exampleController;
-  late Rule _rule;
-
-  @override
-  void initState() {
-    super.initState();
-    _rule = widget.rule;
-    _ruleController = TextEditingController(text: _rule.rule);
-    _explanationController = TextEditingController(text: _rule.explanation);
-    _exampleController = TextEditingController(text: _rule.example);
-  }
-
-  @override
-  void dispose() {
-    _ruleController.dispose();
-    _explanationController.dispose();
-    _exampleController.dispose();
-    super.dispose();
-  }
 
   void _onSave() {
-    _rule.rule = _ruleController.text.trim();
-    _rule.explanation = _explanationController.text.trim();
-    _rule.example = _exampleController.text.trim();
-
-    if (_rule.id != null) {
-      context.read<RuleCubit>().updateRule(_rule);
+    if (widget.rule.id != null) {
+      context.read<RuleCubit>().updateRule(widget.rule);
     } else {
-      context.read<RuleCubit>().saveRule(_rule);
+      context.read<RuleCubit>().saveRule(widget.rule);
     }
   }
 
   void _onDelete() {
-    context.read<RuleCubit>().deleteRule(_rule);
+    context.read<RuleCubit>().deleteRule(widget.rule);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_rule.id != null ? "Edit Rule" : "New Rule"),
+        title: Text(widget.rule.id != null ? "Edit Rule" : "New Rule"),
         backgroundColor: Colors.deepPurple, // Differentiated color for rules
         centerTitle: true,
         actions: [
-          if (_rule.id != null)
+          if (widget.rule.id != null)
             IconButton(onPressed: _onDelete, icon: const Icon(Icons.delete)),
           IconButton(onPressed: _onSave, icon: const Icon(Icons.save)),
         ],
@@ -93,57 +69,7 @@ class _RuleWidgetState extends State<RuleWidget>
           slivers: [
             SliverList(
               delegate: SliverChildListDelegate([
-                SingleChildScrollView(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      buildHorizontalRow(
-                        label: "Rule Name:",
-                        child: TextField(
-                          controller: _ruleController,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "e.g., Passive Voice",
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      buildTypeChips(
-                        context: context,
-                        types: widget.rule.type,
-                        multipleSelectionAllowed: true,
-                        onTypesChanged: onTypesChanged,
-                      ),
-                      const SizedBox(height: 16),
-                      buildHorizontalRow(
-                        label: "Explanation:",
-                        child: TextField(
-                          controller: _explanationController,
-                          maxLines: 5,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "Explain the grammar rule here...",
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      buildHorizontalRow(
-                        label: "Example:",
-                        child: TextField(
-                          controller: _exampleController,
-                          minLines: 1,
-                          maxLines: 20,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "Provide a usage example",
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                  ),
-                ),
+                RuleLayoutWidget(rule: widget.rule),
               ]),
             ),
             SliverFillRemaining(
@@ -162,13 +88,6 @@ class _RuleWidgetState extends State<RuleWidget>
     );
   }
 
-  void onTypesChanged(List<String> types) {
-    if (mounted) {
-      setState(() {
-        widget.rule.type = types;
-      });
-    }
-  }
 
   Widget _getFloatingActionButtonRow(BuildContext context) {
     return Row(

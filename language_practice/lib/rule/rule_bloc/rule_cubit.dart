@@ -84,4 +84,21 @@ class RuleCubit extends Cubit<RuleState> {
       emit(ErrorRuleState("Failed to delete rule: $e"));
     }
   }
-}
+
+
+    void updateRuleScore(ObjectId objectId, int increment) async {
+      try {
+        WriteResult result = await repository.updateRuleQuizScore(objectId, increment);
+
+        if (result.nModified == 1 || result.nMatched == 1) {
+          // 2. Optional: If you need the UI to reflect the change immediately without a full refresh,
+          // you could fetch the updated word or simply emit a success state.
+          // For now, we'll emit a generic success or re-emit the list if in Quiz mode.
+        } else {
+          emit(ErrorRuleState("Could not update rule score."));
+        }
+      } catch (e) {
+        emit(ErrorRuleState("Failed to update proficiency: ${e.toString()}"));
+      }
+    }
+  }

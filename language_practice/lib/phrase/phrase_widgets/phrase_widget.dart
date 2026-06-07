@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_cubit.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_state.dart';
+import 'package:language_practice/phrase/phrase_widgets/phrase_layout_widget.dart';
 import 'package:language_practice/repository/language_classes/phrase.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
@@ -10,7 +11,6 @@ import '../../app/dialog_widgets.dart' show CommonWidgets;
 
 class PhraseWidget extends StatefulWidget {
   final Phrase phrase;
-
   const PhraseWidget({super.key, required this.phrase});
 
   @override
@@ -19,51 +19,27 @@ class PhraseWidget extends StatefulWidget {
 
 class _phraseWidgetState extends State<PhraseWidget>
     with RowWithLabelAndChildMixin, WordTypeMixin {
-  late TextEditingController _phraseController;
-  late TextEditingController _englishController;
-  late TextEditingController _usageController;
-  late Phrase _phrase;
 
-  @override
-  void initState() {
-    super.initState();
-    _phrase = widget.phrase;
-    _phraseController = TextEditingController(text: _phrase.phrase);
-    _englishController = TextEditingController(text: _phrase.english);
-    _usageController = TextEditingController(text: _phrase.usage);
-  }
-
-  @override
-  void dispose() {
-    _phraseController.dispose();
-    _englishController.dispose();
-    _usageController.dispose();
-    super.dispose();
-  }
 
   void _onSave() {
-    _phrase.phrase = _phraseController.text.trim();
-    _phrase.english = _englishController.text.trim();
-    _phrase.usage = _usageController.text.trim();
-
-    if (_phrase.previouslyEntered) {
-      context.read<PhraseCubit>().updatePhrase(_phrase);
+    if (widget.phrase.previouslyEntered) {
+      context.read<PhraseCubit>().updatePhrase(widget.phrase);
     } else {
-      context.read<PhraseCubit>().savePhrase(_phrase);
+      context.read<PhraseCubit>().savePhrase(widget.phrase);
     }
   }
 
   void _onDelete() {
-    context.read<PhraseCubit>().deletePhrase(_phrase);
+    context.read<PhraseCubit>().deletePhrase(widget.phrase);
   }
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
         appBar: AppBar(
-          title: Text(_phrase.previouslyEntered ? "Edit Phrase" : "New Phrase"),
+          title: Text(widget.phrase.previouslyEntered ? "Edit Phrase" : "New Phrase"),
           actions: [
-            if (_phrase.previouslyEntered)
+            if (widget.phrase.previouslyEntered)
               IconButton(onPressed: _onDelete, icon: const Icon(Icons.delete)),
             IconButton(onPressed: _onSave, icon: const Icon(Icons.save)),
           ],
@@ -89,45 +65,7 @@ class _phraseWidgetState extends State<PhraseWidget>
               CommonWidgets.showErrorDialog(context, "Error", state.message);
             }
           },
-          child:SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              buildHorizontalRow(
-                label: "Phrase:",
-                child: TextField(
-                  controller: _phraseController,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder()),
-                ),
-              ),
-              const SizedBox(height: 16),
-              buildHorizontalRow(
-                label: "English:",
-                child: TextField(
-                  controller: _englishController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Translations (comma separated)",
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              buildHorizontalRow(
-                label: "Usage:",
-                child: TextField(
-                  controller: _usageController,
-                  maxLines: 3,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Context or usage notes",
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+          child:PhraseLayoutWidget(phrase: widget.phrase),
       ),
     );
   }

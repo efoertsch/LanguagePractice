@@ -18,12 +18,14 @@ class PluralWidget extends StatefulWidget {
 
 class _PluralWidgetState extends State<PluralWidget> {
   late TextEditingController _pluralController;
+  late TextEditingController _genderController;
   late FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
     _pluralController = TextEditingController(text: widget.pluralNoun);
+    _genderController = TextEditingController(text: "die");
     _focusNode = FocusNode();
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
@@ -52,21 +54,29 @@ class _PluralWidgetState extends State<PluralWidget> {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
           const SizedBox(width: 12),
+          SizedBox(
+            child: TextField(
+              controller: _genderController,
+              readOnly:true,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+          width: 40),
+          const SizedBox(width: 12),
           // Input portion
-          Flexible(
+          Expanded(
             child: TextField(
               readOnly:  widget.onPluralChanged == null,
               controller: _pluralController,
               onChanged: widget.onPluralChanged,
-              decoration: const InputDecoration(
-                hintText: 'Enter plural form. Gender not needed',
-                border: OutlineInputBorder(),
-                isDense: true,
-                contentPadding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 12,
-                ),
-              ),
+              // decoration: const InputDecoration(
+              //   hintText: 'Enter plural form. Gender not needed',
+              //  // border: OutlineInputBorder(),
+              //   isDense: true,
+              //   contentPadding: EdgeInsets.symmetric(
+              //     horizontal: 10,
+              //     vertical: 12,
+              //   ),
+              // ),
             ),
           ),
         ],

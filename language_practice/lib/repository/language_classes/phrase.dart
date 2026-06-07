@@ -6,7 +6,7 @@ class Phrase {
   String? _english;
   String? _usage;
   int? _quizScore;
-  bool _previouslyEntered = false; // temp field
+  // temp field
 
   Phrase({
     ObjectId? id,
@@ -56,10 +56,7 @@ class Phrase {
 
 
   //temp field
-  bool get previouslyEntered => _previouslyEntered;
-
-  set previouslyEntered(bool value) => _previouslyEntered = value;
-
+  bool get previouslyEntered => _id != null;
 
   Phrase.fromJson(Map<String, dynamic> json) {
     _id = json['_id'];

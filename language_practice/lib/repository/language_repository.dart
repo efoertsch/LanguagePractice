@@ -148,7 +148,7 @@ class LanguageRepository {
     return jsonList.map((json) => WordInfo.fromJson(json)).toList();
   }
 
-  Future<WriteResult> updateQuizScore(ObjectId id, int increment) async {
+  Future<WriteResult> updateWordQuizScore(ObjectId id, int increment) async {
     return await wordCollection!.updateOne(
       where.id(id),
       modify.inc(
@@ -189,6 +189,16 @@ class LanguageRepository {
     return writeResult;
   }
 
+  Future<WriteResult> updatePhraseQuizScore(ObjectId id, int increment) async {
+    return await phraseCollection!.updateOne(
+      where.id(id),
+      modify.inc(
+        'quiz_score',
+        increment,
+      ), // This adds the integer (e.g., -1 or 1) to the current 'score' field
+    );
+  }
+
   Future<Rule?> getRule(String ruleName) async {
     Map<String, dynamic>? jsonMap = await ruleCollection!.findOne(
       where.eq('rule', ruleName),
@@ -218,5 +228,55 @@ class LanguageRepository {
       where.eq('rule', rule.rule),
     );
     return writeResult;
+  }
+
+  Future<WriteResult> updateRuleQuizScore(ObjectId id, int increment) async {
+    return await ruleCollection!.updateOne(
+      where.id(id),
+      modify.inc(
+        'quiz_score',
+        increment,
+      ), // This adds the integer (e.g., -1 or 1) to the current 'score' field
+    );
+  }
+
+  Future<Iterable<dynamic>> getQuizPhrases({
+    int score = 0,
+    int limit = 10,
+  }) async {
+    SelectorBuilder query = where;
+    SelectorBuilder typeQuery = where;
+    query.lte('quiz_score', score);
+
+    final List<Map<String, dynamic>> jsonList = await phraseCollection!
+        .find(query.limit(limit))
+        .toList();
+
+    // final List<Map<String, dynamic>> jsonList = await wordCollection!
+    //     .find(where.eq('type', type).and( where.lte('quiz_score',0)))
+    //     .toList();
+
+    // 2. Map the list of JSON maps to a list of WordInfo objects
+    return jsonList.map((json) => Phrase.fromJson(json)).toList();
+  }
+
+  Future<Iterable<dynamic>> getQuizRulesForTypes({
+    required String type,
+    int score = 0,
+    int limit = 10,
+  }) async {
+    SelectorBuilder query = where;
+    SelectorBuilder typeQuery = where;
+    query.lte('quiz_score', 0);
+    if (type.isNotEmpty) {
+      typeQuery = where.eq('type', type);
+      query.and(typeQuery);
+    }
+    final List<Map<String, dynamic>> jsonList = await ruleCollection!
+        .find(query.limit(limit))
+        .toList();
+
+    // 2. Map the list of JSON maps to a list of WordInfo objects
+    return jsonList.map((json) => Rule.fromJson(json)).toList();
   }
 }

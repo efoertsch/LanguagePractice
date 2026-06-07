@@ -20,9 +20,7 @@ class PhraseCubit extends Cubit<PhraseState> {
       // Fetch the phrase from the repository
       phrase = await repository.getPhrase(spelledPhrase);
 
-      if (phrase != null) {
-        phrase.previouslyEntered = true;
-      } else {
+      if (phrase == null) {
         // New phrase logic: create the object and fetch initial translation
         phrase = Phrase(phrase: spelledPhrase);
         String translation = await repository.getEnglishTranslation(spelledPhrase);
@@ -90,6 +88,22 @@ class PhraseCubit extends Cubit<PhraseState> {
       }
     } catch (e) {
       emit(ErrorPhraseState("Failed to delete phrase: $e"));
+    }
+  }
+
+  void updatePhraseScore(ObjectId objectId, int increment) async {
+    try {
+      WriteResult result = await repository.updatePhraseQuizScore(objectId, increment);
+
+      if (result.nModified == 1 || result.nMatched == 1) {
+        // 2. Optional: If you need the UI to reflect the change immediately without a full refresh,
+        // you could fetch the updated word or simply emit a success state.
+        // For now, we'll emit a generic success or re-emit the list if in Quiz mode.
+      } else {
+        emit(ErrorPhraseState("Could not update phrase score."));
+      }
+    } catch (e) {
+      emit(ErrorPhraseState("Failed to update proficiency: ${e.toString()}"));
     }
   }
 }

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:language_practice/phrase/phrase_widgets/phrase_widget.dart';
 import 'package:language_practice/quiz_widgets/quiz_bloc/quiz_cubit.dart';
 import 'package:language_practice/quiz_widgets/quiz_bloc/quiz_state.dart';
 import 'package:language_practice/repository/language_classes/phrase.dart';
 import 'package:language_practice/repository/language_classes/rule.dart';
 import 'package:language_practice/repository/language_classes/word_info.dart';
+import 'package:language_practice/rule/rule_widgets/rule_layout_widget.dart';
 import 'package:language_practice/rule/rule_widgets/rule_widget.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 import 'package:language_practice/word_screen/word_widgets/word_info_layout_widget.dart';
 
 import '../app/dialog_widgets.dart' show CommonWidgets;
+import '../phrase/phrase_bloc/phrase_cubit.dart';
+import '../phrase/phrase_widgets/phrase_layout_widget.dart';
+import '../rule/rule_bloc/rule_cubit.dart';
 
 class MasterQuizViewer extends StatefulWidget {
   const MasterQuizViewer({super.key});
@@ -209,6 +212,8 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
         ),
         // Only show buttons if the current item is a WordInfo
         if (item is WordInfo) _getQuizActionButtons(item),
+        if (item is Phrase) _getQuizActionButtons(item),
+        if (item is Rule) _getQuizActionButtons(item),
       ],
     );
   }
@@ -232,16 +237,16 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
       );
     }
     if (item is Phrase) {
-      return PhraseWidget(key: ValueKey(item.id), phrase: item);
+      return PhraseLayoutWidget(key: ValueKey(item.id), phrase: item, readOnly: true);
     }
     if (item is Rule) {
-      return RuleWidget(key: ValueKey(item.id), rule: item);
+      return RuleLayoutWidget(key: ValueKey(item.id), rule: item, readOnly: true);
     }
     return const Center(child: Text("Invalid Item Type"));
   }
 
   /// Returns the button row similar to word_quiz_screen.dart
-  Widget _getQuizActionButtons(WordInfo item) {
+  Widget _getQuizActionButtons(dynamic item) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
@@ -274,8 +279,24 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
     );
   }
 
-  void _handleAnswer(WordInfo item, bool isCorrect) {
+  void _handleAnswer(dynamic item, bool isCorrect) {
     if (item.id != null) {
+      if (item is WordInfo) {
+        context.read<WordCubit>().updateWordScore(
+          item.id!,
+          isCorrect ? 1 : -2,
+        );
+      } else if (item is Phrase) {
+        context.read<PhraseCubit>().updatePhraseScore(
+          item.id!,
+          isCorrect ? 1 : -2,
+        );
+      } else if (item is Rule) {
+        context.read<RuleCubit>().updateRuleScore(
+          item.id!,
+          isCorrect ? 1 : -2,
+        );
+      }
       context.read<WordCubit>().updateWordScore(
         item.id!,
         isCorrect ? 1 : -2,

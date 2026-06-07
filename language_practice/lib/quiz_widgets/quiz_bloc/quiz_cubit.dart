@@ -13,6 +13,10 @@ class QuizCubit extends Cubit<QuizState> {
     List<dynamic> quizItems = [];
     if (filterType == "Word") {
       quizItems.addAll(await repository.getQuizWordsForTypes(type:""));
+    }else if (filterType == "Phrase") {
+      quizItems.addAll(await repository.getQuizPhrases());
+    }else if (filterType == "Rule") {
+      quizItems.addAll(await repository.getQuizRulesForTypes(type:""));
     }
     quizItems.shuffle();
     emit(ListOfQuizStuffState(quizItems));
