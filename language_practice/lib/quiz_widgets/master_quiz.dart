@@ -7,7 +7,6 @@ import 'package:language_practice/repository/language_classes/phrase.dart';
 import 'package:language_practice/repository/language_classes/rule.dart';
 import 'package:language_practice/repository/language_classes/word_info.dart';
 import 'package:language_practice/rule/rule_widgets/rule_layout_widget.dart';
-import 'package:language_practice/rule/rule_widgets/rule_widget.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 import 'package:language_practice/word_screen/word_widgets/word_info_layout_widget.dart';
 
@@ -32,6 +31,7 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
 
   // Change individual bools to a single selection type
   String _filterType = "Word"; //
+  String _displayField = "Primary";
 
   @override
   void initState() {
@@ -41,6 +41,17 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Quiz Time"),
+          backgroundColor: Colors.blue,
+          centerTitle: true,
+        ),
+        body: _getBody(context));
+  }
+
+
+  Widget _getBody(BuildContext context) {
     // Filter items based on the single radio selection
     final filteredItems = _quizItems.where((item) {
       if (_filterType == "Word") return item is WordInfo;
@@ -48,13 +59,7 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
       if (_filterType == "Rule") return item is Rule;
       return false;
     }).toList();
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Quiz Time"),
-        backgroundColor: Colors.blue,
-        centerTitle: true,
-      ),
-      body: Row(
+    return  Row(
         children: [
           // COLUMN 1: Sidebar (25% of width)
           Expanded(
@@ -82,17 +87,15 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
             child: _selectedQuizItem == null
                 ? const Center(child: Text("Select an item to view details"))
                 : _buildDetailArea(_selectedQuizItem),
-            // _buildDetailView(_selectedQuizItem),
           ),
         ],
-      ),
     );
   }
 
   Widget _getQuizListener() {
     return BlocListener<QuizCubit, QuizState>(
       listener: (context, state) {
-        if (state is ListOfQuizStuffState) {
+        if (state is ListOfQuizItemsState) {
           setState(() {
             _quizItems = state.listOfQuizStuff;
             _selectedQuizItem = null;
@@ -141,57 +144,109 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
     );
   }
 
-  Padding _getQuizButtons() {
+  Widget _getQuizButtons() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: RadioGroup<String>(
-        groupValue: _filterType,
-        onChanged: (String? newValue) {
-          setState(() {
-            _filterType = newValue!;
-            context.read<QuizCubit>().getQuizItemsUsingFilter(_filterType);
-          });
-        },
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Flexible(
-              fit: FlexFit.loose,
-              child: Text("Quiz On:", style: const TextStyle(fontSize: 12)),
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text(
+            "Quiz Category:",
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 4),
+          // First Dropdown: Category
+          DropdownButtonFormField<String>(
+            value: _filterType,
+            decoration: const InputDecoration(
+              isDense: true,
+              contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              border: OutlineInputBorder(),
             ),
-            Flexible(
-              fit: FlexFit.loose,
-              child: const ListTile(
-                title: Text('Word'),
-                leading: Radio(value: "Word"),
-              ),
+            items: const [
+              DropdownMenuItem(value: "Word", child: Text("Words")),
+              DropdownMenuItem(value: "Phrase", child: Text("Phrases")),
+              DropdownMenuItem(value: "Rule", child: Text("Rules")),
+            ],
+            onChanged: (String? newValue) {
+              if (newValue != null) {
+                setState(() {
+                  _filterType = newValue;
+                  _displayField = "Primary"; // Reset display field on category change
+                  _selectedQuizItem = null;
+                  context.read<QuizCubit>().getQuizItemsUsingFilter(_filterType);
+                });
+              }
+            },
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            "Display List By:",
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 4),
+          // Second Dropdown: Specific Field
+          DropdownButtonFormField<String>(
+            value: _displayField,
+            decoration: const InputDecoration(
+              isDense: true,
+              contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              border: OutlineInputBorder(),
             ),
-
-            Flexible(
-              fit: FlexFit.loose,
-              child: const ListTile(
-                title: Text('Phrase'),
-                leading: Radio(value: "Phrase"),
-              ),
-            ),
-            Flexible(
-              fit: FlexFit.loose,
-              child: const ListTile(
-                title: Text('Rule'),
-                leading: Radio(value: "Rule"),
-              ),
-            ),
-          ],
-        ),
+            items: _getDisplayOptions(),
+            onChanged: (String? newValue) {
+              if (newValue != null) {
+                setState(() {
+                  _displayField = newValue;
+                });
+              }
+            },
+          ),
+        ],
       ),
     );
   }
 
-  /// Helper to get the primary string to display in the list
+  /// Helper to generate options for the second dropdown based on the first
+  List<DropdownMenuItem<String>> _getDisplayOptions() {
+    if (_filterType == "Word") {
+      return const [
+        DropdownMenuItem(value: "Primary", child: Text("Word")),
+        DropdownMenuItem(value: "Secondary", child: Text("English")),
+      ];
+    } else if (_filterType == "Phrase") {
+      return const [
+        DropdownMenuItem(value: "Primary", child: Text("Phrase")),
+        DropdownMenuItem(value: "Secondary", child: Text("English")),
+      ];
+    } else {
+      // Rule
+      return const [
+        DropdownMenuItem(value: "Primary", child: Text("Rule Name")),
+        DropdownMenuItem(value: "Secondary", child: Text("Explanation")),
+      ];
+    }
+  }
+
   String _getDisplayName(dynamic item) {
-    if (item is WordInfo) return item.word ?? "";
-    if (item is Phrase) return item.phrase ?? "";
-    if (item is Rule) return item.rule ?? "";
+    bool showPrimary = _displayField == "Primary";
+
+    if (item is WordInfo) {
+      return showPrimary
+          ? (item.word ?? "")
+          : (item.english?.join(", ") ?? "");
+    }
+    if (item is Phrase) {
+      return showPrimary
+          ? (item.phrase ?? "")
+          : (item.english ?? "");
+    }
+    if (item is Rule) {
+      return showPrimary
+          ? (item.rule ?? "")
+          : (item.explanation ?? "");
+    }
     return "Unknown";
   }
 
@@ -210,7 +265,6 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
         Expanded(
           child: _buildDetailView(item),
         ),
-        // Only show buttons if the current item is a WordInfo
         if (item is WordInfo) _getQuizActionButtons(item),
         if (item is Phrase) _getQuizActionButtons(item),
         if (item is Rule) _getQuizActionButtons(item),
@@ -297,10 +351,13 @@ class _MasterQuizViewerState extends State<MasterQuizViewer> {
           isCorrect ? 1 : -2,
         );
       }
-      context.read<WordCubit>().updateWordScore(
-        item.id!,
-        isCorrect ? 1 : -2,
-      );
+      setState(() {
+        _quizItems.remove(_selectedQuizItem);
+        if (!isCorrect) {
+          _quizItems.add(_selectedQuizItem);
+        }
+        _selectedQuizItem = null;
+      });
     }
   }
 }

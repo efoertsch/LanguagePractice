@@ -121,30 +121,30 @@ class LanguageRepository {
     }
   }
 
+
   Future<List<WordInfo>> getQuizWordsForTypes({
-    required String type,
-    int score = 0,
-    int limit = 10,
+    String? type,
+    int? score,
+    int? limit = 10,
   }) async {
     // 1. Initialize empty selector
     SelectorBuilder query = where;
     SelectorBuilder typeQuery = where;
-    query.lte('quiz_score', score);
-    if (type.isNotEmpty) {
+    if (score != null) {
+      query.lte('quiz_score', score);
+    }
+    if (type != null) {
       typeQuery = where.eq('type', type);
       query.and(typeQuery);
+    };
+    if (limit != null){
+      query.limit(limit);
     }
-    ;
 
-    final List<Map<String, dynamic>> jsonList = await wordCollection!
-        .find(query.limit(limit))
+    List<Map<String, dynamic>> jsonList = await wordCollection!
+        .find(query)
         .toList();
 
-    // final List<Map<String, dynamic>> jsonList = await wordCollection!
-    //     .find(where.eq('type', type).and( where.lte('quiz_score',0)))
-    //     .toList();
-
-    // 2. Map the list of JSON maps to a list of WordInfo objects
     return jsonList.map((json) => WordInfo.fromJson(json)).toList();
   }
 
@@ -199,6 +199,26 @@ class LanguageRepository {
     );
   }
 
+  Future<List<Phrase>> getQuizPhrases({
+    int? score,
+    int? limit = 10,
+  }) async {
+    SelectorBuilder query = where;
+    SelectorBuilder typeQuery = where;
+    if (score != null) {
+      query.lte('quiz_score', score);
+    }
+    if (limit != null) {
+      query.limit(limit);
+    }
+
+    final List<Map<String, dynamic>> jsonList = await phraseCollection!
+        .find(query)
+        .toList();
+
+    return jsonList.map((json) => Phrase.fromJson(json)).toList();
+  }
+
   Future<Rule?> getRule(String ruleName) async {
     Map<String, dynamic>? jsonMap = await ruleCollection!.findOne(
       where.eq('rule', ruleName),
@@ -240,40 +260,25 @@ class LanguageRepository {
     );
   }
 
-  Future<Iterable<dynamic>> getQuizPhrases({
-    int score = 0,
-    int limit = 10,
+  Future<List<Rule>> getQuizRulesForTypes({
+    String? type,
+    int? score,
+    int? limit = 10,
   }) async {
     SelectorBuilder query = where;
     SelectorBuilder typeQuery = where;
-    query.lte('quiz_score', score);
-
-    final List<Map<String, dynamic>> jsonList = await phraseCollection!
-        .find(query.limit(limit))
-        .toList();
-
-    // final List<Map<String, dynamic>> jsonList = await wordCollection!
-    //     .find(where.eq('type', type).and( where.lte('quiz_score',0)))
-    //     .toList();
-
-    // 2. Map the list of JSON maps to a list of WordInfo objects
-    return jsonList.map((json) => Phrase.fromJson(json)).toList();
-  }
-
-  Future<Iterable<dynamic>> getQuizRulesForTypes({
-    required String type,
-    int score = 0,
-    int limit = 10,
-  }) async {
-    SelectorBuilder query = where;
-    SelectorBuilder typeQuery = where;
-    query.lte('quiz_score', 0);
-    if (type.isNotEmpty) {
+    if (score != null) {
+      query.lte('quiz_score', 0);
+    }
+    if (type != null && type.isNotEmpty) {
       typeQuery = where.eq('type', type);
       query.and(typeQuery);
     }
+    if (limit != null){
+      query.limit(limit);
+    }
     final List<Map<String, dynamic>> jsonList = await ruleCollection!
-        .find(query.limit(limit))
+        .find(query)
         .toList();
 
     // 2. Map the list of JSON maps to a list of WordInfo objects

@@ -17,9 +17,9 @@ class LoadingQuizState extends QuizState{
   LoadingQuizState();
 }
 
-class ListOfQuizStuffState extends QuizState{
+class ListOfQuizItemsState extends QuizState{
   final List<dynamic> listOfQuizStuff;
-  ListOfQuizStuffState(this.listOfQuizStuff);
+  ListOfQuizItemsState(this.listOfQuizStuff);
 }
 
 class ErrorQuizState extends QuizState {

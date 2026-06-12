@@ -65,6 +65,8 @@ class _phraseLayoutWidgetState extends State<PhraseLayoutWidget>
             child: TextField(
               controller: _phraseController,
               readOnly: widget.readOnly,
+              minLines: 1,
+              maxLines: 5,
               decoration: const InputDecoration(border: OutlineInputBorder()),
             ),
           ),
@@ -73,6 +75,8 @@ class _phraseLayoutWidgetState extends State<PhraseLayoutWidget>
             label: "English:",
             child: TextField(
               controller: _englishController,
+              minLines: 1,
+              maxLines: 5,
               readOnly: widget.readOnly,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -86,7 +90,8 @@ class _phraseLayoutWidgetState extends State<PhraseLayoutWidget>
             child: TextField(
               controller: _usageController,
               readOnly: widget.readOnly, // 5. Applied readOnly
-              maxLines: 3,
+              minLines: 1,
+              maxLines: 10,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Context or usage notes",
