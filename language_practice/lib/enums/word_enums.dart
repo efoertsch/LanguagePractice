@@ -65,8 +65,8 @@ enum VerbFunctionalType {
 
 enum VerbTense {
   present('Präsens'),
-  present_perfect('Perfekt'),
   simple_past('Präteritum'),
+  present_perfect('Perfekt'),
   subjective('Konjunktiv II - Präteritum');
 
 

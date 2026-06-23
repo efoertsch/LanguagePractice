@@ -126,21 +126,23 @@ class _WordInfoWidgetLayoutState extends State<WordInfoWidgetLayout>
           : null,
       onWordFocusLost: (editable)
           ? () {
-              if (wordInfo!.type!.contains("noun")) {
-                if (wordInfo.gender == null) {
-                  CommonWidgets.showErrorDialog(
-                    context,
-                    "Gender Missing",
-                    "Please add the noun gender to the word. The gender for a noun must be one of the following: "
-                        "${genders.map((gender) => gender).join(', ')}",
-                  );
-                } else if (!genders.contains(wordInfo.gender)) {
-                  CommonWidgets.showErrorDialog(
-                    context,
-                    "Gender Error",
-                    " The gender for a noun must be one of the following: "
-                        "${genders..map((gender) => gender).join(', ')}",
-                  );
+              if (wordInfo!.type != null) {
+                if (wordInfo.type!.contains("noun")) {
+                  if (wordInfo.gender == null) {
+                    CommonWidgets.showErrorDialog(
+                      context,
+                      "Gender Missing",
+                      "Please add the noun gender to the word. The gender for a noun must be one of the following: "
+                          "${genders.map((gender) => gender).join(', ')}",
+                    );
+                  } else if (!genders.contains(wordInfo.gender)) {
+                    CommonWidgets.showErrorDialog(
+                      context,
+                      "Gender Error",
+                      " The gender for a noun must be one of the following: "
+                          "${genders..map((gender) => gender).join(', ')}",
+                    );
+                  }
                 }
               }
             }
@@ -229,7 +231,8 @@ class _WordInfoWidgetLayoutState extends State<WordInfoWidgetLayout>
     }
     if (!editable && (wordInfo.tenses == null || wordInfo.tenses!.isEmpty)) {
       return const SizedBox.shrink();
-    };
+    }
+    ;
 
     return WordTensesWidget(
       tenses: wordInfo.tenses ?? <Tense>[],

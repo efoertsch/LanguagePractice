@@ -9,25 +9,49 @@ class QuizCubit extends Cubit<QuizState> {
 
   QuizCubit({required this.repository}) : super(InitialQuizState());
 
-  Future<void> getQuizItemsUsingFilter(String filterType) async {
+  Future<void> getQuizItemsUsingFilter({
+    required String category,
+    List<String>? filterTypes,
+  }) async {
     List<dynamic> quizItems = [];
-    if (filterType == "Word") {
-      List<dynamic> list = await repository.getQuizWordsForTypes(
-          type: filterType, score: 0);
+    List<dynamic> list = [];
+    if (category == "Word") {
+      if (filterTypes == null || filterTypes.isEmpty) {
+        list = await repository.getQuizWordsForTypes(type: "", score: 0);
+        if (list.isEmpty) {
+          list = await repository.getQuizWordsForTypes(type: "");
+        }
+        quizItems.addAll(list);
+      } else {
+        for (String type in filterTypes) {
+          list.addAll(
+            await repository.getQuizWordsForTypes(type: type, score: 0),
+          );
+        }
+        if (list.isEmpty) {
+          for (String type in filterTypes) {
+            list.addAll(
+              list = await repository.getQuizWordsForTypes(type: type),
+            );
+          }
+        }
+        quizItems.addAll(list);
+      }
+    } else if (category == "Phrase") {
+      list = await repository.getQuizPhrases(score: 0);
       if (list.isEmpty) {
-        List<WordInfo> list = await repository.getQuizWordsForTypes(type:filterType);
+        list = await repository.getQuizPhrases(limit: 10);
       }
       quizItems.addAll(list);
-    }else if (filterType == "Phrase") {
-      List<dynamic> list = await repository.getQuizPhrases(score: 0, limit: 10);
-      if (list.isEmpty){
-      quizItems.addAll(await repository.getQuizPhrases(limit:10));
-    }else if (filterType == "Rule") {
-        List<dynamic> list = await repository.getQuizRulesForTypes(type: filterType, score: 0);
-      }
+    } else if (category == "Rule") {
+      list = await repository.getQuizRulesForTypes(
+        type: "",
+        score: 0,
+      );
       if (list.isEmpty) {
-        quizItems.addAll(await repository.getQuizRulesForTypes(type: ""));
+        list = await repository.getQuizRulesForTypes();
       }
+      quizItems.addAll(list);
     }
     quizItems.shuffle();
     emit(ListOfQuizItemsState(quizItems));
@@ -36,7 +60,7 @@ class QuizCubit extends Cubit<QuizState> {
   Future<void> getQuizWordsForTypes(List<String> types) async {
     List<WordInfo> wordList = [];
     for (String type in types) {
-      wordList.addAll(await repository.getQuizWordsForTypes(type:""));
+      wordList.addAll(await repository.getQuizWordsForTypes(type: ""));
     }
     wordList.shuffle();
     emit(ListOfQuizItemsState(wordList));

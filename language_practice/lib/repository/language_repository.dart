@@ -133,9 +133,13 @@ class LanguageRepository {
     if (score != null) {
       query.lte('quiz_score', score);
     }
-    if (type != null) {
-      typeQuery = where.eq('type', type);
-      query.and(typeQuery);
+    if (type != null && type.isNotEmpty) {
+      if (query.map.isEmpty) {
+        query.eq('type', type);
+      } else {
+        typeQuery = where.eq('type', type);
+        query.and(typeQuery);
+      }
     };
     if (limit != null){
       query.limit(limit);
@@ -200,18 +204,23 @@ class LanguageRepository {
   }
 
   Future<List<Phrase>> getQuizPhrases({
-    int? score,
+    int? score = 0,
     int? limit = 10,
+    List<String>? filterTypes
   }) async {
     SelectorBuilder query = where;
-    SelectorBuilder typeQuery = where;
-    if (score != null) {
-      query.lte('quiz_score', score);
+    query.lte('quiz_score', score);
+    query.limit(limit!);
+  if (filterTypes == null || filterTypes.isEmpty) {
+    final List<Map<String, dynamic>> jsonList = await phraseCollection!
+        .find(query)
+        .toList();
+  } else {
+    for (String type in filterTypes) {
+      SelectorBuilder typeQuery = where.eq('type', type);
+      query.and(typeQuery);
     }
-    if (limit != null) {
-      query.limit(limit);
-    }
-
+  }
     final List<Map<String, dynamic>> jsonList = await phraseCollection!
         .find(query)
         .toList();
@@ -268,7 +277,7 @@ class LanguageRepository {
     SelectorBuilder query = where;
     SelectorBuilder typeQuery = where;
     if (score != null) {
-      query.lte('quiz_score', 0);
+      query.lte('quiz_score', score);
     }
     if (type != null && type.isNotEmpty) {
       typeQuery = where.eq('type', type);

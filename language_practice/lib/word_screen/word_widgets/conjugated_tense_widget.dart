@@ -123,7 +123,7 @@ class _ConjugatedTenseWidgetState extends State<ConjugatedTenseWidget> {
 
 
   Widget _getEditableConjugatedTense() {
-    print("${widget.activeTenseIndex}_${widget.label}_${_controller.value}");
+    //print("${widget.activeTenseIndex}_${widget.label}_${_controller.value}");
     return TextFormField(
       // The key must be stable (no $value) to preserve focus
       key: Key("${widget.activeTenseIndex}_${widget.label}"),
