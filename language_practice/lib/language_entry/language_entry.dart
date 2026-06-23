@@ -53,7 +53,7 @@ class _LanguageEntryState extends State<LanguageEntry>
         title: const Text("Language Entry"),
         backgroundColor: Colors.blue,
         centerTitle: true,
-        actions: [_getMenu(context)],
+        actions: _getMenu(context),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -94,59 +94,70 @@ class _LanguageEntryState extends State<LanguageEntry>
     );
   }
 
-  Widget _getMenu(BuildContext context) {
-    return PopupMenuButton<String>(
-      icon: const Icon(Icons.menu),
-      // onCanceled: () {
-      //   print("Menu canceled");},
-      onSelected: (value) {
-        if (value == "set_word_type") {
-          _getWordTypesDisplay();
-        } else if (value == "quiz_all") {
+  List<Widget> _getMenu(BuildContext context) {
+    return <Widget>[
+      TextButton(
+        child: Text("Quiz", style: TextStyle(color: Colors.white)),
+        onPressed: () {
           _navigateToMasterQuiz(context);
-        } else {
-          // Pass the value (either 'german' or 'english') to the navigation method
-          _navigateToQuiz(context, value);
-        }
-      },
-      itemBuilder: (BuildContext context) => [
-        const PopupMenuItem<String>(
-          value: 'english',
-          child: Row(
-            children: [
-              Icon(Icons.translate, color: Colors.black54),
-              SizedBox(width: 8),
-              Text("Quiz English to German"),
-            ],
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'german',
-          child: Row(
-            children: [
-              Icon(Icons.quiz, color: Colors.black54),
-              SizedBox(width: 8),
-              Text("Quiz German to English"),
-            ],
-          ),
-        ),
-        PopupMenuItem<String>(
-          value: 'set_word_type',
-          child: Text('Set default WordType'),
-        ),
-        const PopupMenuItem<String>(
-          value: 'quiz_all',
-          child: Row(
-            children: [
-              Icon(Icons.quiz, color: Colors.black54),
-              SizedBox(width: 8),
-              Text("Quiz Words,Phrases, Rules"),
-            ],
-          ),
-        ),
-      ],
-    );
+        },
+      ),
+    ];
   }
+
+  //Widget _getMenu(BuildContext context) {
+  //  return PopupMenuButton<String>(
+  //    icon: const Icon(Icons.menu),
+  //    // onCanceled: () {
+  //    //   print("Menu canceled");},
+  //    onSelected: (value) {
+  //      if (value == "set_word_type") {
+  //        _getWordTypesDisplay();
+  //      } else if (value == "quiz_all") {
+  //        _navigateToMasterQuiz(context);
+  //      } else {
+  //        // Pass the value (either 'german' or 'english') to the navigation method
+  //        _navigateToQuiz(context, value);
+  //      }
+  //    },
+  //    itemBuilder: (BuildContext context) => [
+  //      const PopupMenuItem<String>(
+  //        value: 'english',
+  //        child: Row(
+  //          children: [
+  //            Icon(Icons.translate, color: Colors.black54),
+  //            SizedBox(width: 8),
+  //            Text("Quiz English to German"),
+  //          ],
+  //        ),
+  //      ),
+  //      const PopupMenuItem<String>(
+  //        value: 'german',
+  //        child: Row(
+  //          children: [
+  //            Icon(Icons.quiz, color: Colors.black54),
+  //            SizedBox(width: 8),
+  //            Text("Quiz German to English"),
+  //          ],
+  //        ),
+  //      ),
+  //      PopupMenuItem<String>(
+  //        value: 'set_word_type',
+  //        child: Text('Set default WordType'),
+  //      ),
+  //      const PopupMenuItem<String>(
+  //        value: 'quiz_all',
+  //        child: Row(
+  //          children: [
+  //            Icon(Icons.quiz, color: Colors.black54),
+  //            SizedBox(width: 8),
+  //            Text("Quiz Words,Phrases, Rules"),
+  //          ],
+  //        ),
+  //      ),
+  //    ],
+  //  );
+  //}
 
   Future<void> _getWordTypesDisplay() {
     return displayWordTypes(
