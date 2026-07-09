@@ -121,7 +121,6 @@ class LanguageRepository {
     }
   }
 
-
   Future<List<WordInfo>> getQuizWordsForTypes({
     String? type,
     int? score,
@@ -140,8 +139,9 @@ class LanguageRepository {
         typeQuery = where.eq('type', type);
         query.and(typeQuery);
       }
-    };
-    if (limit != null){
+    }
+    ;
+    if (limit != null) {
       query.limit(limit);
     }
 
@@ -150,6 +150,19 @@ class LanguageRepository {
         .toList();
 
     return jsonList.map((json) => WordInfo.fromJson(json)).toList();
+  }
+
+  Future<List<WordInfo>> getListOfWords(String startOfWord) async {
+    SelectorBuilder query = where;
+    query.sortBy('word');
+    if (startOfWord.isNotEmpty) {
+      query.match('word', '^$startOfWord', caseInsensitive: true);
+    }
+    ;
+    List<Map<String, dynamic>> jsonMap = await wordCollection!
+        .find(query)
+        .toList();
+    return jsonMap.map((json) => WordInfo.fromJson(json)).toList();
   }
 
   Future<WriteResult> updateWordQuizScore(ObjectId id, int increment) async {
@@ -198,9 +211,11 @@ class LanguageRepository {
     query.sortBy('phase');
     if (startOfPhrase.isNotEmpty) {
       query.match('phrase', '^$startOfPhrase', caseInsensitive: true);
-    };
-    List<Map<String, dynamic>> jsonMap = await phraseCollection!.find(
-      query).toList();
+    }
+    ;
+    List<Map<String, dynamic>> jsonMap = await phraseCollection!
+        .find(query)
+        .toList();
     return jsonMap.map((json) => Phrase.fromJson(json)).toList();
   }
 
@@ -217,21 +232,17 @@ class LanguageRepository {
   Future<List<Phrase>> getQuizPhrases({
     int? score = 0,
     int? limit = 10,
-    List<String>? filterTypes
+    List<String>? filterTypes,
   }) async {
     SelectorBuilder query = where;
     query.lte('quiz_score', score);
     query.limit(limit!);
-  if (filterTypes == null || filterTypes.isEmpty) {
-    final List<Map<String, dynamic>> jsonList = await phraseCollection!
-        .find(query)
-        .toList();
-  } else {
-    for (String type in filterTypes) {
-      SelectorBuilder typeQuery = where.eq('type', type);
-      query.and(typeQuery);
+    if (filterTypes != null && filterTypes.isNotEmpty) {
+      for (String type in filterTypes) {
+        SelectorBuilder typeQuery = where.eq('type', type);
+        query.and(typeQuery);
+      }
     }
-  }
     final List<Map<String, dynamic>> jsonList = await phraseCollection!
         .find(query)
         .toList();
@@ -294,7 +305,7 @@ class LanguageRepository {
       typeQuery = where.eq('type', type);
       query.and(typeQuery);
     }
-    if (limit != null){
+    if (limit != null) {
       query.limit(limit);
     }
     final List<Map<String, dynamic>> jsonList = await ruleCollection!
@@ -304,6 +315,4 @@ class LanguageRepository {
     // 2. Map the list of JSON maps to a list of WordInfo objects
     return jsonList.map((json) => Rule.fromJson(json)).toList();
   }
-
-
 }

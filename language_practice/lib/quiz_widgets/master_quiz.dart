@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:language_practice/quiz_widgets/quiz_bloc/quiz_cubit.dart';
 import 'package:language_practice/quiz_widgets/quiz_bloc/quiz_state.dart';
+import 'package:language_practice/quiz_widgets/quiz_phrase.dart';
+import 'package:language_practice/quiz_widgets/quiz_phrase_info_display.dart';
 import 'package:language_practice/quiz_widgets/quiz_word.dart';
 import 'package:language_practice/quiz_widgets/quiz_wordinfo_display.dart';
 import 'package:language_practice/repository/language_classes/phrase.dart';
@@ -366,9 +368,7 @@ class _MasterQuizViewerState extends State<MasterQuizViewer>
             _showDetails
                 ? QuizWordinfoDisplay(
                     wordInfo: item,
-                    quizLanguage: _displayField == "Primary"
-                        ? "german"
-                        : "english",
+                    quizLanguage: _getQuizLanguage(),
                   )
                 : SizedBox.shrink(),
           ],
@@ -376,10 +376,22 @@ class _MasterQuizViewerState extends State<MasterQuizViewer>
       );
     }
     if (item is Phrase) {
-      return PhraseLayoutWidget(
-        key: ValueKey(item.id),
-        phrase: item,
-        readOnly: true,
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: QuizPhrase(phrase: _getDisplayName(item)),
+            ),
+            _showDetails
+                ? QuizPhraseInfoDisplay(
+                    key: ValueKey(item.id),
+                    phrase: item,
+                    quizLanguage: _getQuizLanguage(),
+                  )
+                : SizedBox.shrink(),
+          ],
+        ),
       );
     }
     if (item is Rule) {
@@ -390,6 +402,10 @@ class _MasterQuizViewerState extends State<MasterQuizViewer>
       );
     }
     return const Center(child: Text("Invalid Item Type"));
+  }
+
+  String _getQuizLanguage() {
+    return _displayField == "Primary" ? "german" : "english";
   }
 
   Widget _getBottomControls(dynamic item) {

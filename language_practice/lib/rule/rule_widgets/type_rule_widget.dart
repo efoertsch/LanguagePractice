@@ -52,7 +52,7 @@ class _TypeRuleWidgetState extends State<TypeRuleWidget>
               autofocus: false,
               decoration: const InputDecoration(
                 hintText: 'Enter grammar rule (e.g. Dative)',
-                border: OutlineInputBorder(),
+                //border: OutlineInputBorder(),
               ),
               controller: _ruleNameController,
               onSubmitted: _handleRuleChange,

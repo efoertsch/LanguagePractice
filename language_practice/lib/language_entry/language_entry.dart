@@ -63,15 +63,12 @@ class _LanguageEntryState extends State<LanguageEntry>
             _buildSectionHeader(context, "Word", Colors.blue),
             TypeWordWidget(defaultWordType: _defaultWordType),
             const Divider(height: 20, thickness: 2),
-
             // Header for Phrase Section
             _buildSectionHeader(context, "Phrase", Colors.green),
-
             TypePhraseWidget(),
             const Divider(height: 20, thickness: 2),
             _buildSectionHeader(context, "Grammar Rules", Colors.deepPurple),
             const TypeRuleWidget(),
-
             const SizedBox(height: 20),
           ],
         ),

@@ -69,7 +69,8 @@ class _PhaseWidgetState extends State<PhraseWidget>
         readOnly: widget.readOnly,
         minLines: 1,
         maxLines: widget.maxLines,
-        decoration: const InputDecoration(border: OutlineInputBorder()),
+        decoration: widget.inputDecoration ??
+            const InputDecoration(hintText: 'Enter a phrase'),
       ),
     );
   }
