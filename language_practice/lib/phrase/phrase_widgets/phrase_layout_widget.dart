@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language_practice/phrase/phrase_widgets/phrase_widget.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
 
@@ -16,40 +17,20 @@ class PhraseLayoutWidget extends StatefulWidget {
 
   @override
   State<PhraseLayoutWidget> createState() => _phraseLayoutWidgetState();
-
 }
+
 class _phraseLayoutWidgetState extends State<PhraseLayoutWidget>
     with RowWithLabelAndChildMixin, WordTypeMixin {
-  late TextEditingController _phraseController;
-  late TextEditingController _englishController;
-  late TextEditingController _usageController;
   late Phrase _phrase;
 
   @override
   void initState() {
     super.initState();
     _phrase = widget.phrase;
-
-    _phraseController = TextEditingController(text: _phrase.phrase);
-    _phraseController.addListener(() => widget.phrase.phrase = _phraseController.text);
-
-    // Check if english is a List or String and handle accordingly
-    if (_phrase.english is List) {
-      _englishController = TextEditingController(text: (_phrase.english as List).join(", "));
-    } else {
-      _englishController = TextEditingController(text: _phrase.english?.toString() ?? "");
-    }
-    _englishController.addListener(() => widget.phrase.english = _englishController.text);
-
-    _usageController = TextEditingController(text: _phrase.usage);
-    _usageController.addListener(()=> widget.phrase.usage = _usageController.text);
   }
 
   @override
   void dispose() {
-    _phraseController.dispose();
-    _englishController.dispose();
-    _usageController.dispose();
     super.dispose();
   }
 
@@ -60,47 +41,37 @@ class _phraseLayoutWidgetState extends State<PhraseLayoutWidget>
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          buildHorizontalRow(
+          PhraseWidget(
             label: "Phrase:",
-            child: TextField(
-              controller: _phraseController,
-              readOnly: widget.readOnly,
-              minLines: 1,
-              maxLines: 5,
-              decoration: const InputDecoration(border: OutlineInputBorder()),
+            text: _phrase.phrase ?? "",
+            autoFocus: true,
+            inputDecoration: const InputDecoration(
+              border: OutlineInputBorder(),
             ),
+            onChange: (value) => _phrase.phrase = value,
           ),
           const SizedBox(height: 16),
-          buildHorizontalRow(
+          PhraseWidget(
             label: "English:",
-            child: TextField(
-              controller: _englishController,
-              minLines: 1,
-              maxLines: 5,
-              readOnly: widget.readOnly,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Translations (comma separated)",
-              ),
+            maxLines:2,
+            text: _phrase.english ?? "",
+            onChange: (value) => _phrase.english = value,
+            inputDecoration: const InputDecoration(
+              border: OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 16),
-          buildHorizontalRow(
+          PhraseWidget(
             label: "Usage:",
-            child: TextField(
-              controller: _usageController,
-              readOnly: widget.readOnly, // 5. Applied readOnly
-              minLines: 1,
-              maxLines: 10,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Context or usage notes",
-              ),
+            maxLines: 5,
+            text: _phrase.usage ?? "",
+            onChange: (value) => _phrase.usage = value,
+            inputDecoration: const InputDecoration(
+              border: OutlineInputBorder(),
             ),
           ),
         ],
       ),
     );
   }
-
 }

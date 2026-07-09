@@ -106,4 +106,15 @@ class PhraseCubit extends Cubit<PhraseState> {
       emit(ErrorPhraseState("Failed to update proficiency: ${e.toString()}"));
     }
   }
+
+  void listPhrases(String startOfPhrase) async{
+    try {
+     List<Phrase> result = await repository.getListOfPhrases(startOfPhrase);
+        emit( ListOfPhrasesState(result));
+
+    } catch (e) {
+      emit(ErrorPhraseState("Error in getting phrases that match input: ${e.toString()}"));
+    }
+
+  }
 }

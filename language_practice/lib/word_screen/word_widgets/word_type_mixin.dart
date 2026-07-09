@@ -42,8 +42,7 @@ mixin WordTypeMixin {
                 .toList(),
           ),
         ),
-        if (onTypesChanged != null && multipleSelectionAllowed ||
-            (!multipleSelectionAllowed && (types ?? <String>[]).isEmpty))
+        if (onTypesChanged != null && (types ?? <String>[]).isEmpty)
           IconButton(
             onPressed: () async {
               await displayWordTypes(

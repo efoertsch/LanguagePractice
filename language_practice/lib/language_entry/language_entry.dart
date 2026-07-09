@@ -66,8 +66,8 @@ class _LanguageEntryState extends State<LanguageEntry>
 
             // Header for Phrase Section
             _buildSectionHeader(context, "Phrase", Colors.green),
-            const TypePhraseWidget(),
 
+            TypePhraseWidget(),
             const Divider(height: 20, thickness: 2),
             _buildSectionHeader(context, "Grammar Rules", Colors.deepPurple),
             const TypeRuleWidget(),
@@ -105,85 +105,6 @@ class _LanguageEntryState extends State<LanguageEntry>
     ];
   }
 
-  //Widget _getMenu(BuildContext context) {
-  //  return PopupMenuButton<String>(
-  //    icon: const Icon(Icons.menu),
-  //    // onCanceled: () {
-  //    //   print("Menu canceled");},
-  //    onSelected: (value) {
-  //      if (value == "set_word_type") {
-  //        _getWordTypesDisplay();
-  //      } else if (value == "quiz_all") {
-  //        _navigateToMasterQuiz(context);
-  //      } else {
-  //        // Pass the value (either 'german' or 'english') to the navigation method
-  //        _navigateToQuiz(context, value);
-  //      }
-  //    },
-  //    itemBuilder: (BuildContext context) => [
-  //      const PopupMenuItem<String>(
-  //        value: 'english',
-  //        child: Row(
-  //          children: [
-  //            Icon(Icons.translate, color: Colors.black54),
-  //            SizedBox(width: 8),
-  //            Text("Quiz English to German"),
-  //          ],
-  //        ),
-  //      ),
-  //      const PopupMenuItem<String>(
-  //        value: 'german',
-  //        child: Row(
-  //          children: [
-  //            Icon(Icons.quiz, color: Colors.black54),
-  //            SizedBox(width: 8),
-  //            Text("Quiz German to English"),
-  //          ],
-  //        ),
-  //      ),
-  //      PopupMenuItem<String>(
-  //        value: 'set_word_type',
-  //        child: Text('Set default WordType'),
-  //      ),
-  //      const PopupMenuItem<String>(
-  //        value: 'quiz_all',
-  //        child: Row(
-  //          children: [
-  //            Icon(Icons.quiz, color: Colors.black54),
-  //            SizedBox(width: 8),
-  //            Text("Quiz Words,Phrases, Rules"),
-  //          ],
-  //        ),
-  //      ),
-  //    ],
-  //  );
-  //}
-
-  Future<void> _getWordTypesDisplay() {
-    return displayWordTypes(
-      context,
-      [_defaultWordType ?? WordType.adjective.displayName],
-      false,
-      (List<String> newTypes) {
-        setState(() {
-          _defaultWordType = newTypes[0];
-        });
-      },
-    );
-  }
-
-  void _navigateToQuiz(BuildContext context, String languageMode) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (routeContext) => BlocProvider.value(
-          value: BlocProvider.of<WordCubit>(context),
-          child: WordQuiz(
-            quizLanguage: languageMode, // Passing 'german' or 'english'
-          ),
-        ),
-      ),
-    );
-  }
 
   void _navigateToMasterQuiz(BuildContext context) {
     Navigator.of(context).push(

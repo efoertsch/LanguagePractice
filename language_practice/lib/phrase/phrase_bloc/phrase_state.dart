@@ -35,3 +35,9 @@ class ErrorPhraseState extends PhraseState {
   final String message;
   ErrorPhraseState(this.message);
 }
+
+class ListOfPhrasesState extends PhraseState{
+  final List<Phrase> listOfPhrases;
+  ListOfPhrasesState(this.listOfPhrases);
+}
+

@@ -193,6 +193,17 @@ class LanguageRepository {
     return writeResult;
   }
 
+  Future<List<Phrase>> getListOfPhrases(String startOfPhrase) async {
+    SelectorBuilder query = where;
+    query.sortBy('phase');
+    if (startOfPhrase.isNotEmpty) {
+      query.match('phrase', '^$startOfPhrase', caseInsensitive: true);
+    };
+    List<Map<String, dynamic>> jsonMap = await phraseCollection!.find(
+      query).toList();
+    return jsonMap.map((json) => Phrase.fromJson(json)).toList();
+  }
+
   Future<WriteResult> updatePhraseQuizScore(ObjectId id, int increment) async {
     return await phraseCollection!.updateOne(
       where.id(id),
@@ -293,4 +304,6 @@ class LanguageRepository {
     // 2. Map the list of JSON maps to a list of WordInfo objects
     return jsonList.map((json) => Rule.fromJson(json)).toList();
   }
+
+
 }
