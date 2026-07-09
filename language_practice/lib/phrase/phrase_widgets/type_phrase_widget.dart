@@ -18,6 +18,7 @@ class TypePhraseWidget extends StatefulWidget {
 class _TypePhraseWidgetState extends State<TypePhraseWidget>
     with RowWithLabelAndChildMixin {
   final FocusNode _phraseInputFieldFocusNode = FocusNode();
+  late ScrollController _listScrollController;
   String _phrase = "";
   bool _isExpanded = false;
 
@@ -27,12 +28,15 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
   @override
   void initState() {
     super.initState();
+    _listScrollController = ScrollController();
+
 
   }
 
   @override
   void dispose() {
     _phraseInputFieldFocusNode.dispose();
+    _listScrollController.dispose();
     super.dispose();
   }
 
@@ -49,7 +53,6 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           child: Column(
-            // Change to max so the Column takes up the full available height
             mainAxisSize: MainAxisSize.min,
             children: [
               _getPhraseWidget(),
@@ -81,30 +84,36 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
       constraints: const BoxConstraints(maxHeight: 300),
       child: Padding(
         padding: const EdgeInsets.only(top: 10.0),
-        child: Scrollbar(
-          child: ListView.separated(
-            // Keep shrinkWrap true when inside a ConstrainedBox
-            shrinkWrap: true,
-            itemCount: _listOfPhrases.length,
-            separatorBuilder: (context, index) => const Divider(),
-            itemBuilder: (context, index) {
-              final phraseItem = _listOfPhrases[index];
-              return ListTile(
-                title: Text(
-                  phraseItem.phrase!,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  phraseItem.english?.toString() ?? "",
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                onTap: () {
-                  _navigateToPhraseInfoWidget(context, phraseItem);
-                },
-              );
-            },
+        child: Material(
+          color: Colors.transparent,
+          child: Scrollbar(
+            controller: _listScrollController,
+            child: ListView.separated(
+              controller: _listScrollController,
+              // Keep shrinkWrap true when inside a ConstrainedBox
+              shrinkWrap: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              itemCount: _listOfPhrases.length,
+              separatorBuilder: (context, index) => const Divider(),
+              itemBuilder: (context, index) {
+                final phraseItem = _listOfPhrases[index];
+                return ListTile(
+                  title: Text(
+                    phraseItem.phrase!,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    phraseItem.english?.toString() ?? "",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                  onTap: () {
+                    _navigateToPhraseInfoWidget(context, phraseItem);
+                  },
+                );
+              },
+            ),
           ),
         ),
       ),
