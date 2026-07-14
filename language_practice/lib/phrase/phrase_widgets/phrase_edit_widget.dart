@@ -11,13 +11,14 @@ import '../../app/dialog_widgets.dart' show CommonWidgets;
 
 class PhraseEditWidget extends StatefulWidget {
   final Phrase phrase;
+
   const PhraseEditWidget({super.key, required this.phrase});
 
   @override
-  State<PhraseEditWidget> createState() => _phraseWidgetState();
+  State<PhraseEditWidget> createState() => _phraseEditWidgetState();
 }
 
-class _phraseWidgetState extends State<PhraseEditWidget>
+class _phraseEditWidgetState extends State<PhraseEditWidget>
     with RowWithLabelAndChildMixin, WordTypeMixin {
 
 

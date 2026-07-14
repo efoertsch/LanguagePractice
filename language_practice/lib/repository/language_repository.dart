@@ -315,4 +315,20 @@ class LanguageRepository {
     // 2. Map the list of JSON maps to a list of WordInfo objects
     return jsonList.map((json) => Rule.fromJson(json)).toList();
   }
+
+  Future<List<Rule>> getListOfRules(String startOfRule) async {
+    SelectorBuilder query = where;
+    query.sortBy('rule');
+    if (startOfRule.isNotEmpty && startOfRule.length > 2){
+      query.match('rule','$startOfRule',caseInsensitive: true);
+    }
+    else if (startOfRule.isNotEmpty) {
+      query.match('rule', '^$startOfRule', caseInsensitive: true);
+    }
+
+    List<Map<String, dynamic>> jsonMap = await ruleCollection!
+        .find(query)
+        .toList();
+    return jsonMap.map((json) => Rule.fromJson(json)).toList();
+  }
 }

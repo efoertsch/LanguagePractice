@@ -21,12 +21,23 @@ class PhraseLayoutWidget extends StatefulWidget {
 
 class _phraseLayoutWidgetState extends State<PhraseLayoutWidget>
     with RowWithLabelAndChildMixin, WordTypeMixin {
-  late Phrase _phrase;
+  late TextEditingController _phraseController;
+  late TextEditingController _englishController;
+  late TextEditingController _usageController;
+
 
   @override
   void initState() {
     super.initState();
-    _phrase = widget.phrase;
+    _phraseController = TextEditingController(text: widget.phrase.phrase);
+    _phraseController.addListener(() => widget.phrase.phrase = _phraseController.text.trim());
+
+    _englishController = TextEditingController(text: widget.phrase.english);
+    _englishController.addListener(() => widget.phrase.english = _englishController.text.trim());
+
+    _usageController = TextEditingController(text: widget.phrase.usage);
+    _usageController.addListener(() => widget..phrase.usage = _usageController.text.trim());
+
   }
 
   @override
@@ -43,19 +54,17 @@ class _phraseLayoutWidgetState extends State<PhraseLayoutWidget>
         children: [
           PhraseWidget(
             label: "Phrase:",
-            text: _phrase.phrase ?? "",
+            controller: _phraseController,
             autoFocus: true,
             inputDecoration: const InputDecoration(
               border: OutlineInputBorder(),
             ),
-            onChange: (value) => _phrase.phrase = value,
           ),
           const SizedBox(height: 16),
           PhraseWidget(
             label: "English:",
             maxLines:2,
-            text: _phrase.english ?? "",
-            onChange: (value) => _phrase.english = value,
+            controller: _englishController,
             inputDecoration: const InputDecoration(
               border: OutlineInputBorder(),
             ),
@@ -64,8 +73,7 @@ class _phraseLayoutWidgetState extends State<PhraseLayoutWidget>
           PhraseWidget(
             label: "Usage:",
             maxLines: 5,
-            text: _phrase.usage ?? "",
-            onChange: (value) => _phrase.usage = value,
+           controller: _usageController,
             inputDecoration: const InputDecoration(
               border: OutlineInputBorder(),
             ),

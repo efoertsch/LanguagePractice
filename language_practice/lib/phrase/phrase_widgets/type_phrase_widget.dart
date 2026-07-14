@@ -4,7 +4,8 @@ import 'package:language_practice/app/dialog_widgets.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_cubit.dart';
 import 'package:language_practice/phrase/phrase_bloc/phrase_state.dart';
 import 'package:language_practice/phrase/phrase_widgets/phrase_edit_widget.dart';
-import 'package:language_practice/phrase/phrase_widgets/phrase_widget.dart' show PhraseWidget;
+import 'package:language_practice/phrase/phrase_widgets/phrase_widget.dart'
+    show PhraseWidget;
 import 'package:language_practice/repository/language_classes/phrase.dart';
 import 'package:language_practice/utility_widgets/row_with_label_and_child.dart';
 
@@ -17,24 +18,25 @@ class TypePhraseWidget extends StatefulWidget {
 
 class _TypePhraseWidgetState extends State<TypePhraseWidget>
     with RowWithLabelAndChildMixin {
+  late TextEditingController _phaseNameController;
   final FocusNode _phraseInputFieldFocusNode = FocusNode();
   late ScrollController _listScrollController;
   String _phrase = "";
-  bool _isExpanded = false;
-
-
   List<Phrase> _listOfPhrases = [];
 
   @override
   void initState() {
     super.initState();
+    _phaseNameController = TextEditingController();
+    _phaseNameController.addListener(() {
+      _getMatchingPhrases(_phaseNameController.text);
+    });
     _listScrollController = ScrollController();
-
-
   }
 
   @override
   void dispose() {
+    _phaseNameController.dispose();
     _phraseInputFieldFocusNode.dispose();
     _listScrollController.dispose();
     super.dispose();
@@ -42,10 +44,6 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
 
   @override
   Widget build(BuildContext context) {
-    return  _createPhraseEntry();
-  }
-
-  Widget _createPhraseEntry() {
     return SizedBox(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -57,8 +55,7 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
             children: [
               _getPhraseWidget(),
               // This will now fill the rest of the window and scroll
-              if (_listOfPhrases.isNotEmpty)
-                _displayListOfPhrases(),
+              if (_listOfPhrases.isNotEmpty) _displayListOfPhrases(),
               _processPhraseListener(),
             ],
           ),
@@ -67,15 +64,17 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
     );
   }
 
-  PhraseWidget _getPhraseWidget() {
-    return PhraseWidget(
-            label: "Phrase:",
-            text: _phrase,
-            autoFocus: true,
-            focusNode: _phraseInputFieldFocusNode,
-            onSubmitted: _handlePhraseChange,
-            onChange: _getMatchingPhrases,
-          );
+  Widget _getPhraseWidget() {
+    return buildHorizontalRow(
+        label: "Phrase:",
+        child: TextField(
+          focusNode: _phraseInputFieldFocusNode,
+          autofocus: true,
+          decoration: const InputDecoration(hintText: 'Enter a phrase'),
+          controller: _phaseNameController,
+          onSubmitted: _handlePhraseChange,
+        )
+    );
   }
 
   Widget _displayListOfPhrases() {
@@ -120,14 +119,11 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
     );
   }
 
-
   void _handlePhraseChange(String value) {
-    if (value.trim().isEmpty) return;
-
-    // Phrases are handled more simply than words (no gender/type parsing usually)
-    context.read<PhraseCubit>().getPhrase(
-      spelledPhrase: value.trim(),
-    );
+    if (value
+        .trim()
+        .isEmpty) return;
+    context.read<PhraseCubit>().getPhrase(spelledPhrase: value.trim());
   }
 
   Widget _processPhraseListener() {
@@ -138,7 +134,9 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
           _navigateToPhraseInfoWidget(context, state.phrase);
         }
         if (state is ListOfPhrasesState) {
-          _listPhrases(state.listOfPhrases);
+          setState(() {
+            _listOfPhrases = state.listOfPhrases;
+          });
         }
         // Handle shared error state
         if (state is ErrorPhraseState) {
@@ -154,39 +152,33 @@ class _TypePhraseWidgetState extends State<TypePhraseWidget>
       child: const SizedBox.shrink(),
     );
   }
+
   void _navigateToPhraseInfoWidget(BuildContext context, Phrase phrase) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (routeContext) => BlocProvider.value(
-          value: BlocProvider.of<PhraseCubit>(context),
-          child: PhraseEditWidget(phrase: phrase),
-        ),
+        builder: (routeContext) =>
+            BlocProvider.value(
+              value: BlocProvider.of<PhraseCubit>(context),
+              child: PhraseEditWidget(phrase: phrase),
+            ),
       ),
     );
     setState(() {
       // Reset the phrase input field
-      _phrase = "";
+      _phaseNameController.clear();
+      _listOfPhrases = [];
     });
     _phraseInputFieldFocusNode.requestFocus();
   }
 
   void _getMatchingPhrases(String value) {
-    if (value.isEmpty){
+    if (value.isEmpty) {
       setState(() {
         _listOfPhrases = [];
       });
       return;
-    };
-    if(value == " ") {
-      value = "";
     }
     context.read<PhraseCubit>().listPhrases(value);
-
   }
 
-  void _listPhrases(List<Phrase> listOfPhrases) {
-    setState(() {
-       _isExpanded = true;
-      _listOfPhrases = listOfPhrases;});
-  }
 }
