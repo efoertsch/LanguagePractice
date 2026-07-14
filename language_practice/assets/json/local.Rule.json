@@ -1,0 +1,252 @@
+[{
+  "_id": {
+    "$oid": "6a07630418657f5070cab4c1"
+  },
+  "rule": "Verbs ending in -ieren",
+  "explanation": "Verbs such as studieren (to study) and reparieren (to repair) form their past participle without ge-. Only -t is added to the stem.",
+  "type": [
+    "verb"
+  ],
+  "example": "studieren -> studiert,  reparieren -> repariert"
+},
+{
+  "_id": {
+    "$oid": "6a077057f26b4589c61ec19c"
+  },
+  "rule": "Separable verbs (not ending in ieren) can form their past participle with -ge- and -en.",
+  "explanation": "Separable verbs (not ending in ieren) can form their past participle with -ge- and -en.",
+  "type": [
+    "verb"
+  ],
+  "example": "Sie ist früh eingeschlafen. (She fell asleep early.)"
+},
+{
+  "_id": {
+    "$oid": "6a0770ddf26b4589c61ec19d"
+  },
+  "rule": "Past participle separable verbs ending in -ieren",
+  "explanation": "Verbs ending in -ieren form their past participle without ge-. Only the -t is added to the stem. The past participles of these verbs  always end in -t.",
+  "type": [],
+  "example": "Wir haben den Traktor repariert. (We fixed the tractor.)",
+  "quiz_score": null
+},
+{
+  "_id": {
+    "$oid": "6a0b69d89a3141ba4fe5dab8"
+  },
+  "rule": "superlative",
+  "explanation": "In German, the superlative is primarily formed by adding -(e)st to the adjective and placing am before it (meaning \"at the most\"). The exact construction depends on whether you are using the adjective in a sentence as a description or right before a noun.",
+  "type": [
+    "adjective"
+  ],
+  "example": "1. The Standard Rule (Predicative/Adverbial)\nWhen the adjective describes a verb or comes after the noun, you use the formula: am + adjective stem + -sten.\n\nschnell (fast) -> am schnellsten (fastest)\nbillig (cheap) -> am billigsten (cheapest)\n\n2. Pronunciation Rule\nIf the adjective ends in a -d, -t, -s, -ß, -sch, -x, or -z, insert an extra -e- before the -sten for easier pronunciation.\n\nalt (old) -> am ältesten (oldest)\nsüß (sweet) -> am süßesten (sweetest)\n\n3. Vowel Changes (Umlauts) Many common, short (one-syllable) adjectives with a, o, or u as the root vowel will get an umlaut (ä, ö, ü) in the superlative.\n\ngroß (big) -> am größten (biggest)\njung (young) -> am jüngsten (youngest)\n\n4. Attributive Form (Before a Noun) If the superlative adjective is modifying a noun directly (e.g., \"the biggest house\"), it does not use \"am\". Instead, it uses the definite article (der/die/das) + adjective stem + -(e)ste + adjective endings based on the case.\n\nDas ist das größte Haus. (This is the biggest house.)\nSie ist die netteste Frau. (She is the nicest woman.)\n\n5. Irregular Superlatives/  A few common adjectives change their root entirely and must be memorized:\ngut (good) -> am besten (best)\nviel (much) ->am meisten (most)\ngern (gladly) -> am liebsten (most gladly)"
+},
+{
+  "_id": {
+    "$oid": "6a0c5fd19b5da8b5f38da726"
+  },
+  "rule": "Passiv",
+  "explanation": "As in English, you use the Passiv (passive voice) in German if you don't know who performed an action or whoever performed it is irrelevant.\n\nThe Passiv is often used in general or universal statements and can be formed in every tense.\n\nThe Passiv is formed with a form of werden and the past participle.  The past participle is always at the end of the sentence.",
+  "type": null,
+  "example": "Die Firma wurde im Jahr 1900 gegründet.   The company was founded in 1900.\n\nDer Blinde wird geführt.  The blind (man) is being guided.\n\nIn Deutschland werden viele Autos produziert.   In Germany, lots of cars are produced."
+},
+{
+  "_id": {
+    "$oid": "6a0dba7c7f694443b4adc75b"
+  },
+  "rule": "Coordinating Conjunctions",
+  "explanation": "These conjunctions connect two independent main clauses. They sit in \"Position 0\" (between the clauses) and do not affect the normal subject-verb word order.\n\nCommon words: und (and), aber (but), oder (or), denn (because), sondern (but rather).\n\nStructure: [Main Clause 1] + [Conjunction] + [Main Clause 2]",
+  "type": [
+    "conjunction"
+  ],
+  "example": "Ich gehe einkaufen, und mein Bruder kocht das Abendessen. (I go shopping, and my brother cooks dinner.)"
+},
+{
+  "_id": {
+    "$oid": "6a0dbacd7f694443b4adc75c"
+  },
+  "rule": "Subordinating Conjunctions",
+  "explanation": "These connect a main clause to a dependent clause. The subordinating conjunction introduces the dependent clause and forces the conjugated verb to the very end of that clause.\n\nCommon words: weil (because), dass (that), wenn (if/when), obwohl (although), bevor (before).Structure: [Main Clause], + [Conjunction] + [Subject] + ... + [Verb]",
+  "type": [
+    "conjunction"
+  ],
+  "example": "Ich bleibe zu Hause, weil es regnet. (I stay at home because it is raining.)"
+},
+{
+  "_id": {
+    "$oid": "6a0dbb2d7f694443b4adc75d"
+  },
+  "rule": "Two-Part Conjunctions",
+  "explanation": "These are paired connectors that coordinate or subordinate two elements together. They are placed exactly before the elements or clauses they are comparing.\n\nCommon words: entweder ... oder (either ... or), weder ... noch (neither ... nor), sowohl ... als auch (both ... and), je ... desto (the ... the).\n\nStructure: [Part 1] [First clause/item], + [Part 2] [Second clause/item]",
+  "type": [
+    "conjunction"
+  ],
+  "example": "Ich möchte entweder Kaffee oder Tee. (I would like either coffee or tea.)"
+},
+{
+  "_id": {
+    "$oid": "6a146c1e31527d9862cc081d"
+  },
+  "rule": "dependent clause",
+  "explanation": "dependent clauses use the SOV (Subject-Object-Verb) structure.Standard Dependent Clause StructureThe Trigger: \n1. Starts with a subordinating conjunction (e.g., weil (because), dass (that), obwohl (although), wenn (if)) or a relative pronoun (e.g., der, die, das).\n2, The Subject: Appears right after the conjunction.\n3.The Middle: Objects, adverbs, and negated words (like nicht) fill the space in the middle.\n4. The End: The conjugated verb is placed at the absolute end of the clause.",
+  "type": null,
+  "example": "\"Ich bleibe zu Hause, weil ich krank bin.\"(I am staying at home because I am sick.)"
+},
+{
+  "_id": {
+    "$oid": "6a14e37b31527d9862cc082b"
+  },
+  "rule": "Mention the person or thing by whom an action is performed (i.e. the agent)",
+  "explanation": "If you want to mention the person or thing by whom an action is performed (i.e. the agent), you can use von followed by the dative.",
+  "type": null,
+  "example": "Grace wird von einem Freund durch die Stadt geführt. ( Grace is being guided through the town by a friend.)\n\nDie Nationalhymne wurde von Haydn komponiert, nicht von Mozart. (The national anthem was composed by Haydn, not by Mozart.)"
+},
+{
+  "_id": {
+    "$oid": "6a14e41f31527d9862cc082c"
+  },
+  "rule": "To mention an agent that isn't a living thing by whom an action is performed",
+  "explanation": "It is expressed with durch plus accusative, e.g. Das Haus wurde durch den Sturm zerstört. (The house was destroyed by the storm.)",
+  "type": null,
+  "example": ""
+},
+{
+  "_id": {
+    "$oid": "6a198dc8f05f69a75c072346"
+  },
+  "rule": "Relative clause",
+  "explanation": "A relative clause describes a person or thing more precisely. It always refers to someone or something (noun) already mentioned in the sentence.\n\nGerman relative pronounds are der, die, das.\n\nRelative clauses start with a relative pronoun. The relative pronoun refers to a previous noun and agrees in gender and number.\n\nIn relative clauses, the verb comes at the end",
+  "type": [],
+  "example": "Das ist der Junge, der brav ist. -That's the boy who's well-behaved.\n\nDie Frau, die dort steht, ist seine Mutter. - The woman who is standing over there is his mother.",
+  "quiz_score": null
+},
+{
+  "_id": {
+    "$oid": "6a1b0067dd2fe301892ccd92"
+  },
+  "rule": "Relative pronoun",
+  "explanation": "As a relative pronoun does not necessarily have to be a subject, it does not always stay in the nominative.\n\nAll forms are the same as the articles except for the plural form in the dative, which is denen.",
+  "type": null,
+  "example": "Das ist mein Kollege, den ich gern mag. (That is my colleague, who I like.  Mögen uses the accusative.)\n\nDie Frau, der ich das Geschenk gab, war meine Freundin. (The woman who I gave the present to was my friend.  Geben uses the dative)\n\nDas sind die Eltern, mit denen ich einen Streit hatte. (Those are the parents with whom I had an argument.     denen - plural form in dative)",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a21848ec5ac7d7863cd4511"
+  },
+  "rule": "als vs wie",
+  "explanation": "Use als for unequal comparisons (meaning \"than\"). It is used alongside comparative adjectives (ending in \"-er\").\n\nUse wie for equal comparisons (meaning \"as\") or similarities (meaning \"like\"). It is used with the base (unmodified) form of adjectives.",
+  "type": null,
+  "example": "1. Als: Comparisons of Difference (\"Than\")\nUse als when comparing two things that are not equal. It translates directly to the English word \"than\".\n\nStructure: [Comparative Adjective] + als\n\nExample: Mein Auto ist schneller als dein Auto. (My car is faster than your car.)\nExample: Er ist größer als sein Vater. (He is taller than his father.)\n\n2. Wie: Comparisons of Equality (\"As ... As\")\nUse wie when two things or people are the same, equal, or share a similarity. It typically translates to \"as\" or \"like\".\n\nStructure: so + [Base Adjective] + wie\n\nExample: Er ist so groß wie sein Vater. (He is as tall as his father.)\nExample: Sie singt wie ein Engel. (She sings like an angel.)",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a22d86c76b4373f535a99f5"
+  },
+  "rule": "Accusative case personal and reflexive pronouns",
+  "explanation": "Accusative case (direct object) indicating a person or thing, words ending in --self (myself, yourself,...)\n\nich           mich             wir      uns\ndu            dich              ihr      euch\ner/sie/es  sich              sie       sich",
+  "type": [],
+  "example": "Use the accusative when the reflexive pronoun is the only object in the sentence.\n\nIts specific function depends on the context:\n\nDirect Object: Used when you are receiving the action of a verb (e.g., Er sieht mich - \"He sees me\").\n\nReflexive Pronoun: Used when the subject and object are the same person (e.g., Ich wasche mich - \"I wash myself\" / \"I am washing\" ).\n\nWith Prepositions: Used after prepositions that require the accusative case, such as für (for) or ohne (without) (e.g., ohne mich - \"without me\").",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a22da7c76b4373f535a99f6"
+  },
+  "rule": "Personal pronouns",
+  "explanation": "German personal pronouns (Personalpronomen) replace nouns and refer to people or things. They change form depending on whether they are the subject (Nominative), the direct object (Accusative), or the indirect object (Dative). Note that in German, you must distinguish between formal and informal forms of \"you\".",
+  "type": [],
+  "example": "Nominative       Accusative          Dative            \n                    (Subject)         (Direct Object)    (Indirect Object)\n \nI/me                   ich                    mich                mir\nYou(informal)    du                     dich                 dir\nHe/Him               er                     ihn                   ihm\nShe/He               sie                    sie                   ihr\nIt                         es                     es                    ihm\nWe/Us                wir                    uns                  uns\nYou(informal)    ihr                     euch                euch\nThey/Them        sie                     sie                   ihnen\nFormal               Sie                     Sie                   Ihnen\n\nHow the Forms Work in Sentences\n1. Nominative (The Subject)\nUsed when the pronoun is doing the action.\nIch (I) kenne den Mann. (I know the man.)\n\n2. Accusative (The Direct Object)\nUsed when the pronoun is directly receiving the action.\nDer Mann sieht mich. (The man sees me.)\n\n3. Dative (The Indirect Object)\nUsed when the pronoun is the recipient (answering \"to whom?\").\nEr gibt mir das Buch. (He gives the book to me.)",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a22de5f76b4373f535a99f7"
+  },
+  "rule": "Possessive pronouns",
+  "explanation": "German possessive pronouns replace a noun entirely (e.g., \"mine\" instead of \"my car\"). They must match the replaced noun's possessor, gender, number, and sentence case (Nominative, Accusative, Dative, or Genitive). \n\nPossessive pronouns are used to indicate possession of non-people! Ther are the very last or very first word in a sentence.",
+  "type": null,
+  "example": "Mine                        mein-               Ours     unser-\nYours(informal)      dein-                Your (informal, plural)   euer-, eur-\nHis/Its                     sein-                 Their(plural, formal)      ihr-\nHer's                       ihr-",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a26b952fb85f5f93a761399"
+  },
+  "rule": "Nouns ending in -a, -o, -i, and -u",
+  "explanation": "These are usually foreign loan words, and form the plural by adding -s",
+  "type": [
+    "noun"
+  ],
+  "example": "das Foto -> die Fotos\ndas Büro -> die Büros",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a26b99efb85f5f93a76139a"
+  },
+  "rule": "Masculine nouns ending in -er",
+  "explanation": "Plural form takes no ending",
+  "type": [
+    "noun"
+  ],
+  "example": "der Fehler -> die Fehler",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a26b9defb85f5f93a76139b"
+  },
+  "rule": "Nouns ending in -ung",
+  "explanation": "Plural forms take -en",
+  "type": [
+    "noun"
+  ],
+  "example": "die Besprechung -> die Besprechungen",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a26ba1ffb85f5f93a76139c"
+  },
+  "rule": "Nouns ending in -e",
+  "explanation": "Plural form usually take -n",
+  "type": null,
+  "example": "die Blume -> die Blumen",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a29970223300934ec1e9c8c"
+  },
+  "rule": "Adjective endings",
+  "explanation": "You only need to add endings to German adjectives when they appear immediately before the noun they modify. If the adjective is used after a linking verb (predicate position), it remains unchanged.\n\n1. The Adjective is After the Noun (Predicate Adjective)\nIf the adjective follows a verb (like sein - to be), it takes no ending.\nDer Hund ist groß. (The dog is big.)\nDie Katze ist klein. (The cat is small.)\n\n2. The Adjective is Before the Noun (Attributive Adjective)\nProper adjective ending depends on \n- the gender of the noun being modified\n- the case of the noun being modified\n- which declension pattern (<– there are 4) is being used\n\nAdjectives take an -en ending in all other cases, as well as for all plural nouns.\nExample: Der rote Ball (The red ball - nominative) vs. Ich sehe den roten Ball\n\nWhen preceded by an Indefinite Article (ein, eine) or Possessive Word (mein, dein):\n\n\nAdjectives borrow the ending of the definite article to clearly show the gender of the noun.\nExample (Nominative): Ein großer Hund (A big dog - masculine), \nEin kleines Kind (A small child - neuter)\nEine schöne Blume (A beautiful flower - feminine). \n\nWhen there is No Article (Zero Article):\nThe adjective must do the heavy lifting to signal the noun's gender and case, so it takes \"strong\" endings.\n\nExample: Ich trinke kaltes Wasser (I drink cold water).",
+  "type": [
+    "adjective"
+  ],
+  "example": "",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5255b59c9ca3b0d0784e2d"
+  },
+  "rule": "Time Adverbs",
+  "explanation": "Einmal... - Once\nZweimal... - Twice\nDreimal... - Three times\nViele male ..  - Many times\nNoch einmal ... - Once again\nDieses mal ... - This time\nNächstes mal ... - Next time\nJedes mal ... - Every time\nAb und zu ... -  From time to time\nImmer wieder ...  - Time and again",
+  "type": [
+    "adverb"
+  ],
+  "example": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5256a19c9ca3b0d0784e2e"
+  },
+  "rule": "Mögen vs gern",
+  "explanation": "Mögen -> to like a person or thing\nGern -> to like doing something (an action)",
+  "type": null,
+  "example": "Mögen + noun\n\nIch mag Pizza.  (I like Pizza)\nIch mag Hundee.  (I like dogs)\n\nverb + gern\nIch schwimme gern.  (I like to swim)\nIch lese gern.  (I like to read)",
+  "quiz_score": 0
+}]

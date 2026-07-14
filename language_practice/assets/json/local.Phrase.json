@@ -1,0 +1,1112 @@
+[{
+  "_id": {
+    "$oid": "69fca70239b5e56f95520bcc"
+  },
+  "phrase": "Hals- und Beinbruch!",
+  "english": "Break a leg!",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a05eb6c20e9562d491c36af"
+  },
+  "phrase": "Ich hätte gern ...",
+  "english": "I'd like ...",
+  "usage": null,
+  "quiz_score": null
+},
+{
+  "_id": {
+    "$oid": "6a05eba320e9562d491c36b0"
+  },
+  "phrase": "Wohin fahren wir?",
+  "english": "Where are we going?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a05ec8420e9562d491c36b2"
+  },
+  "phrase": "Würden Sie viellicht ...",
+  "english": "Would you perhaps...?",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a05ecb420e9562d491c36b3"
+  },
+  "phrase": "Man gewöhnt sich daran",
+  "english": "You get used to it.",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a05f01420e9562d491c36bd"
+  },
+  "phrase": "Ich habe Lust auf ...",
+  "english": "I feel like...",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a074ac8f707bae554322540"
+  },
+  "phrase": "durch die Tür",
+  "english": "through the door",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a074b43f707bae554322541"
+  },
+  "phrase": "den Flur entlang",
+  "english": "along the corridor",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a0b6f979a3141ba4fe5dabe"
+  },
+  "phrase": "Mir geht's gut, danke",
+  "english": "I'm fine thank you",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0b6fe39a3141ba4fe5dabf"
+  },
+  "phrase": "Bis morgen!",
+  "english": "See you in the morning!",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0b70049a3141ba4fe5dac0"
+  },
+  "phrase": "Gute Nacht!",
+  "english": "Good night!",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0b700c9a3141ba4fe5dac1"
+  },
+  "phrase": "Bis bald!",
+  "english": "See you soon!",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0b70419a3141ba4fe5dac2"
+  },
+  "phrase": "Schönes Wochenende!",
+  "english": "Have a nice weekend!",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0c56009b5da8b5f38da71b"
+  },
+  "phrase": "Freut mich sehr! Ich bin …",
+  "english": "Nice to meet you!, I'm...   (lit. I'm so glad! I am…)",
+  "usage": null,
+  "quiz_score": null
+},
+{
+  "_id": {
+    "$oid": "6a0c58c59b5da8b5f38da71c"
+  },
+  "phrase": "Fehlt Ihnen etwas?",
+  "english": "Is something wrong with you?(Formal).  (lit. - Are you lacking something?)",
+  "usage": null,
+  "quiz_score": null
+},
+{
+  "_id": {
+    "$oid": "6a0c599c9b5da8b5f38da71d"
+  },
+  "phrase": "Guten Tag, ich bin ...",
+  "english": "Hello, I am...",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0c5ab49b5da8b5f38da71f"
+  },
+  "phrase": "Guten Morgen Herr ...",
+  "english": "Good morning Mr. ...",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0c80240bf3ac4c70df003b"
+  },
+  "phrase": "Wie heißt du?",
+  "english": "What's your name?",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0c80410bf3ac4c70df003c"
+  },
+  "phrase": "Ich heiße...",
+  "english": "My name is...",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0c80570bf3ac4c70df003d"
+  },
+  "phrase": "Woher kommst du?",
+  "english": "Where do you come from?",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0c805d0bf3ac4c70df003e"
+  },
+  "phrase": "Ich komme aus …",
+  "english": "I come from…",
+  "usage": null,
+  "quiz_score": null
+},
+{
+  "_id": {
+    "$oid": "6a0e531657a3f2866f7f6ef6"
+  },
+  "phrase": "Ich habe Hunger",
+  "english": "I'm hungry",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0e532857a3f2866f7f6ef7"
+  },
+  "phrase": "Ich habe Durst",
+  "english": "I am thirsty",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0e534257a3f2866f7f6ef8"
+  },
+  "phrase": "Mir is kalt",
+  "english": "I'm cold",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0e569557a3f2866f7f6eff"
+  },
+  "phrase": "Entschuldigung, wo ist ...?",
+  "english": "Excuse me, where is...?",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0e56ab57a3f2866f7f6f00"
+  },
+  "phrase": "Können Sie das bitte wiederholen",
+  "english": "Could you please repeat that?",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0e56c057a3f2866f7f6f01"
+  },
+  "phrase": "Danke für deine Hilfe!",
+  "english": "Thanks for your help!",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0e56c657a3f2866f7f6f02"
+  },
+  "phrase": "Kannst du mir bitte helfen?",
+  "english": "Can you please help me?",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a0e589957a3f2866f7f6f04"
+  },
+  "phrase": "Hast du kurz Zeit?",
+  "english": "Do you have a moment(/minute)? (lit.short time)",
+  "usage": null,
+  "quiz_score": null
+},
+{
+  "_id": {
+    "$oid": "6a14644b31527d9862cc0810"
+  },
+  "phrase": "Sie sollten sich schonen.",
+  "english": "You should take it easy.",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a14661831527d9862cc0814"
+  },
+  "phrase": "jemanden besuchen",
+  "english": "visit someone",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a14e12831527d9862cc0828"
+  },
+  "phrase": "Wusstest du eigentlich",
+  "english": "Did you know",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a16fbbaab91108acece75fb"
+  },
+  "phrase": "gar nicht gut",
+  "english": "not good at all",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a16fc67ab91108acece75fc"
+  },
+  "phrase": "Du hast recht.",
+  "english": "You're right.",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a16fc89ab91108acece75fd"
+  },
+  "phrase": "Das sehe ich anders.",
+  "english": "I see it differently.",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a16fce2ab91108acece7600"
+  },
+  "phrase": "Mir ist schwindelig",
+  "english": "I feel dizzy",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a16fea6ab91108acece7602"
+  },
+  "phrase": "den Mund verbieten",
+  "english": "to silence",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a16fed5ab91108acece7603"
+  },
+  "phrase": "die Nase voll haben",
+  "english": "to be sick of it, fed up",
+  "usage": null,
+  "quiz_score": null
+},
+{
+  "_id": {
+    "$oid": "6a16fef6ab91108acece7604"
+  },
+  "phrase": "Mir ist übel.",
+  "english": "I feel nauseous.",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a16ffd1ab91108acece7605"
+  },
+  "phrase": "wahr sein",
+  "english": "to be true",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a17004aab91108acece7606"
+  },
+  "phrase": "eifersüchtig sein",
+  "english": "to be jealous",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a17007cab91108acece7607"
+  },
+  "phrase": "Ich bin erkältet.",
+  "english": "I have a cold.",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a170223ab91108acece760b"
+  },
+  "phrase": "Es kann sein, dass …",
+  "english": "It is possible that…",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a170267ab91108acece760c"
+  },
+  "phrase": "Ich habe morgen schon etwas vor.",
+  "english": "I already have plans for tomorrow.",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a170b72ab91108acece7618"
+  },
+  "phrase": "in Scheiben schneiden",
+  "english": "slice",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a19808bf05f69a75c072333"
+  },
+  "phrase": "Gute Besserung!",
+  "english": "Get well soon!",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a198275f05f69a75c072335"
+  },
+  "phrase": "dem Brautpaar etwas schenken",
+  "english": "Give something to the bride and groom",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a1982bbf05f69a75c072336"
+  },
+  "phrase": "einen Heiratsantrag machen",
+  "english": "to propose marriage",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a1982d7f05f69a75c072337"
+  },
+  "phrase": "die Einladung zur Hochzeit",
+  "english": "the wedding invitation",
+  "usage": null
+},
+{
+  "_id": {
+    "$oid": "6a1b215006c22748c91bff58"
+  },
+  "phrase": "Das darf doch nicht wahr sein!",
+  "english": "This can't be true!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a1b224906c22748c91bff59"
+  },
+  "phrase": "Kopf hoch!",
+  "english": "Chin up!",
+  "usage": null,
+  "quiz_score": 1
+},
+{
+  "_id": {
+    "$oid": "6a1b228006c22748c91bff5a"
+  },
+  "phrase": "sich entspannen",
+  "english": "to relax",
+  "usage": null,
+  "quiz_score": 1
+},
+{
+  "_id": {
+    "$oid": "6a1b245706c22748c91bff5f"
+  },
+  "phrase": "Hattest du viel zu tun?",
+  "english": "Did you have a lot to do?",
+  "usage": null,
+  "quiz_score": 1
+},
+{
+  "_id": {
+    "$oid": "6a1b259406c22748c91bff61"
+  },
+  "phrase": "Ich freue mich für euch.",
+  "english": "I'm happy for you.",
+  "usage": null,
+  "quiz_score": -2
+},
+{
+  "_id": {
+    "$oid": "6a1b25cd06c22748c91bff62"
+  },
+  "phrase": "mit einem blauen Auge davonkommen",
+  "english": "to get away with a black eye",
+  "usage": null,
+  "quiz_score": 1
+},
+{
+  "_id": {
+    "$oid": "6a1b260206c22748c91bff63"
+  },
+  "phrase": "Wir konnten es nach unten tragen.",
+  "english": "We were able to carry it downstairs.",
+  "usage": null,
+  "quiz_score": -2
+},
+{
+  "_id": {
+    "$oid": "6a1b298606c22748c91bff68"
+  },
+  "phrase": "eine Meldebescheinigung beantragen",
+  "english": "apply for a registration certificate",
+  "usage": null,
+  "quiz_score": -1
+},
+{
+  "_id": {
+    "$oid": "6a25ad063789f1d619bb3547"
+  },
+  "phrase": "Ich hätte gern …",
+  "english": "I'd like …",
+  "usage": null,
+  "quiz_score": -2
+},
+{
+  "_id": {
+    "$oid": "6a25ae923789f1d619bb3548"
+  },
+  "phrase": "Könnten Sie bitte ...",
+  "english": "Could you please ...",
+  "usage": null,
+  "quiz_score": -2
+},
+{
+  "_id": {
+    "$oid": "6a25aeaf3789f1d619bb3549"
+  },
+  "phrase": "Würden Sie vielleicht ...",
+  "english": "Would you perhaps...?",
+  "usage": null,
+  "quiz_score": -2
+},
+{
+  "_id": {
+    "$oid": "6a26c219fb85f5f93a7613a1"
+  },
+  "phrase": "Was für ein Zufall!",
+  "english": "What a coincidence!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a282d6423300934ec1e9c84"
+  },
+  "phrase": "Ich habe immer noch keine Stelle gefunden.",
+  "english": "I still haven't found a job.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a2830bc23300934ec1e9c85"
+  },
+  "phrase": "Wir wurden durch die Altstadt geführt.",
+  "english": "We were guided tour through the old town.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a28319623300934ec1e9c86"
+  },
+  "phrase": "Ich wohne in ...",
+  "english": "I live in ...",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a2831a223300934ec1e9c87"
+  },
+  "phrase": "Ich heiße ...",
+  "english": "My name is ...",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a28320423300934ec1e9c88"
+  },
+  "phrase": "Was machst du beruflich?",
+  "english": "What is your profession?   What do you do for a living?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a2833d923300934ec1e9c8a"
+  },
+  "phrase": "Hast du gerade eine Sekunde?",
+  "english": "Do you have a second?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a28355323300934ec1e9c8b"
+  },
+  "phrase": "Sie wartet schon seit einer Stunde!",
+  "english": "She's been waiting for an hour already!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a2c099376e8f647f47fd755"
+  },
+  "phrase": "sich interessieren für",
+  "english": "to be interested in, are interested in",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a2c111b76e8f647f47fd75b"
+  },
+  "phrase": "in die U-Bahn umsteigen",
+  "english": "change (trains) to the subway",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a2d72b6635aed3323db489a"
+  },
+  "phrase": "in ein Taxi einsteigen",
+  "english": "get into a taxi",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a2d745a635aed3323db489d"
+  },
+  "phrase": "dort oben",
+  "english": "up there",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a2d8139635aed3323db48a4"
+  },
+  "phrase": "im Computer nachsehen",
+  "english": "to check(lit. to look up) in the computer",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a300158b60272bc4c276424"
+  },
+  "phrase": "Das sehe ich anders!",
+  "english": "I see things differently!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a35427ae93976222ef7e1fd"
+  },
+  "phrase": "Es kann sein, dass ...",
+  "english": "It is possible that...",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a35dce77b1c09ddf587fc49"
+  },
+  "phrase": "in den Semesterfeiren",
+  "english": "during the semester break",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a3a8e70fe9d06865c7058b3"
+  },
+  "phrase": "Ich finde, dass ...",
+  "english": "I think that ...",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a3d32cc7ce9053bcb41a056"
+  },
+  "phrase": "in RIchtung",
+  "english": "towards",
+  "usage": "in Richtung Alexanderplatz - towards (lit. in direction) Alexanderplatz",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a3ec6ab13f3cc1fdf79b8fc"
+  },
+  "phrase": "Ich hätte gern(e) ...",
+  "english": "I would like  ...",
+  "usage": "Ich hätte gerne ein Kilo Äpfel",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a3ec70e13f3cc1fdf79b8fd"
+  },
+  "phrase": "Wie viel kosten dies(e) ...",
+  "english": "How much do these xxxx cost?",
+  "usage": "Wie viel kosten diese Orangen",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a45373accf465fc7ea093ff"
+  },
+  "phrase": "Ach so!",
+  "english": "Oh, I see!   Oh right!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a45374cccf465fc7ea09400"
+  },
+  "phrase": "Echt?",
+  "english": "Really?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a453774ccf465fc7ea09402"
+  },
+  "phrase": "Genau!",
+  "english": "Exactly!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a453782ccf465fc7ea09403"
+  },
+  "phrase": "Na klar!",
+  "english": "Sure, of course!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a45379eccf465fc7ea09404"
+  },
+  "phrase": "Natürlich!",
+  "english": "Naturally!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4537abccf465fc7ea09405"
+  },
+  "phrase": "Kein problem!",
+  "english": "No problem!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4537c0ccf465fc7ea09406"
+  },
+  "phrase": "Alles klar!",
+  "english": "Alright!,  Understood!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4537e6ccf465fc7ea09407"
+  },
+  "phrase": "Schön gut!",
+  "english": "It's okay! \nVery good!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4537f3ccf465fc7ea09408"
+  },
+  "phrase": "Warum nicht?",
+  "english": "Why not?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a453805ccf465fc7ea09409"
+  },
+  "phrase": "Das macht Sinn.",
+  "english": "That makes sense.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a45381eccf465fc7ea0940a"
+  },
+  "phrase": "Kommt darauf an.",
+  "english": "It depends.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a45382cccf465fc7ea0940b"
+  },
+  "phrase": "So ist es.",
+  "english": "That's the way it is.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a453836ccf465fc7ea0940c"
+  },
+  "phrase": "Hoffentlich!",
+  "english": "Hopefully!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a453854ccf465fc7ea0940d"
+  },
+  "phrase": "Auf keinen Fall!",
+  "english": "No way!\nAbsolutely not!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a45385eccf465fc7ea0940e"
+  },
+  "phrase": "Allerdings.",
+  "english": "However.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a45387bccf465fc7ea0940f"
+  },
+  "phrase": "Durchaus möglich.",
+  "english": "Quite possible.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4538a2ccf465fc7ea09410"
+  },
+  "phrase": "Eben!",
+  "english": "Exactly!  \nThats the point!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4538b7ccf465fc7ea09411"
+  },
+  "phrase": "Interressant!",
+  "english": "Interesting!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4538c9ccf465fc7ea09412"
+  },
+  "phrase": "Ich glaube schon.",
+  "english": "I think so.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4538dfccf465fc7ea09413"
+  },
+  "phrase": "Kann sein.",
+  "english": "Maybe.\nIt could be.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4e56784c295f93f2e6e9ec"
+  },
+  "phrase": "Von welchem Gleis fährt der Zug nach ...?",
+  "english": "From which platform does the train to ... depart?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4e6aeef64bcb98e5a69963"
+  },
+  "phrase": "den Weg erklären",
+  "english": "explain the way",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4e6c24f64bcb98e5a69964"
+  },
+  "phrase": "Ist es in der Nähe?",
+  "english": "Is it nearby?,   Is it near?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4e6d9fc2622d5ff95bbfd6"
+  },
+  "phrase": "zu Fuß gehen",
+  "english": "to walk( (on foot)",
+  "usage": "",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4e71a5c2622d5ff95bbfd8"
+  },
+  "phrase": "Stimmt so.",
+  "english": "Keep the change.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a4e9c38c2622d5ff95bbfe6"
+  },
+  "phrase": "zum Beispiel",
+  "english": "for example, include",
+  "usage": "Erfrischungsgetränke sind zum Beispiel Cola, Limonade und andere sprudelnde, alkoholfreie Getränke.\nSoft drinks include cola, lemonade and other fizzy, non-alcoholic drinks.",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5002357b440d5d0bd46d5b"
+  },
+  "phrase": "Ich trinke meinen Kaffee ohne Milch.",
+  "english": "I drink my coffee without milk.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5002647b440d5d0bd46d5c"
+  },
+  "phrase": "Ich nehme eine Flasche Mineralwasser ohne Kohlensäure.",
+  "english": "I'll take a bottle of still mineral water.   (I'll take a bottle of non-sparkling mineral water.)",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5003c47b440d5d0bd46d5f"
+  },
+  "phrase": "Magst du lieber Rotwein oder Weißwein?",
+  "english": "Do you prefer red wine or white wine?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a500d937b440d5d0bd46d60"
+  },
+  "phrase": "Ich habe nur Orangensaft da.",
+  "english": "I only have orange juice.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a503cf1c52a4fd7393e7280"
+  },
+  "phrase": "Was willst du?",
+  "english": "What do you want?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a503d04c52a4fd7393e7281"
+  },
+  "phrase": "Wo ist die Bank?",
+  "english": "Where is the bank?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a503d24c52a4fd7393e7282"
+  },
+  "phrase": "Es it in der Nähe.",
+  "english": "It's nearby.   It's near here.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a503d38c52a4fd7393e7283"
+  },
+  "phrase": "Öffne die Tür.",
+  "english": "Open the door.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a503d4dc52a4fd7393e7284"
+  },
+  "phrase": "Schließe das Fenster.",
+  "english": "Close the window.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a503d62c52a4fd7393e7285"
+  },
+  "phrase": "Biege links ab.",
+  "english": "Turn left.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a503da7c52a4fd7393e7286"
+  },
+  "phrase": "Nimm das.",
+  "english": "Take that (this).",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a503ea7c52a4fd7393e7287"
+  },
+  "phrase": "Ich werde nachsehen.",
+  "english": "I'll check.   \nI will look into it.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5254209c9ca3b0d0784e25"
+  },
+  "phrase": "Wie bitte?",
+  "english": "Pardon? I'm sorry, what?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a52543b9c9ca3b0d0784e26"
+  },
+  "phrase": "Keine Ahnung.",
+  "english": "No idea.  I have no idea.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a52546a9c9ca3b0d0784e27"
+  },
+  "phrase": "Das stimmt.",
+  "english": "That's correct.  That's right. ",
+  "usage": "Can use to indicate any extra change from bill is for a tip.",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a52547d9c9ca3b0d0784e28"
+  },
+  "phrase": "Das glaube ich nicht.",
+  "english": "I do not believe that.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5254889c9ca3b0d0784e29"
+  },
+  "phrase": "Ich bin sicher.",
+  "english": "I am sure.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5254a29c9ca3b0d0784e2a"
+  },
+  "phrase": "Vielleicht.",
+  "english": "Perhaps.  Maybe.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5254ad9c9ca3b0d0784e2b"
+  },
+  "phrase": "Natürlich.",
+  "english": "Naturally.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5254cd9c9ca3b0d0784e2c"
+  },
+  "phrase": "Es is mir egal.",
+  "english": "I don't care.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5256cd9c9ca3b0d0784e2f"
+  },
+  "phrase": "Was tut es weh?",
+  "english": "Where does it hurt?   How does it hurt?   ",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a554f1b0e0c16524e95981c"
+  },
+  "phrase": "mehr als genug",
+  "english": "more than enough",
+  "usage": "Der Schokoladenkuchen war sehr, sehr mächtig – ein kleines Stück war mehr als genug!\nThe chocolate cake was very, very rich – just one tiny piece was more than enough!",
+  "quiz_score": 0
+}]
