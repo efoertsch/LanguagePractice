@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocProvider, MultiBlocProvider;
 import 'package:get_it/get_it.dart';
-import 'package:language_practice/enums/word_enums.dart' show WordType;
 import 'package:language_practice/phrase/phrase_bloc/phrase_cubit.dart';
 import 'package:language_practice/phrase/phrase_widgets/type_phrase_widget.dart';
 import 'package:language_practice/quiz_widgets/master_quiz.dart';
@@ -10,7 +9,6 @@ import 'package:language_practice/rule/rule_bloc/rule_cubit.dart';
 import 'package:language_practice/rule/rule_widgets/type_rule_widget.dart';
 import 'package:language_practice/word_screen/type_word_widget.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
-import 'package:language_practice/word_screen/word_quiz_screen.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
 
 import '../quiz_widgets/quiz_bloc/quiz_cubit.dart';

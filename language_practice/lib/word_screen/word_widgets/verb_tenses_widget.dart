@@ -256,7 +256,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
     return [
       ConjugatedTenseWidget(
         activeTenseIndex: _activeTenseIndex,
-        label: "Helper Verb",
+        label: " Auxiliary Verb",
         value: currentTense.helperVerb ?? "",
         isReadOnly: isReadOnly,
         onChanged: (val) {
