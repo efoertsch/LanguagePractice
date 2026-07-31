@@ -152,18 +152,15 @@ class LanguageRepository {
     return jsonList.map((json) => WordInfo.fromJson(json)).toList();
   }
 
-  Future<List<WordInfo>> getListOfWords(String startOfWord) async {
-    SelectorBuilder query = where;
-    query.sortBy('word');
-    if (startOfWord.isNotEmpty) {
-      query.match('word', '^$startOfWord', caseInsensitive: true);
-    }
-    ;
-    List<Map<String, dynamic>> jsonMap = await wordCollection!
-        .find(query)
-        .toList();
+  Future<List<WordInfo>> getListOfWords(String searchString) async {
+    List<Map<String, dynamic>> jsonMap = await wordCollection!.find(
+        where.match('word', '$searchString', caseInsensitive: true)
+            .or(where.match('english', '$searchString', caseInsensitive: true))
+            .sortBy('word')).toList();
+
     return jsonMap.map((json) => WordInfo.fromJson(json)).toList();
   }
+
 
   Future<WriteResult> updateWordQuizScore(ObjectId id, int increment) async {
     return await wordCollection!.updateOne(
@@ -206,18 +203,16 @@ class LanguageRepository {
     return writeResult;
   }
 
-  Future<List<Phrase>> getListOfPhrases(String startOfPhrase) async {
-    SelectorBuilder query = where;
-    query.sortBy('phase');
-    if (startOfPhrase.isNotEmpty) {
-      query.match('phrase', '^$startOfPhrase', caseInsensitive: true);
-    }
-    ;
-    List<Map<String, dynamic>> jsonMap = await phraseCollection!
-        .find(query)
-        .toList();
+  Future<List<Phrase>> getListOfPhrases(String searchString) async {
+
+    List<Map<String, dynamic>> jsonMap = await phraseCollection!.find(
+    where.match('phrase', '$searchString', caseInsensitive: true)
+        .or(where.match('english', '$searchString', caseInsensitive: true))
+        .sortBy('phrase')).toList();
+
     return jsonMap.map((json) => Phrase.fromJson(json)).toList();
   }
+
 
   Future<WriteResult> updatePhraseQuizScore(ObjectId id, int increment) async {
     return await phraseCollection!.updateOne(
@@ -316,19 +311,12 @@ class LanguageRepository {
     return jsonList.map((json) => Rule.fromJson(json)).toList();
   }
 
-  Future<List<Rule>> getListOfRules(String startOfRule) async {
-    SelectorBuilder query = where;
-    query.sortBy('rule');
-    if (startOfRule.isNotEmpty && startOfRule.length > 2){
-      query.match('rule','$startOfRule',caseInsensitive: true);
-    }
-    else if (startOfRule.isNotEmpty) {
-      query.match('rule', '^$startOfRule', caseInsensitive: true);
-    }
+  Future<List<Rule>> getListOfRules(String searchPhrase) async {
+    List<Map<String, dynamic>> jsonMap = await ruleCollection!.find(
+        where.match('rule', '$searchPhrase', caseInsensitive: true)
+            .or(where.match('explanation', '$searchPhrase', caseInsensitive: true))
+            .sortBy('rule')).toList();
 
-    List<Map<String, dynamic>> jsonMap = await ruleCollection!
-        .find(query)
-        .toList();
     return jsonMap.map((json) => Rule.fromJson(json)).toList();
   }
 }

@@ -108,6 +108,7 @@ class PhraseCubit extends Cubit<PhraseState> {
   }
 
   void listPhrases(String startOfPhrase) async{
+    if (startOfPhrase.length > 1) {
     try {
      List<Phrase> result = await repository.getListOfPhrases(startOfPhrase);
         emit( ListOfPhrasesState(result));
@@ -116,5 +117,5 @@ class PhraseCubit extends Cubit<PhraseState> {
       emit(ErrorPhraseState("Error in getting phrases that match input: ${e.toString()}"));
     }
 
-  }
+  }}
 }

@@ -156,7 +156,12 @@ class _TypeWordWidgetState extends State<TypeWordWidget>
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios, size: 14),
                   onTap: () {
-                    _handleWordChange( "${wordItem.gender ?? ''} ${wordItem.word ?? ''}");
+                    if (wordItem.gender == null){
+                      _handleWordChange( "${wordItem.word ?? ''}");
+                    } else {
+                      _handleWordChange("${wordItem.gender ?? ''} ${wordItem
+                          .word ?? ''}");
+                    }
                   },
                 );
               },
