@@ -86,10 +86,10 @@ class RuleCubit extends Cubit<RuleState> {
   }
 
 
-  void updateRuleScore(ObjectId objectId, int increment) async {
+  void updateRuleScore(ObjectId objectId, bool isCorrect) async {
     try {
       WriteResult result = await repository.updateRuleQuizScore(
-          objectId, increment);
+          objectId, isCorrect ? 1 : -2);
 
       if (result.nModified == 1 || result.nMatched == 1) {
         // 2. Optional: If you need the UI to reflect the change immediately without a full refresh,

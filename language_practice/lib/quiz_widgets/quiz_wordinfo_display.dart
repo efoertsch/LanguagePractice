@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:language_practice/repository/language_classes/word_info.dart';
 import 'package:language_practice/word_screen/word_widgets/verb_tenses_widget.dart';
 import 'package:language_practice/word_screen/word_widgets/word_rules.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
+
+import '../word_screen/word_bloc/word_cubit.dart';
+import '../word_screen/word_info_widget.dart';
 
 class QuizWordinfoDisplay extends StatelessWidget with WordTypeMixin {
   final WordInfo wordInfo;
@@ -25,7 +29,7 @@ class QuizWordinfoDisplay extends StatelessWidget with WordTypeMixin {
      // mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _getAnswerRow(),
+        _getAnswerRow(context),
         const SizedBox(height: 8),
         buildTypeChips(context: context, types: wordInfo.type),
         const SizedBox(height: 8),
@@ -43,37 +47,51 @@ class QuizWordinfoDisplay extends StatelessWidget with WordTypeMixin {
     );
   }
 
-  Row _getAnswerRow() {
+  Row _getAnswerRow(BuildContext context) { // Added BuildContext parameter
     return Row(
-        //mainAxisSize: MainAxisSize.min,
-        children: [
-          Flexible(
-            child: Text(
-              "Answer :",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
+      children: [
+        const Flexible(
+          child: Text(
+            "Answer :",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
             ),
           ),
-          SizedBox(width: 8),
-          Expanded(
-            child: TextField(
-              controller: _quizAnswerController,
-              readOnly: true,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-              // decoration: InputDecoration(
-              //   border: OutlineInputBorder(),
-              // ),
-              minLines: 1,
-              maxLines: 4,
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: TextField(
+            controller: _quizAnswerController,
+            readOnly: true,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+            minLines: 1,
+            maxLines: 4,
+            decoration: const InputDecoration(
+              border: InputBorder.none,
             ),
           ),
-        ],
-      );
+        ),
+        // ADDED PENCIL ICON BUTTON
+        IconButton(
+          icon: const Icon(Icons.edit, color: Colors.blueGrey),
+          tooltip: 'Edit Word',
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (routeContext) => BlocProvider.value(
+                  value: BlocProvider.of<WordCubit>(context),
+                  child: WordInfoWidget(wordInfo: wordInfo),
+                ),
+              ),
+            );
+          },
+        ),
+      ],
+    );
   }
 
   String _getAnswerWord({

@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:language_practice/repository/language_classes/phrase.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
+
+import '../phrase/phrase_bloc/phrase_cubit.dart';
+import '../phrase/phrase_widgets/phrase_edit_widget.dart';
+import '../phrase/phrase_widgets/phrase_layout_widget.dart';
+import '../phrase/phrase_widgets/phrase_widget.dart';
 
 class QuizPhraseInfoDisplay extends StatelessWidget with WordTypeMixin {
   final Phrase phrase;
@@ -23,7 +29,7 @@ class QuizPhraseInfoDisplay extends StatelessWidget with WordTypeMixin {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _getAnswerRow(),
+        _getAnswerRow(context),
         const SizedBox(height: 16),
         // Phrases typically have usage/context instead of tenses or plurals
         if (phrase.usage != null && phrase.usage!.isNotEmpty)
@@ -34,7 +40,7 @@ class QuizPhraseInfoDisplay extends StatelessWidget with WordTypeMixin {
     );
   }
 
-  Row _getAnswerRow() {
+  Row _getAnswerRow(BuildContext context) {
     return Row(
       children: [
         const Flexible(
@@ -53,7 +59,7 @@ class QuizPhraseInfoDisplay extends StatelessWidget with WordTypeMixin {
             readOnly: true,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 14,
+              fontSize: 16,
             ),
             minLines: 1,
             maxLines: 4,
@@ -61,6 +67,20 @@ class QuizPhraseInfoDisplay extends StatelessWidget with WordTypeMixin {
               border: InputBorder.none, // Match the style of WordInfo display
             ),
           ),
+        ),// ADDED PENCIL ICON BUTTON
+        IconButton(
+          icon: const Icon(Icons.edit, color: Colors.blueGrey),
+          tooltip: 'Edit Phrase',
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (routeContext) => BlocProvider.value(
+                  value: BlocProvider.of<PhraseCubit>(context),
+                  child: PhraseEditWidget(phrase: phrase),
+                ),
+              ),
+            );
+          },
         ),
       ],
     );

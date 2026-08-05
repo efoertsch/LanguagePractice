@@ -91,9 +91,9 @@ class PhraseCubit extends Cubit<PhraseState> {
     }
   }
 
-  void updatePhraseScore(ObjectId objectId, int increment) async {
+  void updatePhraseScore(ObjectId objectId, bool isCorrect) async {
     try {
-      WriteResult result = await repository.updatePhraseQuizScore(objectId, increment);
+      WriteResult result = await repository.updatePhraseQuizScore(objectId, isCorrect ? 1 : -2);
 
       if (result.nModified == 1 || result.nMatched == 1) {
         // 2. Optional: If you need the UI to reflect the change immediately without a full refresh,

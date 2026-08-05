@@ -482,14 +482,11 @@ class _MasterQuizViewerState extends State<MasterQuizViewer>
   void _handleAnswer(dynamic item, bool isCorrect) {
     if (item.id != null) {
       if (item is WordInfo) {
-        context.read<WordCubit>().updateWordScore(item.id!, isCorrect ? 1 : -2);
+        context.read<WordCubit>().updateWordScore(item.id!, isCorrect);
       } else if (item is Phrase) {
-        context.read<PhraseCubit>().updatePhraseScore(
-          item.id!,
-          isCorrect ? 1 : -2,
-        );
+        context.read<PhraseCubit>().updatePhraseScore(item.id!, isCorrect);
       } else if (item is Rule) {
-        context.read<RuleCubit>().updateRuleScore(item.id!, isCorrect ? 1 : -2);
+        context.read<RuleCubit>().updateRuleScore(item.id!, isCorrect);
       }
       setState(() {
         _showDetails = false;
