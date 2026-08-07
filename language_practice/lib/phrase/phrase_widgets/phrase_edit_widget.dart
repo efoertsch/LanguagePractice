@@ -23,11 +23,7 @@ class _phraseEditWidgetState extends State<PhraseEditWidget>
 
 
   void _onSave() {
-    if (widget.phrase.previouslyEntered) {
-      context.read<PhraseCubit>().updatePhrase(widget.phrase);
-    } else {
       context.read<PhraseCubit>().savePhrase(widget.phrase);
-    }
   }
 
   void _onDelete() {
@@ -89,11 +85,7 @@ class _phraseEditWidgetState extends State<PhraseEditWidget>
           autofocus: true,
           heroTag: "save_phrase_btn",
           onPressed: () async {
-            if (widget.phrase.previouslyEntered) {
-              await context.read<PhraseCubit>().updatePhrase(widget.phrase);
-            } else {
               await context.read<PhraseCubit>().savePhrase(widget.phrase);
-            }
           },
           label: Text(widget.phrase.previouslyEntered ? "Update" : "Save"),
           icon: const Icon(Icons.save),

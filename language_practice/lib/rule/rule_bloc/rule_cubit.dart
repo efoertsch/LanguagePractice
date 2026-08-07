@@ -27,8 +27,16 @@ class RuleCubit extends Cubit<RuleState> {
     }
   }
 
-  /// Adds a new rule to the database
   Future<void> saveRule(Rule rule) async {
+    if (rule.id == null) {
+      addRule(rule);
+    } else {
+      updateRule(rule);
+    }
+  }
+
+  /// Adds a new rule to the database
+  Future<void> addRule(Rule rule) async {
     try {
       WriteResult writeResult = await repository.saveRule(rule);
       if (writeResult.nInserted == 1) {

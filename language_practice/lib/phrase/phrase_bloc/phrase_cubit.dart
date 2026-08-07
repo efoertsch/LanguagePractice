@@ -5,7 +5,6 @@ import 'package:mongo_dart/mongo_dart.dart';
 
 import '../../repository/language_repository.dart';
 
-
 class PhraseCubit extends Cubit<PhraseState> {
   final LanguageRepository repository;
 
@@ -23,7 +22,9 @@ class PhraseCubit extends Cubit<PhraseState> {
       if (phrase == null) {
         // New phrase logic: create the object and fetch initial translation
         phrase = Phrase(phrase: spelledPhrase);
-        String translation = await repository.getEnglishTranslation(spelledPhrase);
+        String translation = await repository.getEnglishTranslation(
+          spelledPhrase,
+        );
         phrase.english = translation;
       }
 
@@ -33,8 +34,16 @@ class PhraseCubit extends Cubit<PhraseState> {
     }
   }
 
-  /// Adds a new phrase to the database
   Future<void> savePhrase(Phrase phrase) async {
+    if (phrase.id == null) {
+      await addPhrase(phrase);
+    } else {
+      await updatePhrase(phrase);
+    }
+  }
+
+  /// Adds a new phrase to the database
+  Future<void> addPhrase(Phrase phrase) async {
     try {
       WriteResult writeResult = await repository.savePhrase(phrase);
       if (writeResult.nInserted == 1) {
@@ -43,7 +52,7 @@ class PhraseCubit extends Cubit<PhraseState> {
         emit(
           ErrorPhraseState(
             "An error occurred while saving the phrase: "
-                "${writeResult.errmsg ?? "Unknown error"}",
+            "${writeResult.errmsg ?? "Unknown error"}",
           ),
         );
       }
@@ -63,7 +72,7 @@ class PhraseCubit extends Cubit<PhraseState> {
         emit(
           ErrorPhraseState(
             "An error occurred while updating the phrase: "
-                "${writeResult.errmsg ?? "Unknown error"}",
+            "${writeResult.errmsg ?? "Unknown error"}",
           ),
         );
       }
@@ -82,7 +91,7 @@ class PhraseCubit extends Cubit<PhraseState> {
         emit(
           ErrorPhraseState(
             "An error occurred while deleting the phrase: "
-                "${writeResult.errmsg ?? "Unknown error"}",
+            "${writeResult.errmsg ?? "Unknown error"}",
           ),
         );
       }
@@ -93,7 +102,10 @@ class PhraseCubit extends Cubit<PhraseState> {
 
   void updatePhraseScore(ObjectId objectId, bool isCorrect) async {
     try {
-      WriteResult result = await repository.updatePhraseQuizScore(objectId, isCorrect ? 1 : -2);
+      WriteResult result = await repository.updatePhraseQuizScore(
+        objectId,
+        isCorrect ? 1 : -2,
+      );
 
       if (result.nModified == 1 || result.nMatched == 1) {
         // 2. Optional: If you need the UI to reflect the change immediately without a full refresh,
@@ -107,15 +119,18 @@ class PhraseCubit extends Cubit<PhraseState> {
     }
   }
 
-  void listPhrases(String startOfPhrase) async{
+  void listPhrases(String startOfPhrase) async {
     if (startOfPhrase.length > 1) {
-    try {
-     List<Phrase> result = await repository.getListOfPhrases(startOfPhrase);
-        emit( ListOfPhrasesState(result));
-
-    } catch (e) {
-      emit(ErrorPhraseState("Error in getting phrases that match input: ${e.toString()}"));
+      try {
+        List<Phrase> result = await repository.getListOfPhrases(startOfPhrase);
+        emit(ListOfPhrasesState(result));
+      } catch (e) {
+        emit(
+          ErrorPhraseState(
+            "Error in getting phrases that match input: ${e.toString()}",
+          ),
+        );
+      }
     }
-
-  }}
+  }
 }

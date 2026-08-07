@@ -104,11 +104,7 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
           autofocus: true,
           heroTag: "save_btn",
           onPressed: () async {
-            if (widget.wordInfo.previouslyEntered) {
-              await context.read<WordCubit>().updateWord(widget.wordInfo);
-            } else {
               await context.read<WordCubit>().saveWord(widget.wordInfo);
-            }
           },
           label: Text(widget.wordInfo.previouslyEntered ? "Update" : "Save"),
           icon: const Icon(Icons.save),

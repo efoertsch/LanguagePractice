@@ -21,11 +21,7 @@ class _RuleEditWidgetState extends State<RuleEditWidget>
     with RowWithLabelAndChildMixin, WordTypeMixin {
 
   void _onSave() {
-    if (widget.rule.id != null) {
-      context.read<RuleCubit>().updateRule(widget.rule);
-    } else {
-      context.read<RuleCubit>().saveRule(widget.rule);
-    }
+    context.read<RuleCubit>().saveRule(widget.rule);
   }
 
   void _onDelete() {

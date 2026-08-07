@@ -224,9 +224,9 @@ class _MasterQuizViewerState extends State<MasterQuizViewer>
     );
   }
 
-  DropdownButtonFormField<String> _getQuizDisplayOptions() {
+  Widget _getQuizDisplayOptions() {
     return DropdownButtonFormField<String>(
-      value: _displayField,
+      initialValue: _displayField,
       decoration: const InputDecoration(
         isDense: true,
         contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
