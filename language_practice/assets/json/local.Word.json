@@ -953,6 +953,7 @@
   "english": [
     "short"
   ],
+  "quiz_score": 4,
   "plural": null,
   "gender": null,
   "type": [
@@ -960,7 +961,12 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 4
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Hast du kurz Zeit?\nDo you have a minute (lit. short time)?"
+    }
+  ]
 },
 {
   "_id": {
@@ -995,6 +1001,7 @@
   "english": [
     "full"
   ],
+  "quiz_score": 4,
   "plural": null,
   "gender": null,
   "type": [
@@ -1002,7 +1009,16 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 4
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "antonym - leer (empty)"
+    },
+    {
+      "type": "adjective",
+      "rule": "Voll literally means full like an object or container.  Do not use voll to mean full from eating. Use satt instead.  Crucially, saying \"Ich bin voll\" after a meal can colloquially mean \"I am drunk,\" so using satt is the correct choice for food."
+    }
+  ]
 },
 {
   "_id": {
@@ -1381,7 +1397,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": -4
+  "quiz_score": -3
 },
 {
   "_id": {
@@ -1503,7 +1519,7 @@
       "rule": "Comparison:\nWichtig (Important) \n Wichtiger (More important) \n Am wichtigsten (Most important)"
     }
   ],
-  "quiz_score": 0
+  "quiz_score": -1
 },
 {
   "_id": {
@@ -1549,7 +1565,8 @@
   },
   "word": "weil",
   "english": [
-    "because"
+    "because",
+    " since"
   ],
   "quiz_score": 1,
   "plural": null,
@@ -1614,6 +1631,7 @@
     "truthful",
     "sincere"
   ],
+  "quiz_score": -10,
   "plural": null,
   "gender": null,
   "type": [
@@ -1625,7 +1643,7 @@
   "rules": [
     {
       "type": "adjective",
-      "rule": "It is used to describe trustworthy people, truthful statements, or genuine intentions. \nAs an adjective (Honest/Sincere):\nEr ist ein ehrlicher Mann. (He is an honest man.)\nSei ehrlich mit mir. (Be honest with me.)\nEhrliche Arbeit. (Honest work.)"
+      "rule": "Ehrlich describes an action, a person, or an attitude of openness and lack of deceit (being honest), whereas wahr describes a factual state, statement, or reality that corresponds to the facts (being true)\n\nIt is used to describe trustworthy people, truthful statements, or genuine intentions. \nAs an adjective (Honest/Sincere):\nEr ist ein ehrlicher Mann. (He is an honest man.)\nSei ehrlich mit mir. (Be honest with me.)\nEhrliche Arbeit. (Honest work.)"
     },
     {
       "type": "adverb",
@@ -1635,8 +1653,7 @@
       "type": "adjective",
       "rule": "Key Phrases with \"Ehrlich\":\nehrlich gesagt (honestly, to be honest)\num ehrlich zu sein (to be honest)\nehrlich währt am längsten (proverb: honesty is the best policy)\nes ehrlich mit jemandem meinen (to have honest/good intentions towards someone) "
     }
-  ],
-  "quiz_score": -9
+  ]
 },
 {
   "_id": {
@@ -1770,7 +1787,7 @@
     },
     {
       "tense": "Präteritum",
-      "english": "could",
+      "english": "could, were able to ",
       "1st_person_singular": "konnte",
       "2nd_person_singular": "konntest",
       "3rd_person_singular": "konnte",
@@ -1808,7 +1825,11 @@
   "rules": [
     {
       "type": "verb",
-      "rule": "Können is a model verb that expresses a possibility, permission, obligation or ability. It is always accompanied by a second verb in infinitive form which is placed at the end of the clause"
+      "rule": "Können is a model verb that expresses a possibility, permission, obligation or ability. It is always accompanied by a second verb in infinitive form which is placed at the end of the clause.\n\nKann ich mit Karte zahlen?  (Can I pay by card?)"
+    },
+    {
+      "type": "verb",
+      "rule": "Können is a model verb so you normally use the Präteritum(e.g. Konnten). The main verb is in the infinitive (e.g. sagen) and placed at the end of the sentence.\n\nWir konnten gestern leider nicht zum Unterricht kommen. (Unfortunately, we were not able to come to class yesterday.)\n"
     }
   ]
 },
@@ -1909,7 +1930,7 @@
     },
     {
       "type": "verb",
-      "rule": "Konjuntiv II - simple_past('Präteritum'), a verb form used to express hypothetical situations, wishes, unreal conditions, and polite requests. It roughly corresponds to the English \"would/could\" or \"if I were...\" structures.\n\n1. The würde + Infinitive (Most Common)For most verbs, especially in everyday spoken German, you can simply use the conjugated form of werden (would) plus the infinitive verb at the very end of the sentence.\n\nExample: Ich würde gern nach Deutschland reisen. (I would like to travel to Germany.)\n"
+      "rule": "Konjuntiv II - simple_past('Präteritum'), a verb form used to express hypothetical situations, wishes, unreal conditions, and polite requests. It roughly corresponds to the English \"would/could\" or \"if I were...\" structures.\n\n1. The würde + Infinitive (Most Common) For most verbs, especially in everyday spoken German, you can simply use the conjugated form of werden (would) plus the infinitive verb at the very end of the sentence.\n\nExamples: \n\nIch würde gern nach Deutschland reisen. (I would like to travel to Germany.)\n\nIch würde ein Doppelzimmer bevorzugen. (I would prefer a double room.)"
     }
   ]
 },
@@ -2025,7 +2046,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2042,7 +2063,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2060,7 +2081,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": -2
+  "quiz_score": -1
 },
 {
   "_id": {
@@ -2077,7 +2098,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2090,6 +2111,7 @@
     "delicious",
     "nice"
   ],
+  "quiz_score": 1,
   "plural": null,
   "gender": null,
   "type": [
@@ -2097,7 +2119,12 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Das klingt gesund und lecker.\nThat sounds healthy and delicious."
+    }
+  ]
 },
 {
   "_id": {
@@ -2107,7 +2134,7 @@
   "english": [
     "a cold (as in sick)"
   ],
-  "quiz_score": 0,
+  "quiz_score": 1,
   "plural": null,
   "gender": null,
   "type": [
@@ -2124,14 +2151,20 @@
   "english": [
     "Time"
   ],
-  "quiz_score": 0,
+  "quiz_score": 1,
   "plural": "Zeiten",
   "gender": "die",
   "type": [
     "noun"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Ich habe keine Zeit.  (I have no time.  I am not free.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -2148,7 +2181,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2158,7 +2191,7 @@
   "english": [
     "audience"
   ],
-  "quiz_score": 0,
+  "quiz_score": 1,
   "plural": "Publikum",
   "gender": "das",
   "type": [
@@ -2182,7 +2215,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2199,24 +2232,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
-},
-{
-  "_id": {
-    "$oid": "69e4e5e68e0421769d925c21"
-  },
-  "word": "Vorstellungsgespräch",
-  "english": [
-    "job interview"
-  ],
-  "plural": "Vorstellungsgespräche",
-  "gender": "das",
-  "type": [
-    "noun"
-  ],
-  "verb_conjugation_class": null,
-  "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2233,7 +2249,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2250,7 +2266,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2412,8 +2428,10 @@
   },
   "word": "fehlen",
   "english": [
-    "miss"
+    "miss",
+    " missing"
   ],
+  "quiz_score": -1,
   "plural": null,
   "gender": null,
   "type": [
@@ -2427,7 +2445,7 @@
       "english": "be missing, miss, be missed",
       "1st_person_singular": "fehle",
       "2nd_person_singular": "fehlst",
-      "3rd_person_singular": "fehlen",
+      "3rd_person_singular": "fehlt",
       "1st_person_plural": "fehlen",
       "2nd_person_plural": "fehlt",
       "3rd_person_plural": "fehlen",
@@ -2470,8 +2488,7 @@
       "helper_verb": null,
       "past_participle": null
     }
-  ],
-  "quiz_score": -1
+  ]
 },
 {
   "_id": {
@@ -2488,7 +2505,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2505,7 +2522,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2549,7 +2566,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2566,7 +2583,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2577,7 +2594,7 @@
     "(the letter of)Transfer",
     " (the letter of) Referral"
   ],
-  "quiz_score": 0,
+  "quiz_score": 1,
   "plural": "Transfers",
   "gender": "die",
   "type": [
@@ -2601,7 +2618,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -2609,7 +2626,9 @@
   },
   "word": "helfen",
   "english": [
-    "help"
+    "help",
+    " assist",
+    " support"
   ],
   "quiz_score": 0,
   "plural": null,
@@ -2988,7 +3007,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -3045,7 +3064,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -3063,7 +3082,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -3080,7 +3099,7 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -3200,6 +3219,30 @@
       "3rd_person_plural": "geben",
       "helper_verb": null,
       "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "gab",
+      "2nd_person_singular": "gabst",
+      "3rd_person_singular": "gab",
+      "1st_person_plural": "gaben",
+      "2nd_person_plural": "gabt",
+      "3rd_person_plural": "gaben",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "gegeben"
     }
   ],
   "rules": [
@@ -3262,38 +3305,31 @@
 },
 {
   "_id": {
-    "$oid": "69e8b1065868577a16e93ad7"
-  },
-  "word": "Nebenwirkungen",
-  "english": [
-    "Side effects"
-  ],
-  "plural": "Nebenwirkungen",
-  "gender": "die",
-  "type": [
-    "noun"
-  ],
-  "verb_conjugation_class": null,
-  "verb_functional_type": null,
-  "quiz_score": 0
-},
-{
-  "_id": {
     "$oid": "69e8b1425868577a16e93ad8"
   },
   "word": "übel",
   "english": [
-    "sick",
-    " bad"
+    "evil",
+    " bad",
+    " ill",
+    " nauseous",
+    " sick",
+    " foul"
   ],
-  "quiz_score": -2,
+  "quiz_score": 0,
   "plural": null,
   "gender": null,
   "type": [
     "adjective"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Es war eine üble Zeit. (It was a foul time.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -3353,7 +3389,13 @@
   },
   "word": "gegen",
   "english": [
-    "against"
+    "around",
+    "  round about",
+    "  against",
+    "  to",
+    "  towards",
+    " toward",
+    "  verus"
   ],
   "quiz_score": 0,
   "plural": null,
@@ -3366,7 +3408,7 @@
   "rules": [
     {
       "type": "preposition",
-      "rule": "Used in the accusative case"
+      "rule": "Used in the accusative case.\n\nIch komme gegen acht Uhr nach Hause.\nI'm coming home around eight o'clock.\n\nDer Zug fährt gegen neun Uhr ab.\nThe train leaves around nine o'clock.\n"
     }
   ]
 },
@@ -3584,6 +3626,7 @@
     "truthful",
     "vertable"
   ],
+  "quiz_score": -1,
   "plural": null,
   "gender": null,
   "type": [
@@ -3591,7 +3634,12 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": -1
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Wahr describes a factual state, statement, or reality that corresponds to the facts (being true),.\n\n(Ehrlich describes an action, a person, or an attitude of openness and lack of deceit (being honest))\n\n\"Das ist wahr\" (That is true).\n\"Eine wahre Geschichte\" (A true story)."
+    }
+  ]
 },
 {
   "_id": {
@@ -3658,23 +3706,6 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null
-},
-{
-  "_id": {
-    "$oid": "69ea1ff11fd20c0183667a6f"
-  },
-  "word": "Ei",
-  "english": [
-    "egg"
-  ],
-  "plural": "Eier",
-  "gender": "das",
-  "type": [
-    "noun"
-  ],
-  "verb_conjugation_class": null,
-  "verb_functional_type": null,
-  "quiz_score": 0
 },
 {
   "_id": {
@@ -4036,14 +4067,20 @@
   "english": [
     "Glass"
   ],
+  "quiz_score": 0,
   "plural": "Gläser",
-  "gender": "das",
+  "gender": null,
   "type": [
     "noun"
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 0
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Trink nicht aus der Flasche, nimm ein Glas!\nDon't drink from the bottle, use a glass!"
+    }
+  ]
 },
 {
   "_id": {
@@ -4054,6 +4091,7 @@
     "smart",
     "clever"
   ],
+  "quiz_score": -1,
   "plural": null,
   "gender": null,
   "type": [
@@ -4061,7 +4099,12 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": -1
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich bin klug. (I am smart.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -4144,6 +4187,7 @@
     "slice",
     "intersect"
   ],
+  "quiz_score": -1,
   "plural": null,
   "gender": null,
   "type": [
@@ -4155,17 +4199,46 @@
     {
       "tense": "Präsens",
       "english": "cut",
+      "1st_person_singular": "schneide",
+      "2nd_person_singular": "schneidest",
+      "3rd_person_singular": "schneidet",
+      "1st_person_plural": "schneiden",
+      "2nd_person_plural": "schneidet",
+      "3rd_person_plural": "schneiden",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "schnitt",
+      "2nd_person_singular": "schnittest",
+      "3rd_person_singular": "schnitt",
+      "1st_person_plural": "schnitten",
+      "2nd_person_plural": "schnittet",
+      "3rd_person_plural": "schnitten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
       "1st_person_singular": null,
       "2nd_person_singular": null,
       "3rd_person_singular": null,
       "1st_person_plural": null,
       "2nd_person_plural": null,
       "3rd_person_plural": null,
-      "helper_verb": null,
-      "past_participle": null
+      "helper_verb": "haben",
+      "past_participle": "geschnitten"
     }
   ],
-  "quiz_score": -1
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Dieses Messer ist nicht scharf genug, um Butter zu schneiden!\nThis knife isn't sharp enough to cut butter!"
+    }
+  ]
 },
 {
   "_id": {
@@ -4399,16 +4472,17 @@
   },
   "word": "Kühlschrank",
   "english": [
-    "Refrigerator"
+    "Refrigerator",
+    " fridge"
   ],
+  "quiz_score": 0,
   "plural": "Kühlschränke",
   "gender": "der",
   "type": [
     "noun"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null,
-  "quiz_score": 0
+  "verb_functional_type": null
 },
 {
   "_id": {
@@ -4502,7 +4576,7 @@
     },
     {
       "type": "adverb",
-      "rule": "superlative - viel, mehr (more), am meisten (the most)"
+      "rule": "superlative - viel (much), mehr (more), am meisten (the most)"
     }
   ]
 },
@@ -4805,7 +4879,7 @@
       "rule": "Separable verb -  Ich "
     }
   ],
-  "quiz_score": 0
+  "quiz_score": -2
 },
 {
   "_id": {
@@ -4867,6 +4941,7 @@
     "sorrowfully(adv)",
     "nournfully(adv)"
   ],
+  "quiz_score": 1,
   "plural": null,
   "gender": null,
   "type": [
@@ -4875,7 +4950,12 @@
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
-  "quiz_score": 1
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich bin night traurig. (I am not sad.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -7882,6 +7962,10 @@
     {
       "type": "adjective",
       "rule": "Use of 'in der Näher',  It is near -> Es ist in der Näher"
+    },
+    {
+      "type": "adjective",
+      "rule": "Der nächste Supermarkt ist gleich um die Ecke.\nthe closest supermarket is around the corner"
     }
   ]
 },
@@ -7943,15 +8027,14 @@
   },
   "word": "gründend",
   "english": [
-    "found",
-    " found",
-    " established"
+    "founding",
+    " establishing"
   ],
   "quiz_score": 0,
   "plural": null,
   "gender": null,
   "type": [
-    "verb"
+    "adjective"
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null,
@@ -7959,38 +8042,20 @@
     {
       "tense": "Präsens",
       "english": "found,  found,  established",
-      "1st_person_singular": "gründe",
-      "2nd_person_singular": "gründest",
-      "3rd_person_singular": "gründet",
-      "1st_person_plural": "gründen",
-      "2nd_person_plural": "gründet",
-      "3rd_person_plural": "gründen",
-      "helper_verb": null,
-      "past_participle": null
-    },
-    {
-      "tense": "Präteritum",
-      "english": null,
-      "1st_person_singular": "gründete",
-      "2nd_person_singular": "gründetest",
-      "3rd_person_singular": "gründete",
-      "1st_person_plural": "gründeten",
-      "2nd_person_plural": "gründetet",
-      "3rd_person_plural": "gründeten",
-      "helper_verb": null,
-      "past_participle": null
-    },
-    {
-      "tense": "Perfekt",
-      "english": null,
       "1st_person_singular": null,
       "2nd_person_singular": null,
       "3rd_person_singular": null,
       "1st_person_plural": null,
       "2nd_person_plural": null,
       "3rd_person_plural": null,
-      "helper_verb": "haben",
-      "past_participle": "gründet"
+      "helper_verb": null,
+      "past_participle": null
+    }
+  ],
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Gründend (The Present Participle of Gründen )\n\nThis form acts like an adjective or describes an ongoing action, equivalent to the English ending \"-ing\". It is used when the subject is actively in the process of establishing something right at that moment.\n\nExample usage:\nDie gründenden Mitglieder unterschrieben den Vertrag. (The founding/establishing members signed the contract.)\n\nEr saß am Schreibtisch, seine neue Firma gründend. (He sat at his desk, establishing his new company.)"
     }
   ]
 },
@@ -8542,7 +8607,13 @@
     "conjunction"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Ich brauche noch zen Minuten.  (I need 10 more minutes.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -8612,12 +8683,18 @@
   ],
   "quiz_score": 0,
   "plural": "Stunden",
-  "gender": "die",
+  "gender": null,
   "type": [
     "noun"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Sie wartet schon seit einer Stunde! (She's been waiting for an hour!)"
+    }
+  ]
 },
 {
   "_id": {
@@ -8761,6 +8838,12 @@
       "helper_verb": "haben",
       "past_participle": "dauert"
     }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "dauern refers to the duration of an event, vs brauchen that refers to the time a person or thing needs to complete an action."
+    }
   ]
 },
 {
@@ -8843,6 +8926,12 @@
       "helper_verb": "haben",
       "past_participle": "gewartet"
     }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Sie wartet schon seit einer Stunde!  She has been waiting for an hour already!"
+    }
   ]
 },
 {
@@ -8911,7 +9000,13 @@
     "adjective"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich bin nicht glücklich. (I am not happy)"
+    }
+  ]
 },
 {
   "_id": {
@@ -8934,7 +9029,13 @@
     "adverb"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich bin müde. (I am tired.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -8958,7 +9059,13 @@
     "adjective"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich bin nicht krank. (I am not sick.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -9299,6 +9406,12 @@
       "helper_verb": "haben",
       "past_participle": "geholt"
     }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Ich hole die Zutaten aus der Küche.\nI'll get the ingredients from the kitchen."
+    }
   ]
 },
 {
@@ -9328,12 +9441,18 @@
   ],
   "quiz_score": 0,
   "plural": "Flaschen",
-  "gender": "die",
+  "gender": null,
   "type": [
     "noun"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Trink nicht aus der Flasche, nimm ein Glas!\nDon't drink from the bottle, use a glass!\n\nMöchten Sie eine Flasche oder ein Glas Wein?\nWould you like a bottle or a glass of wine?"
+    }
+  ]
 },
 {
   "_id": {
@@ -9479,7 +9598,7 @@
   ],
   "quiz_score": 0,
   "plural": "U-Bahnen",
-  "gender": "die",
+  "gender": null,
   "type": [
     "noun"
   ],
@@ -9488,7 +9607,7 @@
   "rules": [
     {
       "type": "noun",
-      "rule": "Short for Untergrundbahn (underground train)"
+      "rule": "Short for Untergrundbahn (underground train)\n\n\nDie nächste U-Bahn kommt in 10 Minuten.  The next subway is in 10 minutes.\nDie u-Bahn hat 10 Minuten Verspätung.  The subway has a 10-minute delay."
     }
   ]
 },
@@ -9499,7 +9618,9 @@
   "word": "Verspätung",
   "english": [
     "Delay",
-    " Tardiness"
+    "  Tardiness",
+    " lateness",
+    " belatedness"
   ],
   "quiz_score": 0,
   "plural": "Verspätungen",
@@ -9547,7 +9668,13 @@
     "adjective"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ist dieser Platz frei?  Is this seat taken(lit. available)?"
+    }
+  ]
 },
 {
   "_id": {
@@ -9572,7 +9699,12 @@
   },
   "word": "Kasse",
   "english": [
-    "Checkout"
+    "Checkout",
+    " cash",
+    " cash registoer",
+    " till",
+    " register",
+    " bank"
   ],
   "quiz_score": 0,
   "plural": "Kassen",
@@ -9594,12 +9726,18 @@
   ],
   "quiz_score": 0,
   "plural": "Karten",
-  "gender": "die",
+  "gender": null,
   "type": [
     "noun"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Kann ich mit Karte zahlen? (Can I pay by card?)"
+    }
+  ]
 },
 {
   "_id": {
@@ -9660,7 +9798,7 @@
   "rules": [
     {
       "type": "verb",
-      "rule": "Zahlen emphasizes the act or amount of paying (often used with no object or a specific sum), while bezahlen emphasizes the specific item or person being paid\n\"Ich zahle bar.\" (I am paying in cash.)\n\"Ich zahle 10 Euro.\" (I am paying 10 Euros.)\n\"Möchten Sie zahlen?\" (Would you like to pay? — common in restaurants)\n"
+      "rule": "Zahlen emphasizes the act or amount of paying (often used with no object or a specific sum), while bezahlen emphasizes the specific item or person being paid\n\"Ich zahle bar.\" (I am paying in cash.)\n\"Ich zahle 10 Euro.\" (I am paying 10 Euros.)\n\"Möchten Sie zahlen?\" (Would you like to pay? — common in restaurants)\n\"Ich muss noch zahlen.\" (I still need to pay.)\n\nBezahlen focuses on the specific item, service, or person you are paying for and usually takes a direct (accusative) object.\nExample: \"Ich bezahle die Rechnung.\" (I am paying the bill.)\nExample: \"Ich bezahle das Essen.\" (I am paying for the food.)"
     }
   ]
 },
@@ -9718,6 +9856,12 @@
       "3rd_person_plural": null,
       "helper_verb": "haben",
       "past_participle": "geöffnet"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Er öffnet das Geschäft früh.  (He opens the store early)\n\nEr öffnete das Geschäft früh. (He opened the store early)\n\nWie lange haben Sie geöffnet?  (How long are you open?)\n"
     }
   ]
 },
@@ -9883,6 +10027,12 @@
       "3rd_person_plural": null,
       "helper_verb": "haben",
       "past_participle": "anprobiert"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Kann ich das anprobrieren?  (Can I try this on?)"
     }
   ]
 },
@@ -10402,6 +10552,12 @@
       "3rd_person_plural": null,
       "helper_verb": "haben",
       "past_participle": "gegründet"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "This is the standard, dictionary form of the verb. It translates to \"to found,\" \"to establish,\" or \"to base\".\nExample usage:\nWir wollen ein neues Unternehmen gründen. (We want to found a new company.)\nWorauf gründet sich dieser Verdacht? (On what is this suspicion based?)"
     }
   ]
 },
@@ -11208,6 +11364,12 @@
       "helper_verb": "haben",
       "past_participle": "gebacken"
     }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Meine Oma backt immer noch ihr eigenes Brot.\nMy grandma still bakes her own bread."
+    }
   ]
 },
 {
@@ -11355,6 +11517,12 @@
       "3rd_person_plural": null,
       "helper_verb": "habe",
       "past_participle": "geschält"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Ich schäle die Kartoffeln.\nI'm peeling the potatoes."
     }
   ]
 },
@@ -11568,7 +11736,13 @@
     "adverb"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ist das schwer zu machen?\nIs it difficult to make?"
+    }
+  ]
 },
 {
   "_id": {
@@ -11693,70 +11867,6 @@
     {
       "type": "verb",
       "rule": "Müssen is a model verb so you normally use the Präteritum(e.g. Mussten). The main verb is in the infinitive (e.g. sagen) and placed at the end of the sentence."
-    }
-  ]
-},
-{
-  "_id": {
-    "$oid": "6a18619bb048c035d59380f3"
-  },
-  "word": "Können",
-  "english": [
-    "Can",
-    "  may",
-    "  get",
-    " also means know how to do something."
-  ],
-  "quiz_score": 0,
-  "plural": null,
-  "gender": null,
-  "type": [
-    "verb"
-  ],
-  "verb_conjugation_class": null,
-  "verb_functional_type": null,
-  "tenses": [
-    {
-      "tense": "Präsens",
-      "english": "Can",
-      "1st_person_singular": "kann",
-      "2nd_person_singular": "kannst",
-      "3rd_person_singular": "kann",
-      "1st_person_plural": "können",
-      "2nd_person_plural": "könnt",
-      "3rd_person_plural": "können",
-      "helper_verb": null,
-      "past_participle": null
-    },
-    {
-      "tense": "Präteritum",
-      "english": null,
-      "1st_person_singular": "konnte",
-      "2nd_person_singular": "konntest",
-      "3rd_person_singular": "konnte",
-      "1st_person_plural": "konnten",
-      "2nd_person_plural": "konntet",
-      "3rd_person_plural": "konnten",
-      "helper_verb": null,
-      "past_participle": null
-    },
-    {
-      "tense": "Perfekt",
-      "english": null,
-      "1st_person_singular": null,
-      "2nd_person_singular": null,
-      "3rd_person_singular": null,
-      "1st_person_plural": null,
-      "2nd_person_plural": null,
-      "3rd_person_plural": null,
-      "helper_verb": "haben",
-      "past_participle": "gekonnt"
-    }
-  ],
-  "rules": [
-    {
-      "type": "verb",
-      "rule": "Können is a model verb so you normally use the Präteritum(e.g. Konnten). The main verb is in the infinitive (e.g. sagen) and placed at the end of the sentence."
     }
   ]
 },
@@ -13029,16 +13139,23 @@
   },
   "word": "Geschirr",
   "english": [
-    "Dishes"
+    "Dishes",
+    " tableware"
   ],
   "quiz_score": 0,
   "plural": "Geschirr",
-  "gender": "das",
+  "gender": null,
   "type": [
     "noun"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Wir haben von meinen Eltern Geschirr geliehen – unsere Teller und unser Besteck sind nicht schön genug.\nWe've borrowed tableware from my parents – our plates and cutlery aren't nice enough."
+    }
+  ]
 },
 {
   "_id": {
@@ -13459,7 +13576,13 @@
     "adverb"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Wir konnten gestern leider nicht zum Unterricht kommen. (Unfortunately, we were not able to come to class yesterday.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -13479,7 +13602,13 @@
     "adverb"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Three levels of preference: \npositive: Gern (like to/gladly)\ncomparative: lieber (perfer to/more gladly)\nsuperlative: am liebsten (like the most/most gladly)\n\nIch trinke gern Kaffee, aber Tee trinke ich am liebsten. (I like to drink coffee, but I like drinking tea the most).\n\n\nIch fahre lieber mit dem Bus. (I perfer to take the bus.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -14185,7 +14314,13 @@
     "noun"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Ich habe Kaffee in meine Tasse nachgeschenkt, in der Hoffnung, dass er mich durch die Nacht bringt.\nI refilled my cup with coffee, hoping it would help me through the night."
+    }
+  ]
 },
 {
   "_id": {
@@ -15241,7 +15376,13 @@
     "adjective"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "(Actually the past perfect form of öffnen - open)\n\nWie lange haben Sie geöffnet?  (How long are you open?)"
+    }
+  ]
 },
 {
   "_id": {
@@ -15280,12 +15421,18 @@
   ],
   "quiz_score": 0,
   "plural": "Touristenattraktionen",
-  "gender": "die",
+  "gender": null,
   "type": [
     "noun"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Im Reiseführer gibt es viele Sehenswürdigkeiten."
+    }
+  ]
 },
 {
   "_id": {
@@ -15394,6 +15541,12 @@
       "helper_verb": "sein",
       "past_participle": "eingestiegen"
     }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "einsteigen is a separable verb specifically meaning to get on, board, or step into a vehicle, while Steigen means to climb, step up, or rise (e.g., in temperature or price)"
+    }
   ]
 },
 {
@@ -15450,6 +15603,12 @@
       "3rd_person_plural": null,
       "helper_verb": "sein",
       "past_participle": "gestiegen"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Steigen means to climb, step up, or rise (e.g., in temperature or price), while einsteigen is a separable verb specifically meaning to get on, board, or step into a vehicle."
     }
   ]
 },
@@ -15600,8 +15759,8 @@
   "word": "verlängern",
   "english": [
     "extend",
-    " prolog",
-    " renew"
+    "  prolong",
+    "  renew"
   ],
   "quiz_score": 0,
   "plural": null,
@@ -15949,6 +16108,12 @@
       "3rd_person_plural": null,
       "helper_verb": "haben",
       "past_participle": "gesollt"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Sollen shows a direct duty or rule from someone else, while sollten gives soft advice or a polite idea.\n\nUsing Sollen (Present Tense)\nMeans you are supposed to do something, or someone told you to do it.\nExpresses an outside rule, order, or expectation.\nExample: \"Ich soll zum Arzt gehen\" (I am supposed to go to the doctor—because someone told me I need to).\nExample: \"Du sollst dein Zimmer aufräumen\" (You are supposed to clean your room—an order from a parent).\n\nUsing Sollten (Subjunctive / Past Tense)\nIs the \"what if\" or polite form (Konjunktiv II).\nUsed to give friendly advice, tips, or recommendations.Example: \"Du solltest mehr schlafen\" (You should sleep more—it is a good idea, but up to you).\nExample: \"Wir sollten jetzt gehen\" (We ought to leave now / It would be good if we left)."
     }
   ]
 },
@@ -16439,6 +16604,12 @@
       "helper_verb": "sein",
       "past_participle": "hineingegangen"
     }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "\"Es wird kühl, lass uns hineingehen,\" \n\"It's getting cool – let's go inside.\"\n\nTom öffnete die Tür und ging hinein.\" \n(Tom opened the door and went inside.)\n"
+    }
   ]
 },
 {
@@ -16513,7 +16684,13 @@
     "adjective"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Es ist eine friedliche Fahrt.\nIt is a peaceful ride."
+    }
+  ]
 },
 {
   "_id": {
@@ -16643,14 +16820,22 @@
   },
   "word": "gleich",
   "english": [
-    "very soon",
-    " (lit. in a minute)"
+    "(adj) equal",
+    " even",
+    " uniform",
+    "  identical",
+    " equivalent",
+    "  (adv)very soon  (lit. in a minute)",
+    "  right away",
+    " immediately",
+    " identically"
   ],
   "quiz_score": 0,
   "plural": null,
   "gender": null,
   "type": [
-    "adverb"
+    "adverb",
+    "adjective"
   ],
   "verb_conjugation_class": null,
   "verb_functional_type": null
@@ -16726,6 +16911,12 @@
       "3rd_person_plural": null,
       "helper_verb": "haben",
       "past_participle": "gehalten"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "\"Ich halte den Mund.\"(I keep my mouth shut / I hold my tongue.)\n\nHere are a few other common ways to use halten depending on the context you need:\n\nTo consider / To think: \"Ich halte das für eine gute Idee.\" (I consider that a good idea.)\n\nTo stop: \"Der Bus hält an der nächsten Ecke.\" (The bus stops at the next corner.)\n\nTo keep (a promise): \"Er hält sein Versprechen.\" (He keeps his promise.)\n\nTo maintain: \"Wie hältst du dich fit?\" (How do you stay/keep fit?)"
     }
   ]
 },
@@ -17421,7 +17612,9 @@
   },
   "word": "erwarten",
   "english": [
-    "expect"
+    "expect",
+    " await",
+    "wait"
   ],
   "quiz_score": 0,
   "plural": null,
@@ -17434,7 +17627,7 @@
   "tenses": [
     {
       "tense": "Präsens",
-      "english": "expect",
+      "english": "expect, await, wait",
       "1st_person_singular": "erwarte",
       "2nd_person_singular": "erwartest",
       "3rd_person_singular": "erwartet",
@@ -18621,6 +18814,12 @@
       "helper_verb": "haben",
       "past_participle": "vorbereitet"
     }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Welches Gemüse soll ich vorbereiten?\nWhich vegetables should I prepares?\n\nWie bereite ich den Brokkoli vor?\nHow do I prepare the broccoli?\n"
+    }
   ]
 },
 {
@@ -18944,7 +19143,13 @@
     "adjective"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Kartoffelsalat ist eine herzhafte Speise.\nPotato salad is a savoury dish."
+    }
+  ]
 },
 {
   "_id": {
@@ -19035,7 +19240,13 @@
     "adjective"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Dann bleibt es knackig und gesund.\nThen it stays crispy and healthy."
+    }
+  ]
 },
 {
   "_id": {
@@ -19896,7 +20107,13 @@
     "adjective"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Das klingt gesund und lecker.  (That sounds healthy and delicious.)\n\nIch bin nicht gesund. (I am not healthy.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -21054,7 +21271,8 @@
   "word": "aussehen",
   "english": [
     "look like",
-    " look"
+    "  appear",
+    " seem"
   ],
   "quiz_score": 0,
   "plural": null,
@@ -21363,7 +21581,13 @@
     "adjective"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich bin stark.  (I am strong.)"
+    }
+  ]
 },
 {
   "_id": {
@@ -21542,7 +21766,13 @@
     "adverb"
   ],
   "verb_conjugation_class": null,
-  "verb_functional_type": null
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ein trockener Wein enthält durch das Vergären nur noch wenig Zucker der Traube.\nA dry wine contains only a little sugar from the grapes as a result of fermentation."
+    }
+  ]
 },
 {
   "_id": {
@@ -22483,13 +22713,13 @@
   },
   "word": "einfach",
   "english": [
-    "humble",
-    " simple",
-    " straightforward",
-    " plain",
-    " simply",
-    " just",
-    " plainly"
+    "simple",
+    " humble",
+    "  straightforward",
+    "  plain",
+    "  simply",
+    "  just",
+    "  plainly"
   ],
   "quiz_score": 0,
   "plural": null,
@@ -22504,6 +22734,10 @@
     {
       "type": "adjective",
       "rule": "Eine beliebte und gesunde Nachtischalternative ist ein einfacher Obstsalat.\nA popular and healthy dessert alternative is the humble fruit salad."
+    },
+    {
+      "type": "adjective",
+      "rule": "Nein, sehr einfach.\nNo, very easy.  (simple)"
     }
   ]
 },
@@ -22647,6 +22881,3661 @@
       "3rd_person_plural": null,
       "helper_verb": "haben",
       "past_participle": "widergestanden"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5652f1dd6afec77dd7350d"
+  },
+  "word": "Getreide",
+  "english": [
+    "Grain",
+    "  cereal (grain)"
+  ],
+  "quiz_score": 0,
+  "plural": "Getreide",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a565308dd6afec77dd7350e"
+  },
+  "word": "Weizen",
+  "english": [
+    "Wheat"
+  ],
+  "quiz_score": 0,
+  "plural": "Weizen",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Weizenanteil  - Wheat content \n\nEs ist schwierig, Brot ohne Weizenanteil zu finden.\nIt's hard to find bread that is wheat-free."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5653b5dd6afec77dd7350f"
+  },
+  "word": "Mais",
+  "english": [
+    "corn"
+  ],
+  "quiz_score": 0,
+  "plural": "",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a56550ddd6afec77dd73510"
+  },
+  "word": "häufig",
+  "english": [
+    "common",
+    " frequent",
+    " widespread",
+    " prevalent",
+    " frequently",
+    "   often",
+    "   commonly",
+    " extensively"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective",
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "am häufigsten - most frequently, most widely"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a565c92dd6afec77dd73511"
+  },
+  "word": "vielseitig",
+  "english": [
+    "versatile",
+    " varied",
+    "broad",
+    "many-sided",
+    " all-round"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Mais ist sehr vielseitig – er kann am Kolben gekocht, zu Popcorn gemacht oder in Brot hineingebacken werden.\nCorn is very versatile – it can be cooked on the cob, popped or baked into bread."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a565cc6dd6afec77dd73512"
+  },
+  "word": "hineingebacken",
+  "english": [
+    "baked in"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Adverb?\n\nMais ist sehr vielseitig – er kann am Kolben gekocht, zu Popcorn gemacht oder in Brot hineingebacken werden.\nCorn is very versatile – it can be cooked on the cob, popped or baked into bread."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a565cefdd6afec77dd73513"
+  },
+  "word": "Nudeln",
+  "english": [
+    "Noodles",
+    " pasta"
+  ],
+  "quiz_score": 0,
+  "plural": "Nudellos",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Normalerweise sind sie lang und dünn, aber Nudeln gibt es auch in anderen Formen.\nUsually it is long and thin, but pasta can come in other shapes too."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a57dc103a7e30b8041962ed"
+  },
+  "word": "angebauten",
+  "english": [
+    "cultivated"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a57dd9c3a7e30b8041962ee"
+  },
+  "word": "dünn",
+  "english": [
+    "thin",
+    " skinny",
+    " fine",
+    " sparse",
+    " flimsy",
+    " weak"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Normalerweise sind sie lang und dünn, aber Nudeln gibt es auch in anderen Formen.\nUsually it is long and thin, but pasta can come in other shapes too."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a57de1d3a7e30b8041962ef"
+  },
+  "word": "Bäckerei",
+  "english": [
+    "bakery"
+  ],
+  "quiz_score": 0,
+  "plural": "Bäckereien",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a57df113a7e30b8041962f0"
+  },
+  "word": "Mittagessen",
+  "english": [
+    "Lunch"
+  ],
+  "quiz_score": 0,
+  "plural": "Mittagessen",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Zum Mittagessen hatte ich ein Brötchen mit Salami und Käse."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58db82e648bb1ca855f499"
+  },
+  "word": "dafür",
+  "english": [
+    "for that",
+    " in favor",
+    " in return",
+    " in exchange"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Was brauchen wir dafür?\nWhat do we need for that(this)?"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58dc63e648bb1ca855f49a"
+  },
+  "word": "mischen",
+  "english": [
+    "mix"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "mix",
+      "1st_person_singular": "mische",
+      "2nd_person_singular": "mischst",
+      "3rd_person_singular": "mischt",
+      "1st_person_plural": "mischen",
+      "2nd_person_plural": "mischt",
+      "3rd_person_plural": "mischen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "mischte",
+      "2nd_person_singular": "mischtest",
+      "3rd_person_singular": "mischte",
+      "1st_person_plural": "mischten",
+      "2nd_person_plural": "mischtet",
+      "3rd_person_plural": "mischten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "gemischt"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58dcb3e648bb1ca855f49b"
+  },
+  "word": "zuerst",
+  "english": [
+    "first",
+    "at first",
+    " primarily",
+    " for the first time"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Zuerst mischen wir alles zusammen.\nFirst, we mix everything together."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58dd83e648bb1ca855f49c"
+  },
+  "word": "Pfanne",
+  "english": [
+    "Pan"
+  ],
+  "quiz_score": 0,
+  "plural": "Pfannen",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a58de07e648bb1ca855f49d"
+  },
+  "word": "hinein",
+  "english": [
+    "in",
+    " inside"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Mach etwas Öl hinein\nPut some oil in it. "
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58decde648bb1ca855f49e"
+  },
+  "word": "vorsichtig",
+  "english": [
+    "careful",
+    " cautious",
+    " wary",
+    "  carefully",
+    "  cautious",
+    "  warily",
+    "  gingerly"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adverb",
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Ja, aber vorsichtig.\nYes, but be careful. "
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58e21f7efc438ab282161a"
+  },
+  "word": "Topf",
+  "english": [
+    "Pot"
+  ],
+  "quiz_score": 0,
+  "plural": "Töpfe",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a58e2a57efc438ab282161b"
+  },
+  "word": "Suppe",
+  "english": [
+    "Soup"
+  ],
+  "quiz_score": 0,
+  "plural": "Suppen",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a58e4c87efc438ab282161c"
+  },
+  "word": "schlagen",
+  "english": [
+    "beat",
+    " hit",
+    " suggest"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "beat, open, pitch",
+      "1st_person_singular": "schlage",
+      "2nd_person_singular": "schlägst",
+      "3rd_person_singular": "schlägt",
+      "1st_person_plural": "schlagen",
+      "2nd_person_plural": "schlagt",
+      "3rd_person_plural": "schlagen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "schlug",
+      "2nd_person_singular": "schlugst",
+      "3rd_person_singular": "schlug",
+      "1st_person_plural": "schlugen",
+      "2nd_person_plural": "schlugt",
+      "3rd_person_plural": "schlugen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "geschlagen"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58e58c7efc438ab282161d"
+  },
+  "word": "aufschlagen",
+  "english": [
+    "beat",
+    " open",
+    " pitch"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "beat,  open,  pitch",
+      "1st_person_singular": "schlage auf",
+      "2nd_person_singular": "schlägst auf",
+      "3rd_person_singular": "schlägt auf",
+      "1st_person_plural": "schlagen auf",
+      "2nd_person_plural": "schlagt auf",
+      "3rd_person_plural": "schlagen auf",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "schlug  auf",
+      "2nd_person_singular": "schlugst  auf",
+      "3rd_person_singular": "schlug  auf",
+      "1st_person_plural": "schlugen  auf",
+      "2nd_person_plural": "schlugt auf",
+      "3rd_person_plural": "schlugen  auf",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "sein",
+      "past_participle": "aufgeschlagen"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58e6b37efc438ab282161e"
+  },
+  "word": "selbst",
+  "english": [
+    "self",
+    "  itself",
+    "  themselves",
+    "  himself",
+    "  herself",
+    "  myself",
+    "  yourself",
+    "  ourselves",
+    "  oneself"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "pronoun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "pronoun",
+      "rule": "Heute machen wir Pizza selbst.\nToday, we're going to make our own pizza.  (make pizza ourselves, make ourself Pizza )"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58e8137efc438ab282161f"
+  },
+  "word": "Pilz",
+  "english": [
+    "Mushroom"
+  ],
+  "quiz_score": 0,
+  "plural": "Pilze",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a58e9117efc438ab2821620"
+  },
+  "word": "kaum",
+  "english": [
+    "barely",
+    " hardly",
+    " scarcely"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Ich kann es kaum erwarten!\nI can't wait!  ( I can barely wait!)\n"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58eb377efc438ab2821621"
+  },
+  "word": "Würstchen",
+  "english": [
+    "hotdog",
+    " small sausages"
+  ],
+  "quiz_score": 0,
+  "plural": "Würstchen",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a58edd47efc438ab2821622"
+  },
+  "word": "gefährlich",
+  "english": [
+    "dangerous",
+    " hazardous",
+    " risky",
+    " perious",
+    " dangerously",
+    " perilously"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective",
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Feuer ist gefährlich.\nFire is dangerous. "
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58ee7a7efc438ab2821623"
+  },
+  "word": "riechen",
+  "english": [
+    "smell",
+    " sniff",
+    " scent"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "smell",
+      "1st_person_singular": "rieche",
+      "2nd_person_singular": "riechst",
+      "3rd_person_singular": "riecht",
+      "1st_person_plural": "riechen",
+      "2nd_person_plural": "riecht",
+      "3rd_person_plural": "riechen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "roch",
+      "2nd_person_singular": "rochst",
+      "3rd_person_singular": "roch",
+      "1st_person_plural": "rochen",
+      "2nd_person_plural": "rocht",
+      "3rd_person_plural": "rochen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "gerochen"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Sie riechen schon sehr gut!\nThey already smell really good!\n"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58ef237efc438ab2821624"
+  },
+  "word": "Anfang",
+  "english": [
+    "Beginning"
+  ],
+  "quiz_score": 0,
+  "plural": "Anfänge",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a58ef8a7efc438ab2821625"
+  },
+  "word": "Hefe",
+  "english": [
+    "Yeast"
+  ],
+  "quiz_score": 0,
+  "plural": "Hefen",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a58efb17efc438ab2821626"
+  },
+  "word": "Salz",
+  "english": [
+    "Salt"
+  ],
+  "quiz_score": 0,
+  "plural": "Salze",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a58f0b97efc438ab2821627"
+  },
+  "word": "Gerät",
+  "english": [
+    "device",
+    " appliance",
+    " apparatus",
+    " instrument",
+    " equipment",
+    ""
+  ],
+  "quiz_score": 0,
+  "plural": "Geräte",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a58f1297efc438ab2821628"
+  },
+  "word": "Frucht",
+  "english": [
+    "fruit"
+  ],
+  "quiz_score": 0,
+  "plural": "Früchte",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a58f1dd7efc438ab2821629"
+  },
+  "word": "verwenden",
+  "english": [
+    "use",
+    " utilize",
+    " apply"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "use",
+      "1st_person_singular": "verwende",
+      "2nd_person_singular": "verwendest",
+      "3rd_person_singular": "verwendet",
+      "1st_person_plural": "verwenden",
+      "2nd_person_plural": "verwendet",
+      "3rd_person_plural": "verwenden",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "verwandte",
+      "2nd_person_singular": "verwandtest",
+      "3rd_person_singular": "verwandte",
+      "1st_person_plural": "verwandten",
+      "2nd_person_plural": "verwandtet",
+      "3rd_person_plural": "verwandten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "verwandt"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a58f46f7efc438ab282162a"
+  },
+  "word": "Brokkoli",
+  "english": [
+    "broccoli"
+  ],
+  "quiz_score": 0,
+  "plural": "Brokkoli",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a5a2f21cf4d2144f26086f2"
+  },
+  "word": "verfügen",
+  "english": [
+    "feature",
+    " have ",
+    "  provide"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "have",
+      "1st_person_singular": "verfüge",
+      "2nd_person_singular": "verfügst",
+      "3rd_person_singular": "verfügt",
+      "1st_person_plural": "verfügen",
+      "2nd_person_plural": "verfügt",
+      "3rd_person_plural": "verfügen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "verfügte",
+      "2nd_person_singular": "verfügtest",
+      "3rd_person_singular": "verfügte",
+      "1st_person_plural": "verfügten",
+      "2nd_person_plural": "verfügtet",
+      "3rd_person_plural": "verfügten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "verfügt"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Das MFA verfügt über eine große Galerie.\nThe MFA has a large gallery."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5a30e8cf4d2144f26086f3"
+  },
+  "word": "mehrere",
+  "english": [
+    "several",
+    " multiple",
+    " various",
+    ""
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Das MFA verfügt über mehrere große Galerien.\nThe MFA has several large galleries."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5a372ecf4d2144f26086f4"
+  },
+  "word": "Laib",
+  "english": [
+    "loaf (of bread)"
+  ],
+  "quiz_score": 0,
+  "plural": "Laibe",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a5a37b8cf4d2144f26086f5"
+  },
+  "word": "Haferflocken",
+  "english": [
+    "oatmeal"
+  ],
+  "quiz_score": 0,
+  "plural": "Haferflocken",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a5a395acf4d2144f26086f6"
+  },
+  "word": "abschneiden",
+  "english": [
+    "cut",
+    " cut off",
+    " perform"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "cut, cut off",
+      "1st_person_singular": "schneide ab",
+      "2nd_person_singular": "schneidest ab",
+      "3rd_person_singular": "schneidet ab",
+      "1st_person_plural": "schneiden ab",
+      "2nd_person_plural": "schneidet ab",
+      "3rd_person_plural": "schneiden ab",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "schnitt ab",
+      "2nd_person_singular": "schnittest ab",
+      "3rd_person_singular": "schnitt ab",
+      "1st_person_plural": "schnitten ab",
+      "2nd_person_plural": "schnitten ab",
+      "3rd_person_plural": "schnitten ab",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "abgeschnitten"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5a3a43cf4d2144f26086f7"
+  },
+  "word": "matschig",
+  "english": [
+    "mushy"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Wenn man Haferflocken kocht, bis sie matschig sind, kriegt man Haferbrei.\nIf you boil oats until they are mushy, you get porridge."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5a3abfcf4d2144f26086f8"
+  },
+  "word": "verbrennen",
+  "english": [
+    "burn",
+    " incinerate",
+    "burn off"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "burn",
+      "1st_person_singular": "verbrenne",
+      "2nd_person_singular": "verbrennst",
+      "3rd_person_singular": "verbrennt",
+      "1st_person_plural": "verbrennen",
+      "2nd_person_plural": "verbrennt",
+      "3rd_person_plural": "verbrennen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "verbrannte",
+      "2nd_person_singular": "verbranntest",
+      "3rd_person_singular": "verbrannte",
+      "1st_person_plural": "verbrannten",
+      "2nd_person_plural": "verbranntet",
+      "3rd_person_plural": "verbrannten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "verbrannt"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Verbrennen means to be destroyed by fire, or to actively burn something up completely (e.g., \"The paper burned to ashes\"). As compared to Brennen which describes the state of being on fire or producing a flame (e.g., \"The candle is burning\"). \n\nVerbrennen (To burn up / to consume)\nFocus: The destruction, transformation, or total consumption of an object by fire.\n\nTransitivity: Can be transitive (you burn something object) or intransitive.\n\nUsage: Used for active destruction of items, sunburns, or cooking disasters.\nExamples:Er verbrennt den Brief. (He burns the letter / He sets it on fire until it is destroyed.)\nDas Holz ist verbrannt. (The wood is burned to ash/consumed.)\nIch habe mich verbrannt. (I burned myself [on a hot pan, for example].)\n\n\n\n\n"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5a3ccacf4d2144f26086f9"
+  },
+  "word": "brennen",
+  "english": [
+    "burn",
+    " fire",
+    " sting"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "burn",
+      "1st_person_singular": "brenne",
+      "2nd_person_singular": "brennst",
+      "3rd_person_singular": "brennt",
+      "1st_person_plural": "brennen",
+      "2nd_person_plural": "brennt",
+      "3rd_person_plural": "brennen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "brannte",
+      "2nd_person_singular": "branntest",
+      "3rd_person_singular": "brannte",
+      "1st_person_plural": "brannten",
+      "2nd_person_plural": "branntet",
+      "3rd_person_plural": "brannten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "gebrannt"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Brennen describes the state of being on fire or producing a flame (e.g., \"The candle is burning\"), \ncompared to verbrennen(to burn up/to consume)\n\nBrennen (To burn / to be on fire)\nFocus: The process, light, or heat of the fire.\nTransitivity: Usually intransitive (it doesn’t take a direct object).\n\nUsage: Used to describe flames, pain, or glowing sensations.\n\nExamples:Die Kerze brennt. (The candle is burning.)\nDas Haus brennt. (The house is on fire.)\nMeine Augen brennen. (My eyes are burning.)\n"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5a3d75cf4d2144f26086fa"
+  },
+  "word": "Toast",
+  "english": [
+    "(bread) toast"
+  ],
+  "quiz_score": 0,
+  "plural": "Toasts",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a5a3e1ecf4d2144f26086fb"
+  },
+  "word": "buttern",
+  "english": [
+    "to butter",
+    " churn",
+    " make butter"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "butter",
+      "1st_person_singular": "buttere",
+      "2nd_person_singular": "butterst",
+      "3rd_person_singular": "buttert",
+      "1st_person_plural": "buttern",
+      "2nd_person_plural": "buttert",
+      "3rd_person_plural": "buttern",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "butterte",
+      "2nd_person_singular": "buttertest",
+      "3rd_person_singular": "butterte",
+      "1st_person_plural": "butterten",
+      "2nd_person_plural": "buttertet",
+      "3rd_person_plural": "butterten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "gebuttert"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5a3f00cf4d2144f26086fc"
+  },
+  "word": "schrecklich",
+  "english": [
+    "horrible",
+    " terrible"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Sie haben mir Toast zum Frühstück angeboten, aber er war schrecklich – verbrannt und kalt!\nThey gave me toast for breakfast but it was horrible – burnt and cold!\n"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5a418dcf4d2144f26086fe"
+  },
+  "word": "Müsli",
+  "english": [
+    "Muesli"
+  ],
+  "quiz_score": 0,
+  "plural": "Müslis",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Ich mache mein eigenes Müsli mit Haferflocken, Nüssen und Rosinen.\nI make my own granola with oats, nuts and raisins."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5a41c1cf4d2144f26086ff"
+  },
+  "word": "knusprig",
+  "english": [
+    "crispy",
+    " crusty"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Brot ist am besten, wenn es außen knusprig und innen weich ist.\nBread is best when it's crusty on the outside and soft on the inside."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5a4370cf4d2144f2608700"
+  },
+  "word": "außen",
+  "english": [
+    "outside",
+    " out"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a5a43a7cf4d2144f2608701"
+  },
+  "word": "innen",
+  "english": [
+    "inside"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Brot ist am besten, wenn es außen knusprig und innen weich ist.\nBread is best when it's crusty on the outside and soft on the inside."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5b7cbd6a31b68f145548e6"
+  },
+  "word": "Lebensmittel",
+  "english": [
+    "groceries",
+    " food",
+    " foodstuffs"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a5b81746a31b68f145548e7"
+  },
+  "word": "brauchen",
+  "english": [
+    "need",
+    " require",
+    " take"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "need",
+      "1st_person_singular": "brauche",
+      "2nd_person_singular": "brauchst",
+      "3rd_person_singular": "braucht",
+      "1st_person_plural": "brauchen",
+      "2nd_person_plural": "braucht",
+      "3rd_person_plural": "brauchen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "brauchte",
+      "2nd_person_singular": "brauchtest",
+      "3rd_person_singular": "brauchte",
+      "1st_person_plural": "brauchten",
+      "2nd_person_plural": "brauchtet",
+      "3rd_person_plural": "brauchten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "gebraucht"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "brauchen refers to the time a person or thing needs to complete an action vs dauern  that refers to the duration of an event."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5b89036a31b68f145548e9"
+  },
+  "word": "dick",
+  "english": [
+    "thick",
+    " fat",
+    " large",
+    "big",
+    " heavy",
+    " stout"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a5cddb700b3074cec7bfb15"
+  },
+  "word": "davonkommen",
+  "english": [
+    "get away with it",
+    "  get away with",
+    " escape"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "get away with it,  get away with, escape",
+      "1st_person_singular": "komme davon",
+      "2nd_person_singular": "kommst davon",
+      "3rd_person_singular": "kommt  davon",
+      "1st_person_plural": "kommen davon",
+      "2nd_person_plural": "kommt  davon",
+      "3rd_person_plural": "kommen davon",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": "got away with it,  got away with, escaped",
+      "1st_person_singular": "kam  davon",
+      "2nd_person_singular": "kamst  davon",
+      "3rd_person_singular": "kam  davon",
+      "1st_person_plural": "kamen  davon",
+      "2nd_person_plural": "kamt  davon",
+      "3rd_person_plural": "kamen  davon",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": "got away with it,  got away with, escaped",
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "sein",
+      "past_participle": "davongekommen"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5cde8b00b3074cec7bfb16"
+  },
+  "word": "davon",
+  "english": [
+    "of that",
+    " away",
+    " of it",
+    " therof",
+    " from that",
+    " on that",
+    "from there"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Was hältst du davon? (English: What do you think of it?)"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5ce2be00b3074cec7bfb18"
+  },
+  "word": "Auge",
+  "english": [
+    "Eye"
+  ],
+  "quiz_score": 0,
+  "plural": "Augen",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a5cf47500b3074cec7bfb1a"
+  },
+  "word": "fliegen",
+  "english": [
+    "fly"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "fly",
+      "1st_person_singular": "fliege",
+      "2nd_person_singular": "fliegst",
+      "3rd_person_singular": "fliegt",
+      "1st_person_plural": "fliegen",
+      "2nd_person_plural": "fliegt",
+      "3rd_person_plural": "fliegen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "flog",
+      "2nd_person_singular": "flogst",
+      "3rd_person_singular": "flog",
+      "1st_person_plural": "flogen",
+      "2nd_person_plural": "flogt",
+      "3rd_person_plural": "flogen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "sein",
+      "past_participle": "geflogen"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Ich fliege am Dienstag nach Berlin.  (I fly to Berlin on Tuesday.)\n\nIch bin am Dienstag nach Berlin geflogen. (I flew to Berlin on Tuesday)."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5cf59c00b3074cec7bfb1b"
+  },
+  "word": "Teller",
+  "english": [
+    "plate"
+  ],
+  "quiz_score": 0,
+  "plural": "Teller",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Ein Teller ist ein flaches Essgeschirr.\nA plate is a flat dish that you eat from."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5cf5b200b3074cec7bfb1c"
+  },
+  "word": "Messer",
+  "english": [
+    "Knife"
+  ],
+  "quiz_score": 0,
+  "plural": "Messer",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Dieses Messer ist nicht scharf genug, um Butter zu schneiden!\nThis knife isn't sharp enough to cut butter!"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5cf5cd00b3074cec7bfb1d"
+  },
+  "word": "Gabel",
+  "english": [
+    "Fork"
+  ],
+  "quiz_score": 0,
+  "plural": "Gabeln",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Eine Gabel kann zwei-, drei- oder vierzinkig sein.\nA fork can be two, three or four pronged."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5cf83900b3074cec7bfb1e"
+  },
+  "word": "Löffel",
+  "english": [
+    "Spoon"
+  ],
+  "quiz_score": 0,
+  "plural": "Löffel",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Löffel sind gut geeignet, um Suppe oder Eis zu essen.\nSpoons are good for eating soup and ice cream.\n"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5cf98a00b3074cec7bfb1f"
+  },
+  "word": "Schüssel",
+  "english": [
+    "Bowl"
+  ],
+  "quiz_score": 0,
+  "plural": "Schüsseln",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Suppe wird normalerweise in einer Schüssel serviert.\nSoup is usually served in a bowl"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5cfa0d00b3074cec7bfb20"
+  },
+  "word": "geeignet",
+  "english": [
+    "suitable",
+    "  appropriate",
+    "  likely",
+    "  fit",
+    "  apt",
+    " suitably",
+    " fittingly"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective",
+    "adverb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Löffel sind gut geeignet, um Suppe oder Eis zu essen.\nSpoons are good for eating soup and ice cream."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5cfaa000b3074cec7bfb21"
+  },
+  "word": "Teelöffel",
+  "english": [
+    "teaspoon"
+  ],
+  "quiz_score": 0,
+  "plural": "Teelöffel",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Ups, ich habe meinen Teelöffel in der Zuckerdose gelassen.\nOops, I've left my teaspoon in the sugar bowl."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5cfca300b3074cec7bfb22"
+  },
+  "word": "Schrank",
+  "english": [
+    "Wardrobe"
+  ],
+  "quiz_score": 0,
+  "plural": "Kleiderschränke",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a5f64ed86640720048f9430"
+  },
+  "word": "Besteck",
+  "english": [
+    "Cutlery"
+  ],
+  "quiz_score": 0,
+  "plural": "Besteck",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Meine Großmutter gab mir ihr wunderschönes Besteck – ich werde nie zu wenige Messer oder Gabeln haben!\nMy grandmother gave me her beautiful cutlery – I'll never run out of knives or forks again!"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5f650486640720048f9431"
+  },
+  "word": "Tablett",
+  "english": [
+    "tray"
+  ],
+  "quiz_score": 0,
+  "plural": "Tabletts",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Das Tablett, mit dem sie unseren Kaffee serviert hat, war aus Silber.\nThe tray she used to bring our coffee was made of silver."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5f652286640720048f9432"
+  },
+  "word": "Essstäbchen",
+  "english": [
+    "Chopsticks"
+  ],
+  "quiz_score": 0,
+  "plural": "Essstäbchen",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Japaner benutzen zum Essen normalerweise Essstäbchen.\nJapanese people usually eat using chopsticks."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5f779f86640720048f9433"
+  },
+  "word": "Untertasse",
+  "english": [
+    "saucer"
+  ],
+  "quiz_score": 0,
+  "plural": "Untertassen",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Die Tasse wackelte auf ihrer Untertasse, als ich meiner Schwiegermutter den Tee reichte.\nThe cup wobbled on its saucer as I handed the tea to my mother-in-law."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5f77b786640720048f9434"
+  },
+  "word": "Tischtuch",
+  "english": [
+    "tablecloth"
+  ],
+  "quiz_score": 0,
+  "plural": "Tischtücher",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Schöne Restaurants haben Tischtücher aus Leinen.\nNice restaurants have tablecloths made of linen."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5f793d86640720048f9435"
+  },
+  "word": "Gedeck",
+  "english": [
+    "Place setting"
+  ],
+  "quiz_score": 0,
+  "plural": "Platzgedecke",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Ein Freund wird sich uns anschließen – wir brauchen ein weiteres Gedeck.\nA friend will be joining us – we'll need an extra place setting."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5f795d86640720048f9436"
+  },
+  "word": "Porzellan",
+  "english": [
+    "china"
+  ],
+  "quiz_score": 0,
+  "plural": "Chinas",
+  "gender": null,
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Das ist so ein besonderer Anlass – lass uns das Hochzeitsporzellan nehmen.\nIt's such a special occasion – let's use the wedding china."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5f7a1e86640720048f9438"
+  },
+  "word": "polieren",
+  "english": [
+    "polish",
+    " buff",
+    " burnish"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "polish, buff, burnish",
+      "1st_person_singular": "poliere",
+      "2nd_person_singular": "polierst",
+      "3rd_person_singular": "poliert",
+      "1st_person_plural": "polieren",
+      "2nd_person_plural": "poliert",
+      "3rd_person_plural": "polieren",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "polierte",
+      "2nd_person_singular": "poliertest",
+      "3rd_person_singular": "polierte",
+      "1st_person_plural": "polierten",
+      "2nd_person_plural": "poliertet",
+      "3rd_person_plural": "polierten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "poliert"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5f7bb286640720048f9439"
+  },
+  "word": "decken",
+  "english": [
+    "cover"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "cover",
+      "1st_person_singular": "decke",
+      "2nd_person_singular": "deckst",
+      "3rd_person_singular": "deckt",
+      "1st_person_plural": "decken",
+      "2nd_person_plural": "deckt",
+      "3rd_person_plural": "decken",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "deckte",
+      "2nd_person_singular": "decktest",
+      "3rd_person_singular": "deckte",
+      "1st_person_plural": "deckten",
+      "2nd_person_plural": "decktet",
+      "3rd_person_plural": "deckten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "gedeckt"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Ich weiß nicht, wie man den Tisch deckt – legt man die Gabeln auf die rechte oder die linke Seite?\nI don't know how to set the table – do the forks go on the right or on the left?"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a5f865886640720048f943b"
+  },
+  "word": "denn",
+  "english": [
+    "because"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "conjunction"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "conjunction",
+      "rule": "Denn links two main clauses, keeping the normal subject-verb word order, and cannot begin a sentence.\n\nIch beliebe heute zu Hause, denn ich bin müde."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a600d9b11d70493c534538c"
+  },
+  "word": "lesen",
+  "english": [
+    "read",
+    " review",
+    " browse"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "read",
+      "1st_person_singular": "lese",
+      "2nd_person_singular": "liest",
+      "3rd_person_singular": "liest",
+      "1st_person_plural": "lesen",
+      "2nd_person_plural": "lest",
+      "3rd_person_plural": "lesen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "las",
+      "2nd_person_singular": "lasest",
+      "3rd_person_singular": "las",
+      "1st_person_plural": "lasen",
+      "2nd_person_plural": "last",
+      "3rd_person_plural": "lasen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "gelesen"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a6cbf5ca79dfb10cdc90663"
+  },
+  "word": "DoppelZimmer",
+  "english": [
+    "Double room"
+  ],
+  "quiz_score": 0,
+  "plural": "Doppelzimmer",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a6cbf86a79dfb10cdc90664"
+  },
+  "word": "Einkaufliste",
+  "english": [
+    "Shopping list"
+  ],
+  "quiz_score": 0,
+  "plural": "Einkaufslisten",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a6cc11ba79dfb10cdc90667"
+  },
+  "word": " schneiden",
+  "english": [
+    "cut",
+    " slice",
+    " trim"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": " cut, sllice, trim",
+      "1st_person_singular": "schneide",
+      "2nd_person_singular": "schneidest",
+      "3rd_person_singular": "schneidet",
+      "1st_person_plural": "schneiden",
+      "2nd_person_plural": "schneidet",
+      "3rd_person_plural": "schneiden",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "schnitt",
+      "2nd_person_singular": "schnittest",
+      "3rd_person_singular": "schnitt",
+      "1st_person_plural": "schnitten",
+      "2nd_person_plural": "schnittet",
+      "3rd_person_plural": "schnitten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "geschnitten"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a6dff643e3448cee80aeadd"
+  },
+  "word": "wütend",
+  "english": [
+    "angry"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich bin nicht wütend. (I am not angry.)"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a6dffc13e3448cee80aeade"
+  },
+  "word": "beschäftigt",
+  "english": [
+    "busy"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich bin beschäftigt. (I am busy.)"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a6e00333e3448cee80aeadf"
+  },
+  "word": "schwach",
+  "english": [
+    "weak"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich bin nicht schwach. (I am not weak.)"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a6e01043e3448cee80aeae0"
+  },
+  "word": "freundlich",
+  "english": [
+    "friendly"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich bin freudlich.  (I am friendly.)"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a6e02253e3448cee80aeae1"
+  },
+  "word": "leisten",
+  "english": [
+    "perform",
+    " achieve",
+    " render",
+    " accomplish"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "perform, achieve, render, accomplish",
+      "1st_person_singular": "leiste",
+      "2nd_person_singular": "leistest",
+      "3rd_person_singular": "leistet",
+      "1st_person_plural": "leisten",
+      "2nd_person_plural": "leistet",
+      "3rd_person_plural": "leisten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "leistete",
+      "2nd_person_singular": "leistetest",
+      "3rd_person_singular": "leistete",
+      "1st_person_plural": "leisteten",
+      "2nd_person_plural": "leistetet",
+      "3rd_person_plural": "leisteten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "geleistet"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a70f45483122e47551af0cc"
+  },
+  "word": "halbtrocken",
+  "english": [
+    "semi-dry"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Halbtrockene Weine können je nach Säuregehalt auch trocken oder lieblich schmecken.\nSemidry wines can taste dry or sweet according to the acidity."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a70f46983122e47551af0cd"
+  },
+  "word": "lieblich",
+  "english": [
+    "sweet"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Liebliche Weine haben einen höheren Restzuckergehalt als halbtrockene Weine.\nSweet wines have a higher residual sugar content than semidry wines."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a70f48783122e47551af0ce"
+  },
+  "word": "fruchtig",
+  "english": [
+    "fruity"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ein fruchtiger Wein riecht und schmeckt nach Trauben und anderen Früchten.\nA fruitier wine smells and tastes like grapes and other fruits.\n"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a70f63583122e47551af0cf"
+  },
+  "word": "vollmundig",
+  "english": [
+    "full-bodied"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Mit vollmundig wird ein Wein beschrieben, dessen Geschmack noch lange im Mund bleibt.\nA full-bodied wine is described by its taste which lasts longer in the mouth."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a70f65c83122e47551af0d0"
+  },
+  "word": "blumig",
+  "english": [
+    "floral",
+    " flowery"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Dieser Bordeaux ist blumig und duftet sanft nach Veilchen und Himbeeren.\nThis Bordeaux is floral and smells smooth like violet and raspberry."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a70f67583122e47551af0d1"
+  },
+  "word": "Qualitätswein",
+  "english": [
+    "Quality wine"
+  ],
+  "quiz_score": 0,
+  "plural": "Qualitätsweine",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Als Qualitätswein dürfen nur Weine bezeichnet werden, die bestimmten gesetzlichen Anforderungen entsprechen.\nA quality wine may only be described for wines that conform to certain legal requirements."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a70f74083122e47551af0d2"
+  },
+  "word": "Weinlese",
+  "english": [
+    "the grape harvest",
+    " Vintage"
+  ],
+  "quiz_score": 0,
+  "plural": "Jahrgänge",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Mit der manuellen Weinlese kann man Trauben unbeschadeter ernten als maschinell.\nWith a manual grape harvest, you can harvest the grapes with less damage than by machine."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a70f82a83122e47551af0d3"
+  },
+  "word": "Jahrgang",
+  "english": [
+    "vintage"
+  ],
+  "quiz_score": 0,
+  "plural": "Jahrgänge",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Der Jahrgang eines Weins wird durch das Jahr der Weinernte und den daraus erzeugten Wein bestimmt.\nThe vintage of a wine is determined by the year of the wine harvest and the wine generated out of it."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a70f85083122e47551af0d4"
+  },
+  "word": "Korkenzieher",
+  "english": [
+    "corkscrew"
+  ],
+  "quiz_score": 0,
+  "plural": "Korkenzieher",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Für diese Flasche brauchen wir einen Korkenzieher.\nWe need a corkscrew for this bottle."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a70f85683122e47551af0d5"
+  },
+  "word": "Weinberg",
+  "english": [
+    "vineyard"
+  ],
+  "quiz_score": 0,
+  "plural": "Weinberge",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Weinberge liegen wegen der besseren Sonneneinstrahlung meistens Richtung Süden oder Westen.\nVineyards mostly face south or west because of the better sunligh"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71efe9d9825c8fdc85b449"
+  },
+  "word": "keltern",
+  "english": [
+    "press",
+    " vinify"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "winemaking",
+      "1st_person_singular": "keltere",
+      "2nd_person_singular": "kelterst",
+      "3rd_person_singular": "keltert",
+      "1st_person_plural": "keltern",
+      "2nd_person_plural": "keltert",
+      "3rd_person_plural": "keltern",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "kelterte",
+      "2nd_person_singular": "keltertest",
+      "3rd_person_singular": "kelterte",
+      "1st_person_plural": "kelterten",
+      "2nd_person_plural": "keltertet",
+      "3rd_person_plural": "kelterten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "gekeltert"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Heut keltern sie den braunen Wein.\nToday they press the brown wine.\n\nWeintrauben werden gekeltert und so für die Weiterverarbeitung gepresst.\nGrapes are pressed and thus squeezed for the processing."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f049d9825c8fdc85b44a"
+  },
+  "word": "dekantieren",
+  "english": [
+    "decant"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "decant",
+      "1st_person_singular": "dekantiere",
+      "2nd_person_singular": "dekantierst",
+      "3rd_person_singular": "dekantiert",
+      "1st_person_plural": "dekantieren",
+      "2nd_person_plural": "dekantiert",
+      "3rd_person_plural": "dekantieren",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "dekantierte",
+      "2nd_person_singular": "dekantiertest",
+      "3rd_person_singular": "dekantierte",
+      "1st_person_plural": "dekantierten",
+      "2nd_person_plural": "dekantiertet",
+      "3rd_person_plural": "dekantierten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "dekantiert"
+    }
+  ],
+  "rules": [
+    {
+      "type": "adverb",
+      "rule": "Manche Weine dekantiert man, damit ihr Bouquet besser zum Ausdruck kommt.\nYou decant some wines in order to bring out their bouquet better."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f08dd9825c8fdc85b44b"
+  },
+  "word": "gären",
+  "english": [
+    "ferment",
+    " fester",
+    " yeast"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "ferment",
+      "1st_person_singular": "gäre",
+      "2nd_person_singular": "gärst",
+      "3rd_person_singular": "gärt",
+      "1st_person_plural": "gären",
+      "2nd_person_plural": "gärt",
+      "3rd_person_plural": "gären",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "gor, gärte",
+      "2nd_person_singular": "gorst,  , gärtest",
+      "3rd_person_singular": "gor, gärte",
+      "1st_person_plural": "goren, gärten",
+      "2nd_person_plural": "gort, , gärtet",
+      "3rd_person_plural": "goren, gärten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "gegoren, gegärt"
+    }
+  ],
+  "rules": [
+    {
+      "type": "verb",
+      "rule": "Je länger ein Wein gärt, umso mehr Zucker wird aus den Weintrauben abgebaut.\nThe longer a wine ferments, the more sugar is removed from the grape."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f0b2d9825c8fdc85b44c"
+  },
+  "word": "Barrique",
+  "english": [
+    "Barrique"
+  ],
+  "quiz_score": 0,
+  "plural": "Barriques",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Eine Barrique ist ein zum Ausbau des Weins genutztes Fass aus Eichenholz.\nA barrique is a barrel made of oak wood used for the aging of the wine."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f3fcd9825c8fdc85b44d"
+  },
+  "word": "Verschnitt",
+  "english": [
+    "the blending"
+  ],
+  "quiz_score": 0,
+  "plural": "Abschnitte",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Bei einem Verschnitt werden Weine verschiedener Rebsorten oder Jahrgänge gemischt.\nFor blending, wines of different vine varieties or vintages are mixed."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f41cd9825c8fdc85b44e"
+  },
+  "word": "Bukett",
+  "english": [
+    "bouquet"
+  ],
+  "quiz_score": 0,
+  "plural": "Blumensträuße",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Mit Bukett sind alle Duftnoten gemeint, die in einem Wein stecken.\nBouquet means all the various scents that are in a wine."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f427d9825c8fdc85b44f"
+  },
+  "word": "Rebsorte",
+  "english": [
+    "grape variety"
+  ],
+  "quiz_score": 0,
+  "plural": "Rebsorten",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Die Rebsorte bestimmt auch die Eigenschaften eines Weines und gibt ihm den Namen.\nThe grape variety also determines the characteristics of a wine and gives it the name."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f4dbd9825c8fdc85b450"
+  },
+  "word": "Tannin",
+  "english": [
+    "tannin"
+  ],
+  "quiz_score": 0,
+  "plural": "Tannine",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a71f5b1d9825c8fdc85b451"
+  },
+  "word": "bestimmen",
+  "english": [
+    "determine",
+    " define",
+    " decide"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "determine",
+      "1st_person_singular": "bestimme",
+      "2nd_person_singular": "bestimmst",
+      "3rd_person_singular": "bestimmt",
+      "1st_person_plural": "bestimmen",
+      "2nd_person_plural": "bestimmt",
+      "3rd_person_plural": "bestimmen",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "bestimmte",
+      "2nd_person_singular": "bestimmtest",
+      "3rd_person_singular": "bestimmte",
+      "1st_person_plural": "bestimmten",
+      "2nd_person_plural": "bestimmtet",
+      "3rd_person_plural": "bestimmten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "bestimmt"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f61bd9825c8fdc85b452"
+  },
+  "word": "Winzer",
+  "english": [
+    "winegrower"
+  ],
+  "quiz_score": 0,
+  "plural": "Winzer",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a71f626d9825c8fdc85b453"
+  },
+  "word": "Eiswein",
+  "english": [
+    "Ice wine"
+  ],
+  "quiz_score": 0,
+  "plural": "Eisweine",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a71f638d9825c8fdc85b454"
+  },
+  "word": "Depot",
+  "english": [
+    "deposit (as wine sediment)",
+    "  depot"
+  ],
+  "quiz_score": 0,
+  "plural": "Depots",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a71f74ed9825c8fdc85b455"
+  },
+  "word": "vegetarisch",
+  "english": [
+    "vegetarian"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Haben Sie auch vegetarische Gerichte?\nDo you also have vegetarian dishes?"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f765d9825c8fdc85b456"
+  },
+  "word": "vegan",
+  "english": [
+    "vegan"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Wer sich vegan ernährt, verzichtet ganz auf tierische Produkte.\nWhoever has a vegan diet completely refrains from animal products."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f778d9825c8fdc85b457"
+  },
+  "word": "Farbstoffe",
+  "english": [
+    "Dyes",
+    " artificial colors"
+  ],
+  "quiz_score": 0,
+  "plural": "Farbstoffe",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "noun",
+      "rule": "Ich kaufe lieber Produkte ohne künstliche Farbstoffe.\nI prefer to buy products without artificial colors."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f79fd9825c8fdc85b458"
+  },
+  "word": " Fast Food",
+  "english": [
+    "the fast food"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a71f86bd9825c8fdc85b459"
+  },
+  "word": "glutenfrei",
+  "english": [
+    "gluten-free"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a71f91cd9825c8fdc85b45a"
+  },
+  "word": "blanchieren",
+  "english": [
+    "to blanch"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "blanch",
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": null,
+      "past_participle": null
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f938d9825c8fdc85b45b"
+  },
+  "word": "karamelisieren",
+  "english": [
+    "to caramelize"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "to caramelize",
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": null,
+      "past_participle": null
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a71f954d9825c8fdc85b45c"
+  },
+  "word": "pürieren",
+  "english": [
+    "to purée"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "purée",
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": null,
+      "past_participle": null
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a732a2ab2a3d7db2e35ccdd"
+  },
+  "word": "Schmerz",
+  "english": [
+    "pain"
+  ],
+  "quiz_score": 0,
+  "plural": "Schmerzen",
+  "gender": "der",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a732b11b2a3d7db2e35ccde"
+  },
+  "word": "Fensterbrett",
+  "english": [
+    "windowsill"
+  ],
+  "quiz_score": 0,
+  "plural": "Fensterbänke",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a732de1b2a3d7db2e35cce0"
+  },
+  "word": "bunt",
+  "english": [
+    "colorful",
+    " colored",
+    " many-colored",
+    " motley"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Ich möchte einen bunten Blümenstrauß.\nI would like a colorful bunch of flowers."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a732f13b2a3d7db2e35cce1"
+  },
+  "word": "Fenster",
+  "english": [
+    "Window"
+  ],
+  "quiz_score": 0,
+  "plural": "Fenster",
+  "gender": "das",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a733062b2a3d7db2e35cce2"
+  },
+  "word": "Folie",
+  "english": [
+    "film"
+  ],
+  "quiz_score": 0,
+  "plural": "Folie",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a73353db2a3d7db2e35cce4"
+  },
+  "word": "schmecken",
+  "english": [
+    "to taste"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "verb"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "tenses": [
+    {
+      "tense": "Präsens",
+      "english": "to taste",
+      "1st_person_singular": "schmecke",
+      "2nd_person_singular": "schmeckst",
+      "3rd_person_singular": "schmeckt",
+      "1st_person_plural": "schmecken",
+      "2nd_person_plural": "schmeckt",
+      "3rd_person_plural": "schmecken",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Präteritum",
+      "english": null,
+      "1st_person_singular": "schmeckte",
+      "2nd_person_singular": "schmecktest",
+      "3rd_person_singular": "schmeckte",
+      "1st_person_plural": "schmeckten",
+      "2nd_person_plural": "schmecktet",
+      "3rd_person_plural": "schmeckten",
+      "helper_verb": null,
+      "past_participle": null
+    },
+    {
+      "tense": "Perfekt",
+      "english": null,
+      "1st_person_singular": null,
+      "2nd_person_singular": null,
+      "3rd_person_singular": null,
+      "1st_person_plural": null,
+      "2nd_person_plural": null,
+      "3rd_person_plural": null,
+      "helper_verb": "haben",
+      "past_participle": "geschmeckt "
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a74a5caedaa5c5ca11c8bc4"
+  },
+  "word": "Fahrt",
+  "english": [
+    "Drive"
+  ],
+  "quiz_score": 0,
+  "plural": "",
+  "gender": "die",
+  "type": [
+    "noun"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null
+},
+{
+  "_id": {
+    "$oid": "6a75ea22c954544ac690fea5"
+  },
+  "word": "sauber",
+  "english": [
+    "clean"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "antonym - schmutzig (dirty)"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a75ea40c954544ac690fea6"
+  },
+  "word": "schmutzig",
+  "english": [
+    "dirty"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "antonym - sauber(clean)"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a75ea69c954544ac690fea7"
+  },
+  "word": "leer",
+  "english": [
+    "empty"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "antonym - voll(full)"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a75ea89c954544ac690fea8"
+  },
+  "word": "offen",
+  "english": [
+    "open"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "antonym - geschlossen (closed)"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a75ea9fc954544ac690fea9"
+  },
+  "word": "geschlossen",
+  "english": [
+    "closed"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "antonym - offen (open)"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a75eb48c954544ac690feaa"
+  },
+  "word": "satt",
+  "english": [
+    "full"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "Satt means full specifically from eating food (satiated), while voll literally means full like an object or container. Crucially, saying \"Ich bin voll\" after a meal can colloquially mean \"I am drunk,\" so using satt is the correct choice for food."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a75ecd1c954544ac690feab"
+  },
+  "word": "letzte",
+  "english": [
+    "last",
+    " latest",
+    " final",
+    " recent",
+    " ultimate",
+    " rearmost",
+    " most terrible"
+  ],
+  "quiz_score": 0,
+  "plural": null,
+  "gender": null,
+  "type": [
+    "adjective"
+  ],
+  "verb_conjugation_class": null,
+  "verb_functional_type": null,
+  "rules": [
+    {
+      "type": "adjective",
+      "rule": "der letzte Tag (the last day)"
     }
   ]
 }]

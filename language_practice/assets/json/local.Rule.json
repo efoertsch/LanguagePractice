@@ -165,9 +165,9 @@
     "$oid": "6a22de5f76b4373f535a99f7"
   },
   "rule": "Possessive pronouns",
-  "explanation": "German possessive pronouns replace a noun entirely (e.g., \"mine\" instead of \"my car\"). They must match the replaced noun's possessor, gender, number, and sentence case (Nominative, Accusative, Dative, or Genitive). \n\nPossessive pronouns are used to indicate possession of non-people! Ther are the very last or very first word in a sentence.",
-  "type": null,
-  "example": "Mine                        mein-               Ours     unser-\nYours(informal)      dein-                Your (informal, plural)   euer-, eur-\nHis/Its                     sein-                 Their(plural, formal)      ihr-\nHer's                       ihr-",
+  "explanation": "German possessive pronouns replace a noun entirely (e.g., \"mine\" instead of \"my car\"). They must match the replaced noun's possessor, gender, number, and sentence case (Nominative, Accusative, Dative, or Genitive). \n\nPossessive pronouns are used to indicate possession of non-people! They are the very last or very first word in a sentence.",
+  "type": [],
+  "example": "Mine                        mein-               Our     unser-\nYours(informal)      dein-                Your (informal, plural)   euer-, eur-\nHis/Its                     sein-                 Their(plural, formal)      ihr-\nHer's                       ihr-",
   "quiz_score": 0
 },
 {
@@ -248,5 +248,27 @@
   "explanation": "Mögen -> to like a person or thing\nGern -> to like doing something (an action)",
   "type": null,
   "example": "Mögen + noun\n\nIch mag Pizza.  (I like Pizza)\nIch mag Hundee.  (I like dogs)\n\nverb + gern\nIch schwimme gern.  (I like to swim)\nIch lese gern.  (I like to read)",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5cedf900b3074cec7bfb19"
+  },
+  "rule": "nicht vs kein",
+  "explanation": "Use kein to negate nouns without an article or with an indefinite article, and use nicht to negate verbs, adjectives, adverbs, and nouns with definite articles. Think of kein as meaning \"not a\" or \"no/not any,\" while nicht acts as a standalone \"not\".",
+  "type": null,
+  "example": "When to use kein\nUse it for nouns to express absence or non-existence.\nIt replaces the indefinite article (ein/eine).\nBecause it functions like an article, it must match the noun's gender, case, and number (e.g., kein, keine, keinen).\n\nExample: Ich habe kein Auto. (I have no car / I do not have a car).\nExample: Er trinkt keine Milch. (He drinks no milk).\n\n\nWhen to use nicht\nUse it for verbs, adjectives, adverbs, and nouns with a definite article.\nIt never changes form.\nExample (Verb): Ich schwimme nicht. (I do not swim).\nExample (Adjective): Das Haus ist nicht groß. (The house is not big).\nExample (Definite noun): Ich mag nicht den Film. (I do not like the movie).",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5f85c786640720048f943a"
+  },
+  "rule": "weil vs denn",
+  "explanation": "Both words mean \"because\" or \"since,\" but they differ grammatically and stylistically. \n\nWeil introduces a subordinate clause, pushing the conjugated verb to the end. \n\nDenn links two main clauses, keeping the normal subject-verb word order, and cannot begin a sentence.",
+  "type": [
+    "conjunction"
+  ],
+  "example": "Ich bleibe heute zu Hause, weil ich müde bin.\n\nIch bleibe heute zu Hause, denn ich bin müde.",
   "quiz_score": 0
 }]

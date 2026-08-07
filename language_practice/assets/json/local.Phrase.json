@@ -11,7 +11,7 @@
     "$oid": "6a05eb6c20e9562d491c36af"
   },
   "phrase": "Ich hätte gern ...",
-  "english": "I'd like ...",
+  "english": "I would like to have ...",
   "usage": null,
   "quiz_score": null
 },
@@ -22,7 +22,7 @@
   "phrase": "Wohin fahren wir?",
   "english": "Where are we going?",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -47,7 +47,7 @@
   "phrase": "Ich habe Lust auf ...",
   "english": "I feel like...",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -64,7 +64,7 @@
   "phrase": "den Flur entlang",
   "english": "along the corridor",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -95,8 +95,9 @@
     "$oid": "6a0b700c9a3141ba4fe5dac1"
   },
   "phrase": "Bis bald!",
-  "english": "See you soon!",
-  "usage": null
+  "english": "See you soon! (lit. Until soon!)",
+  "usage": null,
+  "quiz_score": null
 },
 {
   "_id": {
@@ -364,8 +365,9 @@
     "$oid": "6a170b72ab91108acece7618"
   },
   "phrase": "in Scheiben schneiden",
-  "english": "slice",
-  "usage": null
+  "english": "slice, to cut into slices.",
+  "usage": null,
+  "quiz_score": null
 },
 {
   "_id": {
@@ -406,7 +408,7 @@
   "phrase": "Das darf doch nicht wahr sein!",
   "english": "This can't be true!",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -442,7 +444,7 @@
   "phrase": "Ich freue mich für euch.",
   "english": "I'm happy for you.",
   "usage": null,
-  "quiz_score": -2
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -450,7 +452,7 @@
   },
   "phrase": "mit einem blauen Auge davonkommen",
   "english": "to get away with a black eye",
-  "usage": null,
+  "usage": "Er kam mit einem blauen Auge davon.\nHe got away with a slap on the wrist.",
   "quiz_score": 1
 },
 {
@@ -460,7 +462,7 @@
   "phrase": "Wir konnten es nach unten tragen.",
   "english": "We were able to carry it downstairs.",
   "usage": null,
-  "quiz_score": -2
+  "quiz_score": -1
 },
 {
   "_id": {
@@ -469,7 +471,7 @@
   "phrase": "eine Meldebescheinigung beantragen",
   "english": "apply for a registration certificate",
   "usage": null,
-  "quiz_score": -1
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -478,7 +480,7 @@
   "phrase": "Ich hätte gern …",
   "english": "I'd like …",
   "usage": null,
-  "quiz_score": -2
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -487,7 +489,7 @@
   "phrase": "Könnten Sie bitte ...",
   "english": "Could you please ...",
   "usage": null,
-  "quiz_score": -2
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -496,7 +498,7 @@
   "phrase": "Würden Sie vielleicht ...",
   "english": "Would you perhaps...?",
   "usage": null,
-  "quiz_score": -2
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -505,7 +507,7 @@
   "phrase": "Was für ein Zufall!",
   "english": "What a coincidence!",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -514,7 +516,7 @@
   "phrase": "Ich habe immer noch keine Stelle gefunden.",
   "english": "I still haven't found a job.",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": -1
 },
 {
   "_id": {
@@ -523,7 +525,7 @@
   "phrase": "Wir wurden durch die Altstadt geführt.",
   "english": "We were guided tour through the old town.",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -532,7 +534,7 @@
   "phrase": "Ich wohne in ...",
   "english": "I live in ...",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -541,7 +543,7 @@
   "phrase": "Ich heiße ...",
   "english": "My name is ...",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -550,7 +552,7 @@
   "phrase": "Was machst du beruflich?",
   "english": "What is your profession?   What do you do for a living?",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -559,7 +561,7 @@
   "phrase": "Hast du gerade eine Sekunde?",
   "english": "Do you have a second?",
   "usage": null,
-  "quiz_score": 0
+  "quiz_score": 1
 },
 {
   "_id": {
@@ -630,7 +632,7 @@
   },
   "phrase": "Es kann sein, dass ...",
   "english": "It is possible that...",
-  "usage": null,
+  "usage": "Es kann sein, dass er heute kommt. (It is possible that he is coming today.)\n\nEs kann sein, dass wir uns verspäten. (It may be that we will be late.)\n\nEs kann sein, dass sie das Buch schon gelesen hat. (It is possible that she has already read the book.)\n\nGrammar Rule\nSubordinating conjunction: The word \"dass\" acts as a connector.\nVerb position: The main verb of that specific clause (kommt, verspäten, hat) goes to the end.",
   "quiz_score": 0
 },
 {
@@ -1108,5 +1110,284 @@
   "phrase": "mehr als genug",
   "english": "more than enough",
   "usage": "Der Schokoladenkuchen war sehr, sehr mächtig – ein kleines Stück war mehr als genug!\nThe chocolate cake was very, very rich – just one tiny piece was more than enough!",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5a3fc3cf4d2144f26086fd"
+  },
+  "phrase": "auf beiden Seiten",
+  "english": "on both sides",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5b88ab6a31b68f145548e8"
+  },
+  "phrase": "Können Sie den Käse bitte in Scheiben schneiden?",
+  "english": "Could you please slice the cheese?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5cdf6800b3074cec7bfb17"
+  },
+  "phrase": "Mir ist heiß",
+  "english": "I'm hot",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5f796786640720048f9437"
+  },
+  "phrase": "den Tisch decken",
+  "english": "to set the table",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a5ff7ed11d70493c534538b"
+  },
+  "phrase": "eine zusätzlicke Nacht",
+  "english": "an extra night, another( lit. an additional) night",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6603912fc74435fddaa92f"
+  },
+  "phrase": "im Computer nachsehen",
+  "english": "to check (lit. to look up) in the computer",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6b60b45d8cf26cac88240a"
+  },
+  "phrase": "Haben Sie das auch in Größe M?",
+  "english": "Do you also have this in size M?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6b61165d8cf26cac88240b"
+  },
+  "phrase": "Gibt es das auch in anderen Farben?",
+  "english": "Is it available in other colors?   Does it come in other colors?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6b61a15d8cf26cac88240c"
+  },
+  "phrase": "Wo ist die Kasse?",
+  "english": "Where is the checkout?    (Where is the cash register?)",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6b62425d8cf26cac88240d"
+  },
+  "phrase": "Die Autoban wird von der Polizei gesperrt.",
+  "english": "The motorway is  (being) closed by the police.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6b62ae5d8cf26cac88240e"
+  },
+  "phrase": "Nimm lieber etwas weniger.",
+  "english": "(Better) Take a little less.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6b62d45d8cf26cac88240f"
+  },
+  "phrase": "Wie viel kostet das?",
+  "english": "How much does that cost?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6cbdb2a79dfb10cdc9065d"
+  },
+  "phrase": "Es ist sehr lecker.",
+  "english": "It's very delicious.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6cbdf3a79dfb10cdc9065e"
+  },
+  "phrase": "Welche Fahrkarte brauche ich?",
+  "english": "Which ticket do I need?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6cbe30a79dfb10cdc9065f"
+  },
+  "phrase": "Was machen wir zum Frühstück?",
+  "english": "What are we having for breakfast?",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6cbe76a79dfb10cdc90660"
+  },
+  "phrase": "der Apfelstrudel mit Vanillesoße",
+  "english": "apple strudel with vanilla sauce",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6cbea1a79dfb10cdc90661"
+  },
+  "phrase": "Wir brauchen eine große Aubergine.",
+  "english": "We need a large eggplant.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6cbee5a79dfb10cdc90662"
+  },
+  "phrase": "Die Nationalhymne wurde von Joseph Haydn komponiert.",
+  "english": "The national anthem was composed by Joseph Haydn.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6cbf9da79dfb10cdc90665"
+  },
+  "phrase": "Guten Abend!",
+  "english": "Good evening!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6cc015a79dfb10cdc90666"
+  },
+  "phrase": "Mir is schwindelig.",
+  "english": "I feel dizzy.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a6cc739cde3e6154caa9414"
+  },
+  "phrase": "Er backt einen Kuchen, um seine Mutter zu überraschen.",
+  "english": "He's baking a cake to surprise his mother.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a732c9fb2a3d7db2e35ccdf"
+  },
+  "phrase": "Es gibt ...",
+  "english": "There is ... , There are ...",
+  "usage": "\"Es gibt\" is translated as \"there is\" or \"there are\" because it is a fixed, impersonal idiom used to express existence or availability, rather than a literal action of giving. While it translates to \"it gives\" literally, this usage functions exactly like \"there is\" in English, indicating something is present.\n\nMetaphorical Existence: It implies the world or environment \"gives\" or presents something to us, therefore making it exist.\n\nNeutral Function: It is used to state that something is present (e.g., Es gibt ein Problem – There is a problem).\n\nAlways Accusative: The object immediately following es gibt must always be in the accusative case (e.g., Es gibt eine Lösung, not eine Lösung).\n\nSingular Verb, Plural Meaning: Despite being singular, es gibt is used for both singular and plural nouns (e.g., Es gibt Äpfel – There are apples).",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a73326bb2a3d7db2e35cce3"
+  },
+  "phrase": "Das ist Geschmackssache!",
+  "english": "That's a matter of taste!",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a73354eb2a3d7db2e35cce5"
+  },
+  "phrase": "Gern geschehen",
+  "english": "You're welcome.  (Happened gladly or My pleasure)",
+  "usage": "Polite/Formal.  Often used when someone thanks you for a favor.",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a733576b2a3d7db2e35cce6"
+  },
+  "phrase": "Keine Ursache!",
+  "english": "No cause!  No worries!",
+  "usage": "Informal/friendly, commonly used for small favors.",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a7335dab2a3d7db2e35cce7"
+  },
+  "phrase": "Bitte!",
+  "english": "Your welcome!",
+  "usage": "One of most common forms to say 'You're welcome!'",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a7335feb2a3d7db2e35cce8"
+  },
+  "phrase": "Bitte schön!",
+  "english": "You're welcome!",
+  "usage": "One of most common forms to say 'You're welcome!'",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a74a3f7edaa5c5ca11c8bc3"
+  },
+  "phrase": "sich umsehen",
+  "english": "look around",
+  "usage": "\"Ich möchte mich nur ein bisschen umsehen\"\n(I would just like to have a little look around).\n\n\"Sie sollte sich nach einem neuen Job umsehen\" \n(She should look around for a new job).",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a75ed5bc954544ac690feac"
+  },
+  "phrase": "alles auf den Kopf stellen",
+  "english": "to turn everything upside down",
+  "usage": "Figurative use (Life or plans):\nGerman: Die neue Chefin hat nach ihrem Start alles auf den Kopf gestellt.\nEnglish: The new boss turned everything upside down after she started.\n\nLiteral/Physical search use (Rooms or houses):\nGerman: Um den verlorenen Ring zu finden, hat er alles auf den Kopf gestellt.\nEnglish: To find the lost ring, he turned everything upside down.",
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a75ee02c954544ac690fead"
+  },
+  "phrase": "Ich habe eine Ausbildung gemacht.",
+  "english": "I completed an apprenticeship.",
+  "usage": null,
+  "quiz_score": 0
+},
+{
+  "_id": {
+    "$oid": "6a75ee9dc954544ac690feae"
+  },
+  "phrase": "Glück haben",
+  "english": "to be lucky",
+  "usage": "Er hatte Glück, dass er den letzten Zug noch erwischt hat.\nHe was lucky to catch the last train.\n\nExample Sentences in Different Tenses\nPresent: \"Du hast Glück!\" (You are lucky!)\nPast (Präteritum): \"Wir hatten Glück mit dem Wetter.\" (We were lucky with the weather.)\n\nPresent Perfect (Perfekt): \"Ich habe Glück gehabt.\" (I have been lucky / I got lucky.)\n\nSubjunctive / Conditional: \"Wenn wir Glück haben, finden wir einen Parkplatz.\" (If we are lucky, we will find a parking spot.)",
   "quiz_score": 0
 }]
