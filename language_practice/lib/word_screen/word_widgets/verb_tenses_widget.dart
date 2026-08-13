@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language_practice/app/AppStateWidget.dart';
 import 'package:language_practice/app/constants.dart' show Constants;
 import 'package:language_practice/enums/word_enums.dart';
 import 'package:language_practice/repository/language_classes/word_info.dart';
@@ -20,7 +21,7 @@ class WordTensesWidget extends StatefulWidget {
   State<WordTensesWidget> createState() => _WordTensesWidgetState();
 }
 
-class _WordTensesWidgetState extends State<WordTensesWidget> {
+class _WordTensesWidgetState extends AppStateWidget<WordTensesWidget> {
   int _activeTenseIndex = 0;
   late final ValueNotifier<String> firstAndThirdPersonSingular;
   late final ValueNotifier<String> firstAndThirdPersonPlural;
@@ -122,8 +123,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
             currentTense.english = val;
             widget.onTenseChanged?.call(_activeTenseIndex, currentTense);
           }),
-          valueNotifier:
-          currentTense.tense == VerbTense.present.germanTense
+          valueNotifier: currentTense.tense == VerbTense.present.germanTense
               ? widget.englishValueNotifier
               : null,
           //valueNotifier:
@@ -163,9 +163,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
     // Filter out tenses already present in the list
     final availableTenses = _getAvailableTenses();
     if (availableTenses.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("All tenses already added.")),
-      );
+      showSnackBar(content: "All tenses already added.");
       return;
     }
 
@@ -373,7 +371,7 @@ class _WordTensesWidgetState extends State<WordTensesWidget> {
                 currentTense.s3rdPersonSingular = val;
               }),
               valueNotifier:
-                  currentTense. tense == VerbTense.simple_past.germanTense
+                  currentTense.tense == VerbTense.simple_past.germanTense
                   ? firstAndThirdPersonSingular
                   : null,
             ),

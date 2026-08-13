@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:language_practice/app/AppStateWidget.dart';
 import 'package:language_practice/app/dialog_widgets.dart' show CommonWidgets;
 import 'package:language_practice/repository/language_classes/rule.dart';
 import 'package:language_practice/rule/rule_bloc/rule_cubit.dart';
@@ -14,12 +15,11 @@ class RuleEditWidget extends StatefulWidget {
   const RuleEditWidget({super.key, required this.rule});
 
   @override
-  State<RuleEditWidget> createState() => _RuleEditWidgetState();
+  _RuleEditWidgetState createState() => _RuleEditWidgetState();
 }
 
-class _RuleEditWidgetState extends State<RuleEditWidget>
+class _RuleEditWidgetState extends AppStateWidget<RuleEditWidget>
     with RowWithLabelAndChildMixin, WordTypeMixin {
-
   void _onSave() {
     context.read<RuleCubit>().saveRule(widget.rule);
   }
@@ -47,13 +47,11 @@ class _RuleEditWidgetState extends State<RuleEditWidget>
         listener: (context, state) {
           if (state is RuleSavedState || state is RuleDeletedState) {
             String message = state is RuleSavedState ? "Saved" : "Deleted";
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: state is RuleSavedState
-                    ? Colors.green
-                    : Colors.redAccent,
-                content: Text("${widget.rule.rule} $message."),
-              ),
+            showSnackBar(
+              backgroundColor: state is RuleSavedState
+                  ? Colors.green
+                  : Colors.redAccent,
+              content: "${widget.rule.rule} $message.",
             );
             Navigator.of(context).pop(); // return to prior screen
           }
@@ -83,7 +81,6 @@ class _RuleEditWidgetState extends State<RuleEditWidget>
       ),
     );
   }
-
 
   Widget _getFloatingActionButtonRow(BuildContext context) {
     return Row(

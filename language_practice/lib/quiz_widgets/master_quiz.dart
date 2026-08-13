@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:language_practice/app/AppStateWidget.dart';
 import 'package:language_practice/quiz_widgets/quiz_bloc/quiz_cubit.dart';
 import 'package:language_practice/quiz_widgets/quiz_bloc/quiz_state.dart';
 import 'package:language_practice/quiz_widgets/quiz_phrase.dart';
@@ -16,17 +17,16 @@ import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart'
 
 import '../app/dialog_widgets.dart' show CommonWidgets;
 import '../phrase/phrase_bloc/phrase_cubit.dart';
-import '../phrase/phrase_widgets/phrase_layout_widget.dart';
 import '../rule/rule_bloc/rule_cubit.dart';
 
 class MasterQuizViewer extends StatefulWidget {
   const MasterQuizViewer({super.key});
 
   @override
-  State<MasterQuizViewer> createState() => _MasterQuizViewerState();
+  _MasterQuizViewerState createState() => _MasterQuizViewerState();
 }
 
-class _MasterQuizViewerState extends State<MasterQuizViewer>
+class _MasterQuizViewerState extends AppStateWidget<MasterQuizViewer>
     with WordTypeMixin {
   final getIt = GetIt.instance;
 

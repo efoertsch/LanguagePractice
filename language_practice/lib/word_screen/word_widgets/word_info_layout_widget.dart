@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language_practice/app/AppStateWidget.dart';
 import 'package:language_practice/app/dialog_widgets.dart';
 import 'package:language_practice/enums/word_enums.dart'
     show VerbTense, WordType;
@@ -28,7 +29,7 @@ class WordInfoWidgetLayout extends StatefulWidget {
   State<WordInfoWidgetLayout> createState() => _WordInfoWidgetLayoutState();
 }
 
-class _WordInfoWidgetLayoutState extends State<WordInfoWidgetLayout>
+class _WordInfoWidgetLayoutState extends AppStateWidget<WordInfoWidgetLayout>
     with WordTypeMixin, TickerProviderStateMixin {
   ValueNotifier<String>? presentTenseEnglish;
 
@@ -202,13 +203,9 @@ class _WordInfoWidgetLayoutState extends State<WordInfoWidgetLayout>
             types.contains(WordType.noun.displayName) &&
             widget.wordInfo.gender == null) {
           widget.wordInfo.gender = widget.genders.first;
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: Colors.green,
-              content: Text(
+          showSnackBar(
+            content:
                 "Default gender of ${widget.wordInfo.gender} assigned. Change as needed",
-              ),
-            ),
           );
         } else if (types.isNotEmpty &&
             !types.contains(WordType.noun.displayName)) {

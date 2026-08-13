@@ -11,6 +11,7 @@ import 'package:language_practice/word_screen/type_word_widget.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
 import 'package:language_practice/word_screen/word_widgets/word_type_mixin.dart';
 
+import '../app/AppStateWidget.dart';
 import '../quiz_widgets/quiz_bloc/quiz_cubit.dart';
 
 class LanguageEntry extends StatefulWidget {
@@ -18,9 +19,10 @@ class LanguageEntry extends StatefulWidget {
 
   @override
   State<LanguageEntry> createState() => _LanguageEntryState();
+
 }
 
-class _LanguageEntryState extends State<LanguageEntry>
+class _LanguageEntryState extends AppStateWidget<LanguageEntry>
     with WidgetsBindingObserver, WordTypeMixin {
   String? _defaultWordType = null;
   final getIt = GetIt.instance;
@@ -37,12 +39,14 @@ class _LanguageEntryState extends State<LanguageEntry>
     super.dispose();
   }
 
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      // Force a UI refresh when the app and OS wake up
-      setState(() {});
-    }
-  }
+
+
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   if (state == AppLifecycleState.resumed) {
+  //     // Force a UI refresh when the app and OS wake up
+  //     setState(() {});
+  //   }
+ // }
 
   @override
   Widget build(BuildContext context) {

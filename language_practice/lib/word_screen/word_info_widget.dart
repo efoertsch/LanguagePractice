@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:language_practice/app/AppStateWidget.dart';
 import 'package:language_practice/app/dialog_widgets.dart';
 import 'package:language_practice/repository/language_classes/word_info.dart';
 import 'package:language_practice/word_screen/word_bloc/word_cubit.dart';
@@ -21,7 +22,7 @@ class WordInfoWidget extends StatefulWidget {
   State<WordInfoWidget> createState() => _WordInfoWidgetState();
 }
 
-class _WordInfoWidgetState extends State<WordInfoWidget>
+class _WordInfoWidgetState extends AppStateWidget<WordInfoWidget>
     with TickerProviderStateMixin, WordTypeMixin {
   List<String> _genders = [];
   late final ValueNotifier<String> presentTenseEnglish;
@@ -55,13 +56,12 @@ class _WordInfoWidgetState extends State<WordInfoWidget>
         listener: (context, state) {
           if (state is WordSavedState || state is WordDeletedState) {
             String message = state is WordSavedState ? "Saved" : "Deleted";
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
+            showSnackBar(
                 backgroundColor: state is WordSavedState
                     ? Colors.green
                     : Colors.redAccent,
-                content: Text("${widget.wordInfo.word} $message."),
-              ),
+                content: "${widget.wordInfo.word} $message.",
+
             );
             Navigator.of(context).pop(); // return to prior screen
           }
